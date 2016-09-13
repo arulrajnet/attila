@@ -34,7 +34,7 @@
 {% endblock header %}
 
 {% block content %}
-  {%- for tag, articles in tags|sort %}
+  {% for tag, articles in tags|sort %}
     <article class="post">
       <div class="inner">
         <a href="{{ SITEURL }}/{{ tag.url }}">{{ tag }}</a> ({{ articles|count }})

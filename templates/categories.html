@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+
+{% block title %}{{ SITENAME }} - Categories{% endblock %}
+
+{% block header %}
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header id="blog-header" class="has-cover">
+      <div class="inner">
+        <nav id="navigation">
+          {% if SITE_LOGO %}
+            <span class="blog-logo">
+                <a href="{{ SITEURL }}"><img src="{{SITE_LOGO}}" alt="Blog Logo" /></a>
+            </span>
+          {% else %}
+            <span id="home-button" class="nav-button">
+                <a class="home-button" href="{{ SITEURL }}" title="Home"><i class="ic ic-arrow-left"></i> Home</a>
+            </span>
+          {% endif %}
+          <span id="menu-button" class="nav-button">
+            <a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
+          </span>
+        </nav>
+        <h1 class="post-title">{{ SITENAME }} - Categories</h1>
+        {% if HEADER_COVER %}
+            <div class="blog-cover cover" style="background-image: url('{{ HEADER_COVER }}')">            
+        {% elif HEADER_COLOR %}
+            <div class="post-cover cover" style="background-color: {{ HEADER_COLOR }}">
+        {% else %}
+            <div class="post-cover cover" style="background-image: url('{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg')">
+        {% endif %}        
+      </div>
+    </header>    
+{% endblock header %}
+
+{% block content %}
+  {% for category, articles in categories |sort %}
+    <article class="post">
+      <div class="inner">
+        <a href="{{ SITEURL }}/{{ category.url }}">{{ category }}</a> ({{ articles|count }})
+      </div>
+    </article>
+  {% endfor %}
+{% endblock content %}

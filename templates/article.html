@@ -123,7 +123,7 @@
         {% if article.header_cover %}
             <div class="post-cover cover" style="background-image: url('{{ article.header_cover }}')">
         {% elif HEADER_COVER %}
-            <div class="blog-cover cover" style="background-image: url('{{ HEADER_COVER }}')">            
+            <div class="post-cover cover" style="background-image: url('{{ HEADER_COVER }}')">            
         {% elif HEADER_COLOR %}
             <div class="post-cover cover" style="background-color: {{ HEADER_COLOR }}">
         {% else %}
