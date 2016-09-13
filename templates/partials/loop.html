@@ -1,0 +1,39 @@
+    <div class="extra-pagination">
+        {% include "partials/pagination.html" %}
+    </div>
+
+    {% for article in articles_page.object_list %}
+        <article class="post">
+        <div class="inner">
+            <header class="post-header">         
+                <h2 class="post-title"><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a>
+                </h2>
+                <span class="post-meta">
+                    {% for author in article.authors %}
+                        <a href="{{ SITEURL }}/{{ author.url }}">{{ author|capitalize }}</a>
+                    {% endfor %}
+                     | <time datetime="{{ article.locale_date }}">{{ article.locale_date }}</time>
+                </span>
+                <div class="clear"></div>
+            </header>
+            {% if SHOW_FULL_ARTICLE %}
+                <section class="post-content">
+                {{ article.content }}
+                </section>
+            {% else %}
+                <section class="post-excerpt">
+                    <p>
+                    {% if article.has_summary %}
+                        {{ article.summary }}
+                    {% elif article.summary %}
+                        {{ article.summary|striptags|truncate(250) }}
+                    {% endif %}
+                    </p>
+                </section>
+            {% endif %}
+            {% include 'partials/comments_count.html' %}
+            </div>
+        </article>
+    {% endfor %}
+
+    {% include "partials/pagination.html" %}

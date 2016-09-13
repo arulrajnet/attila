@@ -1,0 +1,183 @@
+{% extends "base.html" %}
+{% block title %}{{ article.title }}{% endblock %}
+
+{% block head %}
+    {{ super() }}
+
+    {% for keyword in article.keywords %}
+        <meta name="keywords" content="{{keyword}}" >
+    {% endfor %}
+
+    {% if description %}
+        <meta name="description" content="{{ description }}">
+    {% elif article.headline %}
+        <meta name="description" content="{{ article.headline }}">
+    {% elif article.summary %}
+        <meta name="description" content="{{ article.summary|striptags|truncate(140) }}">
+    {% endif %}
+
+    {% for author in article.authors %}
+        <meta name="author" content="{{ author }}">
+    {% endfor %}
+
+    {% for tag in article.tags %}
+        <meta name="tags" content="{{tag}}">
+    {% endfor %}
+{% endblock %}
+
+{% block twitter_card %}
+    {% for name,link in SOCIAL if name in ['twitter'] %}
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:site" content="@{{ link|replace('http://', 'https://')|replace('https://twitter.com/', '') }}">
+        <meta name="twitter:title" content="{{ article.title }}">
+
+        {% if article.twitter_image %}
+            {% if article.twitter_image|lower|truncate(4, True, '') == "http" %}
+                <meta property="twitter:image" content="{{ article.twitter_image }}">
+            {% else %}
+                <meta property="twitter:image" content="{{ SITEURL }}/{{ article.twitter_image }}">
+            {% endif %}
+        {% elif article.header_cover %}
+            <meta name="twitter:image" content="{{ SITEURL }}/{{ article.header_cover }}">
+        {% elif HEADER_COVER %}
+            <meta name="twitter:image" content="{{ SITEURL }}/{{ HEADER_COVER }}">
+        {% else %}
+            <meta name="twitter:image" content="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg">
+        {% endif %}
+
+        {% if description %}
+            <meta name="twitter:description" content="{{ description }}">
+        {% elif article.headline %}
+            <meta name="twitter:description" content="{{ article.headline }}">
+        {% else %}
+            <meta name="twitter:description" content="{{ article.summary|striptags|truncate(140) }}">
+        {% endif %}
+    {% endfor %}
+{% endblock %}
+{% block opengraph %}
+  {{ super() }}
+  <meta property="og:type" content="article">
+        {% for author in article.authors %}
+            <meta property="article:author" content="{{ SITEURL }}/{{ author.url }}">
+        {% endfor %}
+  <meta property="og:url" content="{{ SITEURL }}/{{ article.url }}">
+  <meta property="og:title" content="{{ article.title }}">
+  <meta property="article:published_time" content="{{ article.date }}">
+        {% if description %}
+            <meta property="og:description" content="{{ description }}">
+        {% elif article.headline %}
+            <meta property="og:description" content="{{ article.headline }}">
+        {% elif article.summary %}
+            <meta property="og:description" content="{{ article.summary|striptags|truncate(140) }}">
+        {% endif %}
+
+        {% if article.og_image %}
+            {% if article.og_image|lower|truncate(4, True, '') == "http" %}
+                <meta property="og:image" content="{{ article.og_image }}">
+            {% else %}
+                <meta property="og:image" content="{{ SITEURL }}/{{ article.og_image }}">
+            {% endif %}
+        {% elif article.header_cover %}
+            <meta property="og:image" content="{{ SITEURL }}/{{ article.header_cover }}">
+        {% elif HEADER_COVER %}
+            <meta property="og:image" content="{{ SITEURL }}/{{ HEADER_COVER }}">
+        {% else %}
+            <meta property="og:image" content="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg">
+        {% endif %}
+{% endblock %}
+
+{% block header %}
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header id="post-header" class="has-cover">
+      <div class="inner">
+        <nav id="navigation">
+          {% if SITE_LOGO %}
+            <span class="blog-logo">
+                <a href="{{ SITEURL }}"><img src="{{SITE_LOGO}}" alt="Blog Logo" /></a>
+            </span>
+          {% else %}
+            <span id="home-button" class="nav-button">
+                <a class="home-button" href="{{ SITEURL }}" title="Home"><i class="ic ic-arrow-left"></i> Home</a>
+            </span>
+          {% endif %}
+          <span id="menu-button" class="nav-button">
+            <a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
+          </span>
+        </nav>
+        <h1 class="post-title">{{ article.title }}</h1>
+        <!-- TODO : Proper class for headline -->
+        {% if article.headline %}
+            <span class="blog-description">{{ article.headline }}</h3>
+        {% endif %}
+        <span class="post-meta">
+            {% for author in article.authors %}
+                <a href="{{ SITEURL }}/{{ author.url }}">{{ author|capitalize }}</a>
+            {% endfor %}
+            | <time datetime="{{ article.locale_date }}">{{ article.locale_date }}</time>
+        </span>
+        <!-- TODO : Modified check -->
+        {% if article.modified %}
+            <span class="post-meta"> | Updated on {{ article.locale_modified }}</span>
+        {% endif %}        
+        {% if article.header_cover %}
+            <div class="post-cover cover" style="background-image: url('{{ article.header_cover }}')">
+        {% elif HEADER_COVER %}
+            <div class="blog-cover cover" style="background-image: url('{{ HEADER_COVER }}')">            
+        {% elif HEADER_COLOR %}
+            <div class="post-cover cover" style="background-color: {{ HEADER_COLOR }}">
+        {% else %}
+            <div class="post-cover cover" style="background-image: url('{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg')">
+        {% endif %}        
+      </div>
+    </header>    
+{% endblock header %}
+
+{% block content %}
+
+    <!-- Post content -->
+    <main class="content" role="main">
+        <article class="post">
+        <div class="inner">
+            <section class="post-content">
+                {{article.content}}
+            </section>
+
+            <section class="post-info">
+                <div class="post-share">
+                    <a class="twitter" href="https://twitter.com/share?text={{ article.title }}&amp;url={{ SITEURL }}/{{ article.url }}" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                    <i class="ic ic-twitter"></i><span class="hidden">Twitter</span>
+                    </a>
+                    <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ SITEURL }}/{{ article.url }}" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                    <i class="ic ic-facebook"></i><span class="hidden">Facebook</span>
+                    </a>
+                    <a class="googleplus" href="https://plus.google.com/share?url={{ SITEURL }}/{{ article.url }}" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                    <i class="ic ic-googleplus"></i><span class="hidden">Google+</span>
+                    </a>
+                    <div class="clear"></div>
+                </div>
+
+                {% if article.tags %}
+                <aside class="post-tags">
+                    {% for tag in article.tags %}<a href="{{ SITEURL }}/{{ tag.url }}">{{ tag | escape }}</a>{% if not loop.last %}{% endif %}{% endfor %}
+                </aside>
+                {% endif %}
+
+                <div class="clear"></div>
+
+                <!-- TODO : Author Info -->
+
+                </section>
+
+                <!-- TODO : comments not showing -->
+                <section class="post-comments">
+                    <a id="show-disqus" class="post-comments-activate">Show Comments</a>
+                    <div id="disqus_thread"></div>
+                </section>
+
+                <!-- TODO : Previous and Next post -->
+
+            </div>
+        </article>
+    </main>
+{% endblock content %}
