@@ -87,6 +87,11 @@
 {% endblock %}
 
 {% block header %}
+    <!-- Progressbar -->
+    <div class="progress-container">
+        <span class="progress-bar"></span>
+    </div>
+
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
     <header id="post-header" class="has-cover">
@@ -165,15 +170,31 @@
 
                 <div class="clear"></div>
 
-                <!-- TODO : Author Info -->
+                <!-- TODO : Author bio -->
 
                 </section>
 
-                <!-- TODO : comments not showing -->
+                {% if DISQUS_SITENAME and SITEURL and article.status != "draft" %}
+                <script type="text/javascript">
+                    var disqus = '{{ DISQUS_SITENAME }}';
+                    var disqus_shortname = '{{ DISQUS_SITENAME }}';
+                    {% if article.disqus_identifier %}
+                    var disqus_identifier = '{{ article.disqus_identifier }}';
+                    {% else %}
+                    var disqus_identifier = '/{{ article.url }}';
+                    {% endif %}
+                    var disqus_url = '{{ SITEURL }}/{{ article.url }}';
+                </script>
+                <noscript>Please enable JavaScript to view the comments.</noscript>                  
                 <section class="post-comments">
-                    <a id="show-disqus" class="post-comments-activate">Show Comments</a>
-                    <div id="disqus_thread"></div>
+                    {% if article.disqus_identifier %}
+                        <a id="show-disqus" class="post-comments-activate" data-disqus-identifier="{{ article.disqus_identifier }}" >Show Comments</a>
+                    {% else %}
+                        <a id="show-disqus" class="post-comments-activate" data-disqus-identifier="/{{ article.url }}" >Show Comments</a>
+                    {% endif %}
+                    <div id="disqus_thread"></div>                  
                 </section>
+                {% endif %}
 
                 <!-- TODO : Previous and Next post -->
 
