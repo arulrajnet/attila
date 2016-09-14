@@ -196,7 +196,27 @@
                 </section>
                 {% endif %}
 
-                <!-- TODO : Previous and Next post -->
+                <aside class="post-nav">
+                    {% if article.next_article %}
+                    <a class="post-nav-next" href="{{ SITEURL }}/{{ article.next_article.url}}">
+                        <section class="post-nav-teaser">
+                            <i class="ic ic-arrow-left"></i>
+                                <h2 class="post-nav-title">{{ article.next_article.title }}</h2>
+                            <p class="post-nav-excerpt">{{ article.next_article.summary|striptags|truncate(90) }}</p>
+                        </section>
+                    </a>
+                    {% endif %}
+                    {% if article.prev_article %}
+                    <a class="post-nav-prev" href="{{ SITEURL }}/{{ article.prev_article.url}}">
+                        <section class="post-nav-teaser">
+                            <i class="ic ic-arrow-right"></i>
+                                <h2 class="post-nav-title">{{ article.prev_article.title }}</h2>
+                            <p class="post-nav-excerpt">{{ article.prev_article.summary|striptags|truncate(90) }}</p>
+                        </section>
+                    </a>
+                    {% endif %}
+                    <div class="clear"></div>
+                </aside>
 
             </div>
         </article>
