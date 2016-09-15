@@ -170,7 +170,36 @@
 
                 <div class="clear"></div>
 
-                <!-- TODO : Author bio -->
+                {% for author in article.authors %}
+                {% if AUTHORS_BIO and AUTHORS_BIO[author.name.lower()] != None %}
+                <aside class="post-author">
+                    {% if AUTHORS_BIO[author.name.lower()].image %}
+                        <figure class="post-author-avatar">
+                            <img src="{{AUTHORS_BIO[author.name.lower()].image}}" alt="{{author.name | capitalize}}" />
+                        </figure>
+                    {% endif %}
+                    <div class="post-author-bio">
+                        <h4 class="post-author-name"><a href="{{ SITEURL }}/{{author.url}}">{{author.name | capitalize}}</a></h4>
+                        {% if AUTHORS_BIO[author.name.lower()].bio %}
+                            <p class="post-author-about">{{AUTHORS_BIO[author.name.lower()].bio}}</p>
+                        {% endif %}
+                        {% if AUTHORS_BIO[author.name.lower()].location %}
+                            <span class="post-author-location"><i class="ic ic-location"></i> {{AUTHORS_BIO[author.name.lower()].location}}</span>
+                        {% endif %}
+                        {% if AUTHORS_BIO[author.name.lower()].website %}
+                            <span class="post-author-website"><a href="{{AUTHORS_BIO[author.name.lower()].website}}"><i class="ic ic-link"></i> Website</a></span>
+                        {% endif %}
+                        {% if AUTHORS_BIO[author.name.lower()].twitter %}
+                            <span class="post-author-twitter"><a target="_blank" href="https://twitter.com/{{AUTHORS_BIO[author.name.lower()].twitter}}"><i class="ic ic-twitter"></i> Twitter</a></span>
+                        {% endif %}
+                        {% if AUTHORS_BIO[author.name.lower()].facebook %}
+                            <span class="post-author-facebook"><a target="_blank" href="https://facebook.com/{{AUTHORS_BIO[author.name.lower()].facebook}}"><i class="ic ic-facebook"></i> Facebook</a></span>
+                        {% endif %}
+                    </div>
+                    <div class="clear"></div>
+                </aside>
+                {% endif %} 
+                {% endfor %}
 
                 </section>
 
