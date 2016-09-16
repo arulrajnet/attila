@@ -11,7 +11,7 @@ TODO : Need to update the pelican demo url
 * [Blog](http://arulraj.net/)
 * [Post](http://arulraj.net/2015/05/prompter4j-released-1-0.html)
 * [Tag Archive](http://arulraj.net/tag/programming/)
-* [Author Archive](http://arulraj.net/author/arul.html)
+* [Author Archive](http://arulraj.net/author/arul/)
 * [Category Archive](http://arulraj.net/category/android/)
 * [All archive](http://arulraj.net/archives.html)
 * [Page](http://arulraj.net/pages/about)
