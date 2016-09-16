@@ -4,6 +4,7 @@
 {% block head %}
     {{ super() }}
 
+    <link href="{{ SITEURL }}/{{ article.url }}" rel="canonical" />
     {% for keyword in article.keywords %}
         <meta name="keywords" content="{{keyword}}" >
     {% endfor %}
@@ -26,23 +27,24 @@
 {% endblock %}
 
 {% block twitter_card %}
-    {% for name,link in SOCIAL if name in ['twitter'] %}
+    {% for name,link in SOCIAL if name.lower() in ['twitter'] %}
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:site" content="@{{ link|replace('http://', 'https://')|replace('https://twitter.com/', '') }}">
         <meta name="twitter:title" content="{{ article.title }}">
+        <meta name="twitter:url" content="{{ SITEURL }}/{{ article.url }}">
 
         {% if article.twitter_image %}
             {% if article.twitter_image|lower|truncate(4, True, '') == "http" %}
-                <meta property="twitter:image" content="{{ article.twitter_image }}">
+                <meta name="twitter:image:src" content="{{ article.twitter_image }}">
             {% else %}
-                <meta property="twitter:image" content="{{ SITEURL }}/{{ article.twitter_image }}">
+                <meta name="twitter:image:src" content="{{ SITEURL }}/{{ article.twitter_image }}">
             {% endif %}
         {% elif article.header_cover %}
-            <meta name="twitter:image" content="{{ SITEURL }}/{{ article.header_cover }}">
+            <meta name="twitter:image:src" content="{{ SITEURL }}/{{ article.header_cover }}">
         {% elif HEADER_COVER %}
-            <meta name="twitter:image" content="{{ SITEURL }}/{{ HEADER_COVER }}">
+            <meta name="twitter:image:src" content="{{ SITEURL }}/{{ HEADER_COVER }}">
         {% else %}
-            <meta name="twitter:image" content="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg">
+            <meta name="twitter:image:src" content="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg">
         {% endif %}
 
         {% if description %}

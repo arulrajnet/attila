@@ -24,7 +24,7 @@
   <link href="{{ SITEURL }}" rel="canonical" />
 
   <!-- Feed -->
-  {% for name,link in SOCIAL if name in ['rss', 'rss-square', 'feed'] %}
+  {% for name,link in SOCIAL if name.lower() in ['rss', 'rss-square', 'feed'] %}
       <link href="{{ link }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Full Atom Feed" />
   {% else %}
       {% if FEED_ALL_ATOM %}
@@ -98,20 +98,21 @@
     {% else %}
       <meta name="og:image" content="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg">
     {% endif %}
-    {% for name,link in SOCIAL if name in ['facebook'] %}
+    {% for name,link in SOCIAL if name.lower() in ['facebook'] %}
       <meta property="article:publisher" content="{{ link }}" />
     {% endfor %}
   {% endblock opengraph %}
   {% block twitter_card %}
-    {% for name,link in SOCIAL if name in ['twitter'] %}
+    {% for name,link in SOCIAL if name.lower() in ['twitter'] %}
       <meta name="twitter:card" content="summary_large_image">
       <meta name="twitter:site" content="@{{ link|replace('http://', 'https://')|replace('https://twitter.com/', '') }}">
       <meta name="twitter:title" content="{{ SITENAME }}">
       <meta name="twitter:description" content="{{ SITESUBTITLE|default('View the blog.') }}">
+      <meta name="twitter:url" content="{{ SITEURL }}">
         {% if HEADER_COVER %}
-          <meta name="twitter:image" content="{{ SITEURL }}/{{ HEADER_COVER }}">
+          <meta name="twitter:image:src" content="{{ SITEURL }}/{{ HEADER_COVER }}">
         {% else %}
-          <meta name="twitter:image" content="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg">
+          <meta name="twitter:image:src" content="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg">
         {% endif %}
     {% endfor %}
   {% endblock twitter_card %}
@@ -132,8 +133,8 @@
     <footer id="footer">
       <div class="inner">
         <section class="credits">
-          <span class="credits-theme">Theme <a href="https://github.com/arulrajnet/attila">Attila</a></span>
-          <span class="credits-software">Published with <a href="https://github.com/getpelican/pelican">Pelican</a></span>
+          <span class="credits-theme">Theme <a href="https://github.com/arulrajnet/attila" rel="nofollow">Attila</a></span>
+          <span class="credits-software">Published with <a href="https://github.com/getpelican/pelican" rel="nofollow">Pelican</a></span>
         </section>
       </div>
     </footer>
