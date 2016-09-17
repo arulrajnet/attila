@@ -173,7 +173,7 @@
                 <div class="clear"></div>
 
                 {% for author in article.authors %}
-                {% if AUTHORS_BIO and AUTHORS_BIO[author.name.lower()] != None %}
+                {% if AUTHORS_BIO and author.name.lower() in AUTHORS_BIO %}
                 <aside class="post-author">
                     {% if AUTHORS_BIO[author.name.lower()].image %}
                         <figure class="post-author-avatar">
