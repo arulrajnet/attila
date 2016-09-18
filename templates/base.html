@@ -141,6 +141,13 @@
   </section>
 
   <script type="text/javascript" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/script.js"></script>
+  
+  {% if JS_OVERRIDE %}
+    <!-- Script specified by the user -->
+    {% for js in JS_OVERRIDE %}
+    <script type="text/javascript"  src="{{ SITEURL }}/{{ js }}"></script>
+    {% endfor %}
+  {% endif %}
   {% include 'partials/analytics.js' %}
   {% include 'partials/disqus.js' %}
 </body>
