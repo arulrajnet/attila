@@ -151,6 +151,9 @@ absolute URLs for ``og_image`` and ``twitter_image``.
 
 refer this [https://github.com/arulrajnet/attila-demo](https://github.com/arulrajnet/attila-demo)
 
+**Author Screen**
+![screenshot](screenshot.png)
+
 ## Copyright & License
 
 Copyright (c) 2015-2016 Peter Amende - Released under The MIT License.
