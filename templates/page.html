@@ -21,11 +21,11 @@
             <a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
           </span>
         </nav>
-        <h1 class="post-title">{{ page.title }}</h1>      
-        {% if page.header_cover %}
-            <div class="post-cover cover" style="background-image: url('{{ page.header_cover }}')">
+        <h1 class="post-title">{{ page.title }}</h1>
+        {% if page.og_image %}
+            <div class="post-cover cover" style="background-image: url('{{ page.og_image }}')">
         {% elif HEADER_COVER %}
-            <div class="post-cover cover" style="background-image: url('{{ HEADER_COVER }}')">            
+            <div class="post-cover cover" style="background-image: url('{{ HEADER_COVER }}')">
         {% elif HEADER_COLOR %}
             <div class="post-cover cover" style="background-color: {{ HEADER_COLOR }}">
         {% else %}

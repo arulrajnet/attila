@@ -24,68 +24,9 @@
     {% for tag in article.tags %}
         <meta name="tags" content="{{tag}}">
     {% endfor %}
-{% endblock %}
 
-{% block twitter_card %}
-    {% for name,link in SOCIAL if name.lower() in ['twitter'] %}
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:site" content="@{{ link|replace('http://', 'https://')|replace('https://twitter.com/', '') }}">
-        <meta name="twitter:title" content="{{ article.title }}">
-        <meta name="twitter:url" content="{{ SITEURL }}/{{ article.url }}">
-
-        {% if article.twitter_image %}
-            {% if article.twitter_image|lower|truncate(4, True, '') == "http" %}
-                <meta name="twitter:image:src" content="{{ article.twitter_image }}">
-            {% else %}
-                <meta name="twitter:image:src" content="{{ SITEURL }}/{{ article.twitter_image }}">
-            {% endif %}
-        {% elif article.header_cover %}
-            <meta name="twitter:image:src" content="{{ SITEURL }}/{{ article.header_cover }}">
-        {% elif HEADER_COVER %}
-            <meta name="twitter:image:src" content="{{ SITEURL }}/{{ HEADER_COVER }}">
-        {% else %}
-            <meta name="twitter:image:src" content="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg">
-        {% endif %}
-
-        {% if description %}
-            <meta name="twitter:description" content="{{ description }}">
-        {% elif article.headline %}
-            <meta name="twitter:description" content="{{ article.headline }}">
-        {% else %}
-            <meta name="twitter:description" content="{{ article.summary|striptags|truncate(140) }}">
-        {% endif %}
-    {% endfor %}
-{% endblock %}
-{% block opengraph %}
-  {{ super() }}
-  <meta property="og:type" content="article">
-        {% for author in article.authors %}
-            <meta property="article:author" content="{{ SITEURL }}/{{ author.url }}">
-        {% endfor %}
-  <meta property="og:url" content="{{ SITEURL }}/{{ article.url }}">
-  <meta property="og:title" content="{{ article.title }}">
-  <meta property="article:published_time" content="{{ article.date }}">
-        {% if description %}
-            <meta property="og:description" content="{{ description }}">
-        {% elif article.headline %}
-            <meta property="og:description" content="{{ article.headline }}">
-        {% elif article.summary %}
-            <meta property="og:description" content="{{ article.summary|striptags|truncate(140) }}">
-        {% endif %}
-
-        {% if article.og_image %}
-            {% if article.og_image|lower|truncate(4, True, '') == "http" %}
-                <meta property="og:image" content="{{ article.og_image }}">
-            {% else %}
-                <meta property="og:image" content="{{ SITEURL }}/{{ article.og_image }}">
-            {% endif %}
-        {% elif article.header_cover %}
-            <meta property="og:image" content="{{ SITEURL }}/{{ article.header_cover }}">
-        {% elif HEADER_COVER %}
-            <meta property="og:image" content="{{ SITEURL }}/{{ HEADER_COVER }}">
-        {% else %}
-            <meta property="og:image" content="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg">
-        {% endif %}
+    {% include 'partials/og_article.html' %}
+    {% include 'partials/jsonld_article.html' %}
 {% endblock %}
 
 {% block header %}

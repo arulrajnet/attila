@@ -80,42 +80,6 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
   <![endif]-->
   {% endblock head %}
-
-  {% block opengraph %}
-    {% for admin in FACEBOOK_ADMINS %}
-      <meta property="fb:admins" content="{{ admin }}" />
-    {% endfor %}
-    {% for LOC in LOCALE %}
-      <meta property="og:locale" content="{{ LOC }}" />
-    {% endfor %}
-    <meta property="og:site_name" content="{{ SITENAME }}" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="{{ SITENAME }}" />
-    <meta property="og:description" content="{{ SITESUBTITLE|default('View the blog.') }}" />
-    <meta property="og:url" content="{{ SITEURL }}" />
-    {% if HEADER_COVER %}
-      <meta property="og:image" content="{{ SITEURL }}/{{ HEADER_COVER }}" />
-    {% else %}
-      <meta name="og:image" content="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg">
-    {% endif %}
-    {% for name,link in SOCIAL if name.lower() in ['facebook'] %}
-      <meta property="article:publisher" content="{{ link }}" />
-    {% endfor %}
-  {% endblock opengraph %}
-  {% block twitter_card %}
-    {% for name,link in SOCIAL if name.lower() in ['twitter'] %}
-      <meta name="twitter:card" content="summary_large_image">
-      <meta name="twitter:site" content="@{{ link|replace('http://', 'https://')|replace('https://twitter.com/', '') }}">
-      <meta name="twitter:title" content="{{ SITENAME }}">
-      <meta name="twitter:description" content="{{ SITESUBTITLE|default('View the blog.') }}">
-      <meta name="twitter:url" content="{{ SITEURL }}">
-        {% if HEADER_COVER %}
-          <meta name="twitter:image:src" content="{{ SITEURL }}/{{ HEADER_COVER }}">
-        {% else %}
-          <meta name="twitter:image:src" content="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg">
-        {% endif %}
-    {% endfor %}
-  {% endblock twitter_card %}
 </head>
 <!-- TODO : Body class -->
 <body class="home-template">

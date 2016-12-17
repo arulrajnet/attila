@@ -1,5 +1,11 @@
 {% extends "base.html" %}
 
+{% block head %}
+    {{ super() }}
+    {% include 'partials/og.html' %}
+    {% include 'partials/jsonld.html' %}
+{% endblock %}
+
 {% block header %}
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
