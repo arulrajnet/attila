@@ -1,6 +1,23 @@
 {% extends "base.html" %}
 {% block title %}{{ article.title }}{% endblock %}
 
+{# <!-- Choosing cover image --> #}
+{% if article.cover %}
+    {% if article.cover|lower|truncate(4, True, '') == "http" %}
+        {% set default_cover = article.cover %}
+    {% else %}
+        {% set default_cover = SITEURL+"/"+article.cover %}
+    {% endif %}
+{% elif article.og_image %}
+    {% if article.og_image|lower|truncate(4, True, '') == "http" %}
+        {% set default_cover = article.og_image %}
+    {% else %}
+        {% set default_cover = SITEURL+"/"+article.og_image %}
+    {% endif %}
+{% elif HEADER_COVER %}
+  {% set default_cover = SITEURL+"/"+HEADER_COVER %}
+{% endif %}
+
 {% block head %}
     {{ super() }}
 
@@ -67,18 +84,16 @@
         <!-- TODO : Modified check -->
         {% if article.modified %}
             <span class="post-meta"> | Updated on {{ article.locale_modified }}</span>
-        {% endif %}        
-        {% if article.header_cover %}
-            <div class="post-cover cover" style="background-image: url('{{ article.header_cover }}')">
-        {% elif HEADER_COVER %}
-            <div class="post-cover cover" style="background-image: url('{{ HEADER_COVER }}')">            
+        {% endif %}
+        {% if default_cover %}
+            <div class="post-cover cover" style="background-image: url('{{ default_cover }}')">
         {% elif HEADER_COLOR %}
             <div class="post-cover cover" style="background-color: {{ HEADER_COLOR }}">
         {% else %}
             <div class="post-cover cover" style="background-image: url('{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg')">
-        {% endif %}        
+        {% endif %}
       </div>
-    </header>    
+    </header>
 {% endblock header %}
 
 {% block content %}

@@ -8,16 +8,16 @@
 {# <!-- Choosing cover image --> #}
 {% if article.og_image %}
     {% if article.og_image|lower|truncate(4, True, '') == "http" %}
-        set default_cover = article.og_image
+        {% set default_cover = article.og_image %}
     {% else %}
-        set default_cover = SITEURL+"/"+article.og_image
+        {% set default_cover = SITEURL+"/"+article.og_image %}
     {% endif %}
 {% elif article.cover %}
     {% if article.cover|lower|truncate(4, True, '') == "http" %}
-        set default_cover = article.cover
+        {% set default_cover = article.cover %}
     {% else %}
-        set default_cover = SITEURL+"/"+article.cover
-    {% endif %}    
+        {% set default_cover = SITEURL+"/"+article.cover %}
+    {% endif %}
 {% elif HEADER_COVER %}
   {% set default_cover = SITEURL+"/"+HEADER_COVER %}
 {% else %}

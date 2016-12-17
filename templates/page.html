@@ -2,6 +2,23 @@
 
 {% block title %}{{ page.title }}{% endblock title %}
 
+{# <!-- Choosing cover image --> #}
+{% if page.cover %}
+    {% if page.cover|lower|truncate(4, True, '') == "http" %}
+        {% set default_cover = page.cover %}
+    {% else %}
+        {% set default_cover = SITEURL+"/"+page.cover %}
+    {% endif %}
+{% elif page.og_image %}
+    {% if page.og_image|lower|truncate(4, True, '') == "http" %}
+        {% set default_cover = page.og_image %}
+    {% else %}
+        {% set default_cover = SITEURL+"/"+page.og_image %}
+    {% endif %}
+{% elif HEADER_COVER %}
+  {% set default_cover = SITEURL+"/"+HEADER_COVER %}
+{% endif %}
+
 {% block header %}
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
@@ -22,17 +39,15 @@
           </span>
         </nav>
         <h1 class="post-title">{{ page.title }}</h1>
-        {% if page.og_image %}
-            <div class="post-cover cover" style="background-image: url('{{ page.og_image }}')">
-        {% elif HEADER_COVER %}
-            <div class="post-cover cover" style="background-image: url('{{ HEADER_COVER }}')">
+        {% if default_cover %}
+            <div class="post-cover cover" style="background-image: url('{{ default_cover }}')">
         {% elif HEADER_COLOR %}
             <div class="post-cover cover" style="background-color: {{ HEADER_COLOR }}">
         {% else %}
             <div class="post-cover cover" style="background-image: url('{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg')">
-        {% endif %}        
+        {% endif %}
       </div>
-    </header>    
+    </header>
 {% endblock header %}
 
 {% block content %}
