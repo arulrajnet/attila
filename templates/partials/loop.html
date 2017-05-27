@@ -10,7 +10,7 @@
                 </h2>
                 <span class="post-meta">
                     {% for author in article.authors %}
-                        <a href="{{ SITEURL }}/{{ author.url }}">{{ author|capitalize }}</a>
+                        <a href="{{ SITEURL }}/{{ author.url }}">{{ author|title }}</a>
                     {% endfor %}
                      | <time datetime="{{ article.locale_date }}">{{ article.locale_date }}</time>
                 </span>
