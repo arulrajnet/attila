@@ -59,11 +59,11 @@
         <nav id="navigation">
           {% if SITE_LOGO %}
             <span class="blog-logo">
-                <a href="{{ SITEURL }}"><img src="{{SITE_LOGO}}" alt="Blog Logo" /></a>
+                <a href="{{ SITEURL }}/"><img src="{{SITE_LOGO}}" alt="Blog Logo" /></a>
             </span>
           {% else %}
             <span id="home-button" class="nav-button">
-                <a class="home-button" href="{{ SITEURL }}" title="Home"><i class="ic ic-arrow-left"></i> Home</a>
+                <a class="home-button" href="{{ SITEURL }}/" title="Home"><i class="ic ic-arrow-left"></i> Home</a>
             </span>
           {% endif %}
           <span id="menu-button" class="nav-button">
@@ -156,7 +156,7 @@
                     </div>
                     <div class="clear"></div>
                 </aside>
-                {% endif %} 
+                {% endif %}
                 {% endfor %}
 
                 </section>
@@ -172,14 +172,14 @@
                     {% endif %}
                     var disqus_url = '{{ SITEURL }}/{{ article.url }}';
                 </script>
-                <noscript>Please enable JavaScript to view the comments.</noscript>                  
+                <noscript>Please enable JavaScript to view the comments.</noscript>
                 <section class="post-comments">
                     {% if article.disqus_identifier %}
                         <a id="show-disqus" class="post-comments-activate" data-disqus-identifier="{{ article.disqus_identifier }}" >Show Comments</a>
                     {% else %}
                         <a id="show-disqus" class="post-comments-activate" data-disqus-identifier="/{{ article.url }}" >Show Comments</a>
                     {% endif %}
-                    <div id="disqus_thread"></div>                  
+                    <div id="disqus_thread"></div>
                 </section>
                 {% endif %}
 
