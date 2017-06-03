@@ -55,8 +55,6 @@
 
   <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/style.css" type="text/css" rel="stylesheet" />
 
-    <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/mystyles.css" type="text/css" rel="stylesheet" />
-
   <!-- Code highlight color scheme -->
   {% if COLOR_SCHEME_CSS %}
       <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/code_blocks/{{ COLOR_SCHEME_CSS }}" rel="stylesheet">
@@ -83,52 +81,6 @@
   <![endif]-->
   {% endblock head %}
 
-  {% block opengraph %}
-    {% for admin in FACEBOOK_ADMINS %}
-      <meta property="fb:admins" content="{{ admin }}" />
-    {% endfor %}
-    {% for LOC in LOCALE %}
-      <meta property="og:locale" content="{{ LOC }}" />
-    {% endfor %}
-    <meta property="og:site_name" content="{{ SITENAME }}" />
-
-
-    {% if article %}
-      <!-- skip meta tags here and use the article.html specific ones
-      - facebook and google will ignore second set of og:meta tags
-    -->
-      {% else %}
-
-      <meta property="og:type" content="website" />
-      <meta property="og:title" content="{{ SITENAME }}" />
-      <meta property="og:description" content="{{ SITESUBTITLE|default('View the blog.') }}" />
-      <meta property="og:url" content="{{ SITEURL }}" />
-      {% if HEADER_COVER %}
-        <meta property="og:image" content="{{ SITEURL }}/{{ HEADER_COVER }}" />
-      {% else %}
-        <meta name="og:image" content="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg">
-      {% endif %}
-
-    {% endif %}
-      {% for name,link in SOCIAL if name.lower() in ['facebook'] %}
-        <meta property="article:publisher" content="{{ link }}" />
-      {% endfor %}
-    {% endblock opengraph %}
-    {% block twitter_card %}
-      {% for name,link in SOCIAL if name.lower() in ['twitter'] %}
-        <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:site" content="@{{ link|replace('http://', 'https://')|replace('https://twitter.com/', '') }}">
-        <meta name="twitter:title" content="{{ SITENAME }}">
-        <meta name="twitter:description" content="{{ SITESUBTITLE|default('View the blog.') }}">
-        <meta name="twitter:url" content="{{ SITEURL }}">
-          {% if HEADER_COVER %}
-            <meta name="twitter:image:src" content="{{ SITEURL }}/{{ HEADER_COVER }}">
-          {% else %}
-            <meta name="twitter:image:src" content="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg">
-          {% endif %}
-      {% endfor %}
-    {% endblock twitter_card %}
-
 </head>
 <!-- TODO : Body class -->
 <body class="home-template">
@@ -146,9 +98,8 @@
     <footer id="footer">
       <div class="inner">
         <section class="credits">
-          <!--<span class="credits-theme">Theme <a href="https://github.com/arulrajnet/attila" rel="nofollow">Attila</a></span>-->
-          <!--<span class="credits-software">Published with <a href="https://github.com/getpelican/pelican" rel="nofollow">Pelican</a></span>-->
-          <span class="credits-software">&copy; Datalogues | Published by <a href="http://www.aboutmonica.com">Monica Powell</a></span>
+          <span class="credits-theme">Theme <a href="https://github.com/arulrajnet/attila" rel="nofollow">Attila</a></span>
+          <span class="credits-software">Published with <a href="https://github.com/getpelican/pelican" rel="nofollow">Pelican</a></span>
         </section>
       </div>
     </footer>
