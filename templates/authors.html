@@ -14,14 +14,14 @@
             </span>
           {% else %}
             <span id="home-button" class="nav-button">
-                <a class="home-button" href="{{ SITEURL }}/" title="Home"><i class="ic ic-arrow-left"></i> Home</a>
+                <a class="home-button" href="{{ SITEURL }}" title="Home"><i class="ic ic-arrow-left"></i> Home</a>
             </span>
           {% endif %}
           <span id="menu-button" class="nav-button">
             <a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
           </span>
         </nav>
-        <h1 class="post-title">Articles by {{ author|capitalize }}</h1>
+        <h1 class="post-title">Articles by {{ author|title }}</h1>
         {% if HEADER_COVER %}
             <div class="blog-cover cover" style="background-image: url('{{ HEADER_COVER }}')">
         {% elif HEADER_COLOR %}

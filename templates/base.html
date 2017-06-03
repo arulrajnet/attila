@@ -80,6 +80,7 @@
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
   <![endif]-->
   {% endblock head %}
+
 </head>
 <!-- TODO : Body class -->
 <body class="home-template">
@@ -93,7 +94,7 @@
       {% block content %}{% endblock content %}
       <!-- TODO : Body class -->
     <div id="body-class" style="display: none;" class="{{body_class}}"></div>
-  
+
     <footer id="footer">
       <div class="inner">
         <section class="credits">
@@ -105,7 +106,7 @@
   </section>
 
   <script type="text/javascript" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/script.js"></script>
-  
+
   {% if JS_OVERRIDE %}
     <!-- Script specified by the user -->
     {% for js in JS_OVERRIDE %}

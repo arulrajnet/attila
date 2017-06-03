@@ -19,11 +19,11 @@
         <nav id="navigation">
           {% if SITE_LOGO %}
             <span class="blog-logo">
-                <a href="{{ SITEURL }}/"><img src="{{SITE_LOGO}}" alt="Blog Logo" /></a>
+                <a href="{{ SITEURL }}"><img src="{{SITE_LOGO}}" alt="Blog Logo" /></a>
             </span>
           {% else %}
             <span id="home-button" class="nav-button">
-                <a class="home-button" href="{{ SITEURL }}/" title="Home"><i class="ic ic-arrow-left"></i> Home</a>
+                <a class="home-button" href="{{ SITEURL }}" title="Home"><i class="ic ic-arrow-left"></i> Home</a>
             </span>
           {% endif %}
           <span id="menu-button" class="nav-button">
@@ -46,11 +46,11 @@
             <aside class="post-author">
                 {% if AUTHORS_BIO[author.name.lower()].image %}
                     <figure class="post-author-avatar">
-                        <img src="{{AUTHORS_BIO[author.name.lower()].image}}" alt="{{author.name | capitalize}}" />
+                        <img src="{{AUTHORS_BIO[author.name.lower()].image}}" alt="{{author.name | title}}" />
                     </figure>
                 {% endif %}
                 <div class="post-author-bio">
-                    <h4 class="post-author-name"><a href="{{ SITEURL }}/{{author.url}}">{{author.name | capitalize}}</a></h4>
+                    <h4 class="post-author-name"><a href="{{ SITEURL }}/{{author.url}}">{{author.name | title}}</a></h4>
                     {% if AUTHORS_BIO[author.name.lower()].bio %}
                         <p class="post-author-about">{{AUTHORS_BIO[author.name.lower()].bio}}</p>
                     {% endif %}
