@@ -105,8 +105,22 @@
     <footer id="footer">
       <div class="inner">
         <section class="credits">
-          <span class="credits-theme">Theme <a href="https://github.com/arulrajnet/attila" rel="nofollow">Attila</a></span>
-          <span class="credits-software">Published with <a href="https://github.com/getpelican/pelican" rel="nofollow">Pelican</a></span>
+          {% if SHOW_CREDITS|default(True) %}
+            {% if SHOW_CREDITS and SHOW_CREDITS.left %}
+              {% set left=SHOW_CREDITS.left %}
+            {% else %}
+              {% set left='Theme <a href="https://github.com/arulrajnet/attila" rel="nofollow">Attila</a>' %}
+            {% endif %}
+
+            {% if SHOW_CREDITS and SHOW_CREDITS.right %}
+              {% set right=SHOW_CREDITS.right %}
+            {% else %}
+              {% set right='Published with <a href="https://github.com/getpelican/pelican" rel="nofollow">Pelican</a>' %}
+            {% endif %}
+
+          <span class="credits-theme">{{left}}</span>
+          <span class="credits-software">{{right}}</span>
+          {% endif %}
         </section>
       </div>
     </footer>
