@@ -59,6 +59,8 @@ To define custom header cover, set the property ``HEADER_COVER`` in ``pelicancon
 HEADER_COVER = 'static/my_image.png'
 ```
 
+This is site level cover image and it will be used If there is no cover image set in [article](#articles) level.
+
 #### Header Color
 
 To define a simple header background color, set the property ``HEADER_COLOR`` in ``pelicanconf.py``:
@@ -67,7 +69,7 @@ To define a simple header background color, set the property ``HEADER_COLOR`` in
 HEADER_COLOR = 'black'
 ```
 
-you can use any valid css color.
+you can use any valid css color. This will be used if there is no cover image set in [article](#articles) level and site level.
 
 #### Social URLs
 
@@ -154,12 +156,13 @@ Accept many analytics:
 
 #### Articles
 
- - To customize header cover to articles, insert the metadata ``header_cover``.
+ - To customize header color to articles, insert the metadata ``color``.
+ - To customize header cover to articles, insert the metadata ``cover``, otherwise ``og_image`` or ``HEADER_COVER`` will be used.
  - To customize OpenGraph images, insert the metadata ``og_image``, otherwise
- ``cover``, ``HEADER_COVER`` or a default image is used.
+ ``cover``, ``HEADER_COVER`` or a [default image](https://github.com/arulrajnet/attila/blob/master/static/images/post-bg.jpg) from theme will be used.
  - To customize Twitter card images, insert the metadata ``twitter_image``,
- otherwise ``header_cover``, ``HEADER_COVER`` or a default image is used.
- Twitter cards are automatically generated if the ``twitter`` icon is configured
+ otherwise ``header_cover``, ``HEADER_COVER`` or a default image from theme will be used.
+ Twitter cards will be generated automatically if the ``twitter`` account is configured
  in ``SOCIAL``!
 
 All image paths are relative from the site root directory. You can also use

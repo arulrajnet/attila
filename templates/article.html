@@ -18,6 +18,12 @@
   {% set default_cover = SITEURL+"/"+HEADER_COVER %}
 {% endif %}
 
+{% if article.color %}
+  {% set default_color = article.color %}
+{% elif HEADER_COLOR %}
+  {% set default_color = HEADER_COLOR %}
+{% endif %}
+
 {% block head %}
     {{ super() }}
 
@@ -87,8 +93,8 @@
         {% endif %}
         {% if default_cover %}
             <div class="post-cover cover" style="background-image: url('{{ default_cover }}')">
-        {% elif HEADER_COLOR %}
-            <div class="post-cover cover" style="background-color: {{ HEADER_COLOR }}">
+        {% elif default_color %}
+            <div class="post-cover cover" style="background-color: {{ default_color }}">
         {% else %}
             <div class="post-cover cover" style="background-image: url('{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg')">
         {% endif %}
@@ -131,9 +137,17 @@
                 {% for author in article.authors %}
                 {% if AUTHORS_BIO and author.name.lower() in AUTHORS_BIO %}
                 <aside class="post-author">
-                    {% if AUTHORS_BIO[author.name.lower()].image %}
+                    {% set author_avatar = AUTHORS_BIO[author.name.lower()].image %}
+                    {% if  author_avatar %}
+
+                        {% if author_avatar|lower|truncate(4, True, '') == "http" %}
+                            {% set author_avatar = author_avatar %}
+                        {% else %}
+                            {% set author_avatar = SITEURL+"/"+author_avatar %}
+                        {% endif %}
+
                         <figure class="post-author-avatar">
-                            <img src="{{AUTHORS_BIO[author.name.lower()].image}}" alt="{{author.name | title}}" />
+                            <img src="{{author_avatar}}" alt="{{author.name | title}}" />
                         </figure>
                     {% endif %}
                     <div class="post-author-bio">

@@ -65,7 +65,14 @@
   {% if CSS_OVERRIDE %}
     <!-- CSS specified by the user -->
     {% for css in CSS_OVERRIDE %}
-    <link href="{{ SITEURL }}/{{ css }}" type="text/css" rel="stylesheet" />
+
+      {% if css|lower|truncate(4, True, '') == "http" %}
+          {% set css = css %}
+      {% else %}
+          {% set css = SITEURL+"/"+css %}
+      {% endif %}
+
+    <link href="{{ css }}" type="text/css" rel="stylesheet" />
     {% endfor %}
   {% endif %}
 
@@ -110,7 +117,12 @@
   {% if JS_OVERRIDE %}
     <!-- Script specified by the user -->
     {% for js in JS_OVERRIDE %}
-    <script type="text/javascript"  src="{{ SITEURL }}/{{ js }}"></script>
+      {% if js|lower|truncate(4, True, '') == "http" %}
+          {% set js = js %}
+      {% else %}
+          {% set js = SITEURL+"/"+js %}
+      {% endif %}
+    <script type="text/javascript"  src="{{ js }}"></script>
     {% endfor %}
   {% endif %}
   {% include 'partials/analytics.js' %}
