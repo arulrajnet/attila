@@ -30,7 +30,9 @@
             <a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
           </span>
         </nav>
-        {% if HEADER_COVER %}
+	{% if AUTHORS_BIO and author.name.lower() in AUTHORS_BIO %}
+	    <div class="blog-cover cover" style="background-image: url('{{ AUTHORS_BIO[author.name.lower()].cover }}')">
+        {% elif HEADER_COVER %}
             <div class="blog-cover cover" style="background-image: url('{{ HEADER_COVER }}')">
         {% elif HEADER_COLOR %}
             <div class="post-cover cover" style="background-color: {{ HEADER_COLOR }}">
