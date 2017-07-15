@@ -2,6 +2,18 @@
 
 {% block title %}{{ SITENAME }} - Articles by {{ author }}{% endblock %}
 
+<!-- To support both image in relative path and url  -->
+{% if AUTHORS_BIO and author.name.lower() in AUTHORS_BIO %}
+    {% set author_avatar = AUTHORS_BIO[author.name.lower()].image %}
+    {% if  author_avatar %}
+        {% if author_avatar|lower|truncate(4, True, '') == "http" %}
+            {% set author_avatar = author_avatar %}
+        {% else %}
+            {% set author_avatar = SITEURL+"/"+author_avatar %}
+        {% endif %}
+    {% endif %}
+{% endif %}
+
 {% block opengraph %}
     {{ super() }}
     <meta property="og:title" content="{{ SITENAME }} - Articles by {{ author }}">
@@ -30,7 +42,11 @@
             <a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
           </span>
         </nav>
-        {% if HEADER_COVER %}
+        {% if AUTHORS_BIO and author.name.lower() in AUTHORS_BIO %}
+        {% if author_avatar %}
+            <div class="blog-cover cover" style="background-image: url('{{ author_avatar }}')">
+        {% endif %}
+        {% elif HEADER_COVER %}
             <div class="blog-cover cover" style="background-image: url('{{ HEADER_COVER }}')">
         {% elif HEADER_COLOR %}
             <div class="post-cover cover" style="background-color: {{ HEADER_COLOR }}">
@@ -44,17 +60,10 @@
     <section id="blog-author" class="has-cover" >
         <div class="inner">
             <aside class="post-author">
-                    {% set author_avatar = AUTHORS_BIO[author.name.lower()].image %}
-                    {% if  author_avatar %}
-
-                        {% if author_avatar|lower|truncate(4, True, '') == "http" %}
-                            {% set author_avatar = author_avatar %}
-                        {% else %}
-                            {% set author_avatar = SITEURL+"/"+author_avatar %}
-                        {% endif %}
-                    <figure class="post-author-avatar">
-                        <img src="{{author_avatar}}" alt="{{author.name | title}}" />
-                    </figure>
+                {% if author_avatar %}
+                <figure class="post-author-avatar">
+                    <img src="{{author_avatar}}" alt="{{author.name | title}}" />
+                </figure>
                 {% endif %}
                 <div class="post-author-bio">
                     <h4 class="post-author-name"><a href="{{ SITEURL }}/{{author.url}}">{{author.name | title}}</a></h4>
