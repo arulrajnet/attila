@@ -57,10 +57,10 @@ https://github.com/getpelican/pelican-plugins/tree/master/neighbors[plugin])
 * Rich Snippets (JSON-LD)
 * link:#code-highlights[Multiple Code Highlight Styles]
 
-[[docs]]
-== Docs
+[[configuration]]
+== Configurations
 
-https://github.com/arulrajnet/attila/wiki[Wiki]
+The attila docs hosted in http://arulrajnet.github.io/attila[attila-docs]
 
 [[setup-a-blog]]
 === Setup a blog
@@ -186,18 +186,16 @@ Accept many analytics:
 * Gauges: `GAUGES`
 * Piwik: `PIWIK_URL` and `PIWIK_SITE_ID`.
 
-[[other-configuration]]
-=== Other configuration
+[[sidebar-menu]]
+=== Sidebar Menu
 
-* `GOOGLE_SITE_VERIFICATION` - Google site verification token;
-* Set `SHOW_FULL_ARTICLE` to True to show full article content on
-index.html instead of summary;
-* Set `FACEBOOK_ADMINS` to a list of Facebook account IDs which are
-associated with this blog. For example `['12345']`. For more info see
-https://developers.facebook.com/docs/platforminsights/domains
+The menu item coming from pelican pages.
+You have to create pages folder under link::https://github.com/arulrajnet/attila-demo/tree/master/content/pages[content directory].
+Whatever articles there in this folder will be pages.
+
 
 [[articles]]
-=== Articles
+=== Article Cover
 
 * To customize header color to articles, insert the metadata `color`.
 * To customize header cover to articles, insert the metadata `cover`,
@@ -213,6 +211,17 @@ will be used. Twitter cards will be generated automatically if the
 
 All image paths are relative from the site root directory. You can also
 use absolute URLs for `og_image` and `twitter_image`.
+
+
+[[other-configuration]]
+=== Other configuration
+
+* `GOOGLE_SITE_VERIFICATION` - Google site verification token;
+* Set `SHOW_FULL_ARTICLE` to True to show full article content on
+index.html instead of summary;
+* Set `FACEBOOK_ADMINS` to a list of Facebook account IDs which are
+associated with this blog. For example `['12345']`. For more info see
+https://developers.facebook.com/docs/platforminsights/domains
 
 [[development]]
 == Development
