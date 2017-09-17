@@ -1,0 +1,260 @@
+[[pelican-attila-theme]]
+= Attila
+A content focused responsive pelican theme
+:toc: left
+
+[[overview]]
+== Overview
+
+A content focused responsive theme for
+https://github.com/getpelican/pelican[Pelican].
+
+It is ported from ghost theme
+https://github.com/zutrinken/attila[attila]
+
+[[demo]]
+== Demo
+
+* https://arulrajnet.github.io/attila-demo[Blog]
+* https://arulrajnet.github.io/attila-demo/2015/11/headlines-blockquotes-images.html[Post]
+* https://arulrajnet.github.io/attila-demo/tag/general/[Tag Archive]
+* https://arulrajnet.github.io/attila-demo/author/zutrinken/[Author
+Archive]
+* https://arulrajnet.github.io/attila-demo/archives.html[All archive]
+* https://arulrajnet.github.io/attila-demo/pages/about/[Page]
+
+Demo blog https://github.com/arulrajnet/attila-demo[source code]
+
+[[install]]
+== Install
+
+
+The recommend way to install is using pelican-themes command.
+
+* Download latest zip from
+https://github.com/arulrajnet/attila/releases[release]
+* Unzip that file
+* Then `sudo pelican-themes -U attila` . Here attila is the extracted
+folder name
+* Now list all themes `sudo pelican-themes -l`
+* Use that theme name in your pelicanconf.py
+
+[[features]]
+== Features
+
+* Responsive layout
+* Navigation support
+* Paralax cover images for posts, author archives and blog
+* Author informations for posts and author archives
+* Featured posts (via
+https://github.com/getpelican/pelican-plugins/tree/master/neighbors[plugin])
+* Reading progress for posts
+* Automatic code syntax highlight
+* Disqus support
+* Google Analytics, GAUGES and PIWIKI
+* Sharing buttons
+* Open Graph
+* Rich Snippets (JSON-LD)
+* link:#code-highlights[Multiple Code Highlight Styles]
+
+[[configuration]]
+== Configurations
+
+The attila docs hosted in http://arulrajnet.github.io/attila[attila-docs]
+
+[[setup-a-blog]]
+=== Setup a blog
+
+Refer
+https://github.com/arulrajnet/attila-demo/blob/master/pelicanconf.py[more
+setting]
+
+Here are all configurations about this theme.
+
+[[header-covers]]
+=== Header Covers
+
+To define custom header cover, set the property `HEADER_COVER` in
+`pelicanconf.py`:
+
+[source,python]
+----
+HEADER_COVER = 'static/my_image.png'
+----
+
+This is site level cover image and it will be used If there is no cover
+image set in link:#articles[article] level.
+
+[[header-color]]
+=== Header Color
+
+To define a simple header background color, set the property
+`HEADER_COLOR` in `pelicanconf.py`:
+
+[source,python]
+----
+HEADER_COLOR = 'black'
+----
+
+you can use any valid css color. This will be used if there is no cover
+image set in link:#articles[article] level and site level.
+
+[[social-urls]]
+=== Social URLs
+
+Github, Twitter and Facebook URLs set these properties:
+
+[source,python]
+----
+SOCIAL = (('twitter', 'https://twitter.com/myprofile'),
+          ('github', 'https://github.com/myprofile'),
+          ('facebook','https://facebook.com/myprofile'),
+          ('flickr','https://www.flickr.com/myprofile/'),
+          ('envelope','mailto:my@mail.address'))
+----
+
+[[external-feed-url]]
+=== External feed URL
+
+You can specify an external feed URL (e.g. FeedBurner) in `SOCIAL` using
+the `rss` or `rss-square` or `feed` icons. A `<link>` tag for the
+external feed will be placed in `<head>` instead of the default Pelican
+feeds.
+
+[[code-highlights]]
+=== Code highlights
+
+This theme contains this color schemes:
+
+* Tomorrow - `tomorrow.css`;
+* Tomorrow Night - `tomorrow_night.css`;
+* Monokai - `monokai.css`;
+* Github (Default) - `github.css`;
+* Darkly - `darkly.css`;
+
+To customize, define `COLOR_SCHEME_CSS` in `pelicanconf.py` with css
+filename. Example:
+
+[source,python]
+----
+COLOR_SCHEME_CSS = 'monokai.css'
+----
+
+[[user-defined-css]]
+=== User defined CSS
+
+Define `CSS_OVERRIDE` in `pelicanconf.py` to insert a user defined CSS
+file after theme CSS. Example:
+
+Array of CSS you can give
+
+[source,python]
+----
+CSS_OVERRIDE = ['css/myblog.css']
+----
+
+[[user-defined-script]]
+=== User defined script
+
+[source,python]
+----
+JS_OVERRIDE = ['']
+----
+
+[[author-bio]]
+=== Author Bio
+
+....
+AUTHORS_BIO = {
+  "zutrinken": {
+    "name": "Zutrinken",
+    "cover": "https://arulrajnet.github.io/attila-demo/assets/images/avatar.png",
+    "image": "https://arulrajnet.github.io/attila-demo/assets/images/avatar.png",
+    "website": "http://blog.arulraj.net",
+    "location": "Chennai",
+    "bio": "This is the place for a small biography with max 200 characters. Well, now 100 are left. Cool, hugh?"
+  }
+}
+....
+
+[[analytics]]
+=== Analytics
+
+Accept many analytics:
+
+* Google Analytics: `GOOGLE_ANALYTICS`;
+* Gauges: `GAUGES`
+* Piwik: `PIWIK_URL` and `PIWIK_SITE_ID`.
+
+[[sidebar-menu]]
+=== Sidebar Menu
+
+The menu item coming from pelican pages.
+You have to create pages folder under link::https://github.com/arulrajnet/attila-demo/tree/master/content/pages[content directory].
+Whatever articles there in this folder will be pages.
+
+
+[[articles]]
+=== Article Cover
+
+* To customize header color to articles, insert the metadata `color`.
+* To customize header cover to articles, insert the metadata `cover`,
+otherwise `og_image` or `HEADER_COVER` will be used.
+* To customize OpenGraph images, insert the metadata `og_image`,
+otherwise `cover`, `HEADER_COVER` or a
+https://github.com/arulrajnet/attila/blob/master/static/images/post-bg.jpg[default
+image] from theme will be used.
+* To customize Twitter card images, insert the metadata `twitter_image`,
+otherwise `header_cover`, `HEADER_COVER` or a default image from theme
+will be used. Twitter cards will be generated automatically if the
+`twitter` account is configured in `SOCIAL`!
+
+All image paths are relative from the site root directory. You can also
+use absolute URLs for `og_image` and `twitter_image`.
+
+
+[[other-configuration]]
+=== Other configuration
+
+* `GOOGLE_SITE_VERIFICATION` - Google site verification token;
+* Set `SHOW_FULL_ARTICLE` to True to show full article content on
+index.html instead of summary;
+* Set `FACEBOOK_ADMINS` to a list of Facebook account IDs which are
+associated with this blog. For example `['12345']`. For more info see
+https://developers.facebook.com/docs/platforminsights/domains
+
+[[development]]
+== Development
+
+refer this https://github.com/arulrajnet/attila-demo
+
+*Author Screen* image:screenshot.png[screenshot]
+
+[[contributing]]
+=== Contributing
+
+Always open an issue before sending a PR. Talk about the problem/feature
+that you want to fix. If it’s really a good thing you can submit your
+PR. If you send an PR without talking about before what it is, you may
+work for nothing.
+
+As always, if you want something that only make sense to you, just fork
+attila and start a new theme.
+
+[[donate]]
+== Donate
+
+Did you liked this theme? Pay my bills and support new features.
+
+https://gratipay.com/~arulrajnet/[image:https://img.shields.io/gratipay/user/arulrajnet.svg?maxAge=2592000[Gratipay]]
+
+https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=XYLX6LG2THL2J[image:https://img.shields.io/badge/paypal-donate-yellow.svg?maxAge=2592000[PayPal]]
+
+[[copyright-license]]
+== Copyright & License
+
+Copyright (c) 2015-2016 Peter Amende - Released under The MIT License.
+Copyright (c) 2016 Arulraj V - Released under The MIT License.
+
+Some background images used from
+https://github.com/gilsondev/pelican-clean-blog
