@@ -1,7 +1,5 @@
 {% extends "index.html" %}
 
-{% block title %}{{ SITENAME }} - Articles by {{ author }}{% endblock %}
-
 <!-- To support both image in relative path and url  -->
 {% if AUTHORS_BIO and author.name.lower() in AUTHORS_BIO %}
     {% set author_avatar = AUTHORS_BIO[author.name.lower()].image %}
@@ -20,6 +18,8 @@
 
     {% set author_name = AUTHORS_BIO[author.name.lower()].name or author.name %}
 {% endif %}
+
+{% block title %}{{ SITENAME }} - Articles by {{ author_name }}{% endblock %}
 
 {% block opengraph %}
     {{ super() }}

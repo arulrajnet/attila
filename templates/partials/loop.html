@@ -10,7 +10,10 @@
                 </h2>
                 <span class="post-meta">
                     {% for author in article.authors %}
-                        <a href="{{ SITEURL }}/{{ author.url }}">{{ author|title }}</a>
+                        {% if AUTHORS_BIO and author.name.lower() in AUTHORS_BIO %}
+                            {% set author_name = AUTHORS_BIO[author.name.lower()].name or author.name %}
+                        {% endif %}
+                        <a href="{{ SITEURL }}/{{ author.url }}">{{ author_name }}</a>
                     {% endfor %}
                      | <time datetime="{{ article.locale_date }}">{{ article.locale_date }}</time>
                 </span>
