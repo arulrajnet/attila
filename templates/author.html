@@ -1,6 +1,7 @@
 {% extends "index.html" %}
 
 <!-- To support both image in relative path and url  -->
+{% set author_name = author.name | title  %}
 {% if AUTHORS_BIO and author.name.lower() in AUTHORS_BIO %}
     {% set author_avatar = AUTHORS_BIO[author.name.lower()].image %}
     {% if author_avatar %}
