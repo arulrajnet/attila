@@ -83,7 +83,11 @@
         {% endif %}
         <span class="post-meta">
             {% for author in article.authors %}
-                <a href="{{ SITEURL }}/{{ author.url }}">{{ author|title }}</a>
+                {% set author_name = author.name | title %}
+                {% if AUTHORS_BIO and author.name.lower() in AUTHORS_BIO %}
+                    {% set author_name = AUTHORS_BIO[author.name.lower()].name or author.name %}
+                {% endif %}
+                <a href="{{ SITEURL }}/{{ author.url }}">{{ author_name }}</a>
             {% endfor %}
             | <time datetime="{{ article.locale_date }}">{{ article.locale_date }}</time>
         </span>
@@ -137,21 +141,20 @@
                 {% for author in article.authors %}
                 {% if AUTHORS_BIO and author.name.lower() in AUTHORS_BIO %}
                 <aside class="post-author">
+                    {% set author_name = AUTHORS_BIO[author.name.lower()].name or author.name %}
                     {% set author_avatar = AUTHORS_BIO[author.name.lower()].image %}
                     {% if  author_avatar %}
 
-                        {% if author_avatar|lower|truncate(4, True, '') == "http" %}
-                            {% set author_avatar = author_avatar %}
-                        {% else %}
+                        {% if author_avatar|lower|truncate(4, True, '') != "http" %}
                             {% set author_avatar = SITEURL+"/"+author_avatar %}
                         {% endif %}
 
                         <figure class="post-author-avatar">
-                            <img src="{{author_avatar}}" alt="{{author.name | title}}" />
+                            <img src="{{author_avatar}}" alt="{{author_name}}" />
                         </figure>
                     {% endif %}
                     <div class="post-author-bio">
-                        <h4 class="post-author-name"><a href="{{ SITEURL }}/{{author.url}}">{{author.name | title}}</a></h4>
+                        <h4 class="post-author-name"><a href="{{ SITEURL }}/{{author.url}}">{{author_name}}</a></h4>
                         {% if AUTHORS_BIO[author.name.lower()].bio %}
                             <p class="post-author-about">{{AUTHORS_BIO[author.name.lower()].bio}}</p>
                         {% endif %}

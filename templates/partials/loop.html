@@ -5,12 +5,16 @@
     {% for article in articles_page.object_list %}
         <article class="post">
         <div class="inner">
-            <header class="post-header">         
+            <header class="post-header">
                 <h2 class="post-title"><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a>
                 </h2>
                 <span class="post-meta">
                     {% for author in article.authors %}
-                        <a href="{{ SITEURL }}/{{ author.url }}">{{ author|title }}</a>
+                        {% set author_name = author.name | title %}
+                        {% if AUTHORS_BIO and author.name.lower() in AUTHORS_BIO %}
+                            {% set author_name = AUTHORS_BIO[author.name.lower()].name or author.name %}
+                        {% endif %}
+                        <a href="{{ SITEURL }}/{{ author.url }}">{{ author_name }}</a>
                     {% endfor %}
                      | <time datetime="{{ article.locale_date }}">{{ article.locale_date }}</time>
                 </span>

@@ -21,7 +21,7 @@
             <a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
           </span>
         </nav>
-        <h1 class="post-title">Articles by {{ author|title }}</h1>
+        <h1 class="post-title">{{ SITENAME }} - Authors</h1>
         {% if HEADER_COVER %}
             <div class="blog-cover cover" style="background-image: url('{{ HEADER_COVER }}')">
         {% elif HEADER_COLOR %}
@@ -35,11 +35,16 @@
 
 {% block content %}
     {% for author, articles in authors|sort %}
+        {% set author_name = author.name | title  %}
+        {% if AUTHORS_BIO and author.name.lower() in AUTHORS_BIO %}
+            {% set author_name = AUTHORS_BIO[author.name.lower()].name or author.name %}
+        {% endif %}
+
       <article class="post">
         <div class="inner">
             <a href="{{ SITEURL }}/{{ author.url }}" rel="bookmark">
                 <h2 class="post-title">
-                    {{ author }} ({{ articles|count }})
+                    {{ author_name }} ({{ articles|count }})
                 </h2>
             </a>
         </div>
