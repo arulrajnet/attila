@@ -167,7 +167,7 @@ JS_OVERRIDE = ['']
 ....
 AUTHORS_BIO = {
   "zutrinken": {
-    "name": "Zutrinken",
+    "fullname": "Zutrinken",
     "cover": "https://arulrajnet.github.io/attila-demo/assets/images/avatar.png",
     "image": "https://arulrajnet.github.io/attila-demo/assets/images/avatar.png",
     "website": "http://blog.arulraj.net",
