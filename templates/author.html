@@ -66,7 +66,11 @@
                 </figure>
                 {% endif %}
                 <div class="post-author-bio">
-                    <h4 class="post-author-name"><a href="{{ SITEURL }}/{{author.url}}">{{author.name | title}}</a></h4>
+                    {%if AUTHORS_BIO[author.name.lower()].bio %}
+                      <h4 class="post-author-name"><a href="{{ SITEURL }}/{{author.url}}">{{AUTHORS_BIO[author.name.lower()].fullname | title}}</a></h4>
+                    {% else %}
+                      <h4 class="post-author-name"><a href="{{ SITEURL }}/{{author.url}}">{{author.name | title}}</a></h4>
+                    {% endif %}
                     {% if AUTHORS_BIO[author.name.lower()].bio %}
                         <p class="post-author-about">{{AUTHORS_BIO[author.name.lower()].bio}}</p>
                     {% endif %}
