@@ -94,6 +94,7 @@ To define it, just set the following properties in `pelicanconf.py`
 
 Use the page title as defined in metadata for the pages
 
+[source,python]
 ----
 HEADER_COVERS_BY_TAG = {'food': '/images/food.png', 'drinks':'/images/orange-juice.png'}
 HEADER_COVERS_BY_PAGE= {'Hello': '/images/selfie.png'}
