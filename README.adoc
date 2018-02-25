@@ -99,7 +99,7 @@ Use the page title as defined in metadata for the pages
 HEADER_COVERS_BY_TAG = {'food': '/images/food.png', 'drinks':'/images/orange-juice.png'}
 HEADER_COVERS_BY_PAGE= {'Hello': '/images/selfie.png'}
 HEADER_COVERS_BY_CATEGORY = {'food': '/images/junkie-stuff.png'}
----
+----
 
 
 === Header Color
