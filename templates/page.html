@@ -39,7 +39,9 @@
           </span>
         </nav>
         <h1 class="post-title">{{ page.title }}</h1>
-        {% if default_cover %}
+        {% if page.title in HEADER_COVERS_BY_PAGE %}
+            <div class="blog-cover cover" style="background-image: url('{{ HEADER_COVERS_BY_PAGE.get(page.title) }}')">
+        {% elif default_cover %}
             <div class="post-cover cover" style="background-image: url('{{ default_cover }}')">
         {% elif HEADER_COLOR %}
             <div class="post-cover cover" style="background-color: {{ HEADER_COLOR }}">

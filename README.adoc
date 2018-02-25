@@ -86,6 +86,21 @@ This is site level cover image and it will be used If there is no cover
 image set in link:#articles[article] level.
 
 [[header-color]]
+
+==== Custom Header Covers
+
+For each page, category page, tag page or author page you can set a custom header cover.
+To define it, just set the following properties in `pelicanconf.py`
+
+Use the page title as defined in metadata for the pages
+
+----
+HEADER_COVERS_BY_TAG = {'food': '/images/food.png', 'drinks':'/images/orange-juice.png'}
+HEADER_COVERS_BY_PAGE= {'Hello': '/images/selfie.png'}
+HEADER_COVERS_BY_CATEGORY = {'food': '/images/junkie-stuff.png'}
+---
+
+
 === Header Color
 
 To define a simple header background color, set the property
