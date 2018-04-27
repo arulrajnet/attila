@@ -53,7 +53,7 @@
         {% if AUTHORS_BIO and author.name.lower() in AUTHORS_BIO and author_cover %}
             <div class="blog-cover cover" style="background-image: url('{{ author_cover }}')">
         {% elif HEADER_COVER %}
-            <div class="blog-cover cover" style="background-image: url('{{ HEADER_COVER }}')">
+            <div class="blog-cover cover" style="background-image: url('{{ SITEURL }}/{{ HEADER_COVER }}')">
         {% elif HEADER_COLOR %}
             <div class="post-cover cover" style="background-color: {{ HEADER_COLOR }}">
         {% else %}
