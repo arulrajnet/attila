@@ -23,7 +23,9 @@
         </nav>
         <h1 class="post-title">Category {{ category }}</h1>
         <span class="blog-description">Posts: {{ articles|count }}</span>
-        {% if HEADER_COVER %}
+        {% if category in HEADER_COVERS_BY_CATEGORY %}
+            <div class="blog-cover cover" style="background-image: url('{{ HEADER_COVERS_BY_CATEGORY.get(category) }}')">
+        {% elif HEADER_COVER %}
             <div class="blog-cover cover" style="background-image: url('{{ HEADER_COVER }}')">            
         {% elif HEADER_COLOR %}
             <div class="post-cover cover" style="background-color: {{ HEADER_COLOR }}">
