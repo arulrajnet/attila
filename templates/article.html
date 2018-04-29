@@ -3,53 +3,49 @@
 
 {# <!-- Choosing cover image --> #}
 {% if article.cover %}
-    {% if article.cover|lower|truncate(4, True, '') == "http" %}
-        {% set default_cover = article.cover %}
-    {% else %}
-        {% set default_cover = SITEURL+"/"+article.cover %}
-    {% endif %}
+  {% if article.cover|lower|truncate(4, True, '') == "http" %}
+    {% set selected_cover = article.cover %}
+  {% else %}
+    {% set selected_cover = SITEURL+"/"+article.cover %}
+  {% endif %}
 {% elif article.og_image %}
-    {% if article.og_image|lower|truncate(4, True, '') == "http" %}
-        {% set default_cover = article.og_image %}
-    {% else %}
-        {% set default_cover = SITEURL+"/"+article.og_image %}
-    {% endif %}
+  {% if article.og_image|lower|truncate(4, True, '') == "http" %}
+    {% set selected_cover = article.og_image %}
+  {% else %}
+    {% set selected_cover = SITEURL+"/"+article.og_image %}
+  {% endif %}
 {% elif HEADER_COVER %}
-  {% set default_cover = SITEURL+"/"+HEADER_COVER %}
-{% endif %}
-
-{% if article.color %}
-  {% set default_color = article.color %}
+  {% set selected_cover = SITEURL+"/"+HEADER_COVER %}
 {% elif HEADER_COLOR %}
-  {% set default_color = HEADER_COLOR %}
+  {% set selected_color = HEADER_COLOR %}
 {% endif %}
 
 {% block head %}
-    {{ super() }}
+  {{ super() }}
 
-    <link href="{{ SITEURL }}/{{ article.url }}" rel="canonical" />
-    {% for keyword in article.keywords %}
-        <meta name="keywords" content="{{keyword}}" >
-    {% endfor %}
+  <link href="{{ SITEURL }}/{{ article.url }}" rel="canonical" />
+  {% for keyword in article.keywords %}
+    <meta name="keywords" content="{{keyword}}" >
+  {% endfor %}
 
-    {% if description %}
-        <meta name="description" content="{{ description }}">
-    {% elif article.headline %}
-        <meta name="description" content="{{ article.headline }}">
-    {% elif article.summary %}
-        <meta name="description" content="{{ article.summary|striptags|truncate(140) }}">
-    {% endif %}
+  {% if description %}
+    <meta name="description" content="{{ description }}">
+  {% elif article.headline %}
+    <meta name="description" content="{{ article.headline }}">
+  {% elif article.summary %}
+    <meta name="description" content="{{ article.summary|striptags|truncate(140) }}">
+  {% endif %}
 
-    {% for author in article.authors %}
-        <meta name="author" content="{{ author }}">
-    {% endfor %}
+  {% for author in article.authors %}
+    <meta name="author" content="{{ author }}">
+  {% endfor %}
 
-    {% for tag in article.tags %}
-        <meta name="tags" content="{{tag}}">
-    {% endfor %}
+  {% for tag in article.tags %}
+    <meta name="tags" content="{{tag}}">
+  {% endfor %}
 
-    {% include 'partials/og_article.html' %}
-    {% include 'partials/jsonld_article.html' %}
+  {% include 'partials/og_article.html' %}
+  {% include 'partials/jsonld_article.html' %}
 {% endblock %}
 
 {% block header %}
@@ -95,10 +91,10 @@
         {% if article.modified %}
             <span class="post-meta"> | Updated on {{ article.locale_modified }}</span>
         {% endif %}
-        {% if default_cover %}
-            <div class="post-cover cover" style="background-image: url('{{ default_cover }}')">
-        {% elif default_color %}
-            <div class="post-cover cover" style="background-color: {{ default_color }}">
+        {% if selected_cover %}
+            <div class="post-cover cover" style="background-image: url('{{ selected_cover }}')">
+        {% elif selected_color %}
+            <div class="post-cover cover" style="background-color: {{ selected_color }}">
         {% else %}
             <div class="post-cover cover" style="background-image: url('{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg')">
         {% endif %}
