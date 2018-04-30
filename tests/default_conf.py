@@ -75,15 +75,15 @@ AUTHORS_SAVE_AS = 'authors.html'
 
 ### Plugins
 
-PLUGIN_PATHS = [
-  'pelican-plugins'
-]
+# PLUGIN_PATHS = [
+#   'pelican-plugins'
+# ]
 
-PLUGINS = [
-  'sitemap',
-  'neighbors',
-  'assets'
-]
+# PLUGINS = [
+#   'sitemap',
+#   'neighbors',
+#   'assets'
+# ]
 
 # Sitemap
 SITEMAP = {
@@ -118,7 +118,7 @@ AUTHORS_BIO = {
   "arul": {
     "name": "Arul",
     "cover": "assets/images/avatar.png",
-    "image": "assets/images/arul_author_cover.png",
+    "image": "assets/images/arul_author_cover.jpg",
     "website": "http://blog.arulraj.net",
     "location": "Chennai",
     "bio": "This is the place for a small biography with max 200 characters. Well, now 100 are left. Cool, hugh?"
