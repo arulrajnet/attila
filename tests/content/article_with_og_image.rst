@@ -4,4 +4,4 @@
 :categories: bar
 :tags: bartag
 :slug: with-og-cover-images
-:og_image: assets/images/og_cover.jpg
+:og_image: /assets/images/og_cover.jpg

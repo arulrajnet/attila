@@ -4,4 +4,4 @@
 :categories: foo
 :tags: footag
 :slug: with-cover-images
-:cover: /assets/images/article_cover.jpg
+:cover: http://example.com/cover.jpg
