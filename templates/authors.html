@@ -2,6 +2,17 @@
 
 {% block title %}{{ SITENAME }} - Authors{% endblock title %}
 
+{% if HEADER_COVER %}
+  {% if HEADER_COVER|lower|truncate(4, True, '') == "http" %}
+    {% set selected_cover = HEADER_COVER %}
+  {% else %}
+    {% set selected_cover = SITEURL+"/"+HEADER_COVER %}
+  {% endif %}
+{% elif HEADER_COLOR %}
+  {% set selected_color = HEADER_COLOR %}
+{% endif %}
+
+
 {% block header %}
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
@@ -22,12 +33,12 @@
           </span>
         </nav>
         <h1 class="post-title">{{ SITENAME }} - Authors</h1>
-        {% if HEADER_COVER %}
-            <div class="blog-cover cover" style="background-image: url('{{ HEADER_COVER }}')">
-        {% elif HEADER_COLOR %}
-            <div class="post-cover cover" style="background-color: {{ HEADER_COLOR }}">
+        {% if selected_cover %}
+          <div class="blog-cover cover" style="background-image: url('{{ selected_cover }}')">
+        {% elif selected_color %}
+          <div class="blog-cover cover" style="background-color: {{ selected_color }}">
         {% else %}
-            <div class="post-cover cover" style="background-image: url('{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg')">
+          <div class="blog-cover cover" style="background-image: url('{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg')">
         {% endif %}
       </div>
     </header>
