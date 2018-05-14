@@ -11,7 +11,11 @@
     {% set selected_cover = SITEURL+"/"+category_cover %}
   {% endif %}
 {% elif HEADER_COVER %}
-  {% set selected_cover = SITEURL+"/"+HEADER_COVER %}
+  {% if HEADER_COVER|lower|truncate(4, True, '') == "http" %}
+    {% set selected_cover = HEADER_COVER %}
+  {% else %}
+    {% set selected_cover = SITEURL+"/"+HEADER_COVER %}
+  {% endif %}
 {% elif HEADER_COLOR %}
   {% set selected_color = HEADER_COLOR %}
 {% endif %}
@@ -40,9 +44,9 @@
         {% if selected_cover %}
             <div class="blog-cover cover" style="background-image: url('{{ selected_cover }}')">
         {% elif selected_color %}
-            <div class="post-cover cover" style="background-color: {{ selected_color }}">
+            <div class="blog-cover cover" style="background-color: {{ selected_color }}">
         {% else %}
-            <div class="post-cover cover" style="background-image: url('{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg')">
+            <div class="blog-cover cover" style="background-image: url('{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg')">
         {% endif %}
       </div>
     </header>

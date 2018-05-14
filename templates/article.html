@@ -15,7 +15,11 @@
     {% set selected_cover = SITEURL+"/"+article.og_image %}
   {% endif %}
 {% elif HEADER_COVER %}
-  {% set selected_cover = SITEURL+"/"+HEADER_COVER %}
+  {% if HEADER_COVER|lower|truncate(4, True, '') == "http" %}
+    {% set selected_cover = HEADER_COVER %}
+  {% else %}
+    {% set selected_cover = SITEURL+"/"+HEADER_COVER %}
+  {% endif %}
 {% elif HEADER_COLOR %}
   {% set selected_color = HEADER_COLOR %}
 {% endif %}

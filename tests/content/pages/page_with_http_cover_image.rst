@@ -3,5 +3,5 @@
 :author: arul
 :category: foo
 :tags: footag
-:slug: page-with-cover-images
-:cover: assets/images/page_cover.jpg
+:slug: page-with-http-cover-images
+:cover: http://example.com/page-cover.jpg

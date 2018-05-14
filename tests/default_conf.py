@@ -114,13 +114,13 @@ COLOR_SCHEME_CSS = 'github.css'
 
 CSS_OVERRIDE = ['assets/css/myblog.css']
 
-AUTHORS_BIO = {
-  "arul": {
-    "name": "Arul",
-    "cover": "assets/images/avatar.png",
-    "image": "assets/images/arul_author_cover.jpg",
-    "website": "http://blog.arulraj.net",
-    "location": "Chennai",
-    "bio": "This is the place for a small biography with max 200 characters. Well, now 100 are left. Cool, hugh?"
-  }
-}
+# AUTHORS_BIO = {
+#   "arul": {
+#     "name": "Arul",
+#     "cover": "assets/images/avatar.png",
+#     "image": "assets/images/arul_author_cover.jpg",
+#     "website": "http://blog.arulraj.net",
+#     "location": "Chennai",
+#     "bio": "This is the place for a small biography with max 200 characters. Well, now 100 are left. Cool, hugh?"
+#   }
+# }
