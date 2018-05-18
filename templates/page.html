@@ -21,6 +21,8 @@
   {% else %}
     {% set selected_cover = SITEURL+"/"+HEADER_COVER %}
   {% endif %}
+{% elif article.color %}
+  {% set selected_color = article.color %}
 {% elif HEADER_COLOR %}
   {% set selected_color = HEADER_COLOR %}
 {% endif %}
