@@ -216,3 +216,94 @@ class LoggedTestCase(unittest.TestCase):
             actual, count,
             msg='expected {} occurrences of {!r}, but found {}'.format(
                 count, msg, actual))
+
+from bs4 import BeautifulSoup
+from pelican.generators import (ArticlesGenerator, Generator, PagesGenerator,
+                                PelicanTemplateNotFound, StaticGenerator,
+                                TemplatePagesGenerator)
+from pelican.readers import RstReader
+from pelican.writers import Writer
+from pelican.contents import (Article, Page)
+
+CUR_DIR = os.path.dirname(__file__)
+CONTENT_DIR = os.path.join(CUR_DIR, 'content')
+OUTPUT_DIR = os.path.join(CUR_DIR, 'output')
+
+class BaseTest(object):
+
+  def __init__(self):
+    self.initSettings()
+
+  def initSettings(self):
+    self.old_locale = locale.setlocale(locale.LC_ALL)
+    locale.setlocale(locale.LC_ALL, str('C'))
+    self.settings = get_my_settings()
+    self.settings['THEME'] = "../"
+    self.settings['filenames'] = {}
+    self.reader = RstReader(self.settings)
+    self.writer = Writer("output", self.settings)
+
+  def gen_article_and_html_from_rst(self, rstPath):
+    content, metadata = self.reader.read(rstPath)
+    article = Article(content=content, metadata=metadata)
+    generator = ArticlesGenerator( context=self.settings.copy(), settings=self.settings, path=CONTENT_DIR, theme=self.settings['THEME'], output_path=OUTPUT_DIR)
+    generator.generate_context()
+    f = lambda a: True if (a.slug == article.slug) else False
+    result = filter(f, generator.context["articles"])[0]
+    self.writer.write_file(
+                result.save_as, generator.get_template('article'),
+                generator.context, article=result)
+    soup = BeautifulSoup(open("./"+self.writer.output_path+'/'+result.save_as), "html.parser")
+    return (result, soup)
+
+  def gen_page_and_html_from_rst(self, rstPath):
+    content, metadata = self.reader.read(rstPath)
+    page = Page(content=content, metadata=metadata)
+    generator = PagesGenerator( context=self.settings.copy(), settings=self.settings, path=CONTENT_DIR, theme=self.settings['THEME'], output_path=OUTPUT_DIR)
+    generator.generate_context()
+    f = lambda a: True if (a.slug == page.slug) else False
+    result = filter(f, generator.context["pages"])[0]
+    self.writer.write_file(
+                result.save_as, generator.get_template('page'),
+                generator.context, page=result)
+    soup = BeautifulSoup(open("./"+self.writer.output_path+'/'+result.save_as), "html.parser")
+    return (result, soup)
+
+  def gen_tag_and_html_from_name(self, name):
+    generator = ArticlesGenerator( context=self.settings.copy(), settings=self.settings, path=CONTENT_DIR, theme=self.settings['THEME'], output_path=OUTPUT_DIR)
+    generator.generate_context()
+    generator.generate_tags(self.writer.write_file)
+    selectedTag = None
+
+    for tag, articles in generator.tags.items():
+      if tag.name == name:
+        selectedTag = tag
+
+    soup = BeautifulSoup(open("./"+self.writer.output_path+'/'+selectedTag.save_as), "html.parser")
+    return (selectedTag, soup)
+
+  def gen_category_and_html_from_name(self, name):
+    generator = ArticlesGenerator( context=self.settings.copy(), settings=self.settings, path=CONTENT_DIR, theme=self.settings['THEME'], output_path=OUTPUT_DIR)
+    generator.generate_context()
+    generator.generate_categories(self.writer.write_file)
+    selectedCategory = None
+
+    for category, articles in generator.categories:
+      if category.name == name:
+        selectedCategory = category
+
+    soup = BeautifulSoup(open("./"+self.writer.output_path+'/'+selectedCategory.save_as), "html.parser")
+    return (selectedCategory, soup)
+
+  def gen_author_and_html_from_name(self, name):
+    generator = ArticlesGenerator( context=self.settings.copy(), settings=self.settings, path=CONTENT_DIR, theme=self.settings['THEME'], output_path=OUTPUT_DIR)
+    generator.generate_context()
+    generator.generate_authors(self.writer.write_file)
+    selectedAuthor = None
+
+    for author, articles in generator.authors:
+      if author.name == name:
+        selectedAuthor = author
+
+    soup = BeautifulSoup(open("./"+self.writer.output_path+'/'+selectedAuthor.save_as), "html.parser")
+    return (selectedAuthor, soup)

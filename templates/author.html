@@ -92,11 +92,18 @@
                     {% if AUTHORS_BIO[author.name.lower()].website %}
                         <span class="post-author-website"><a href="{{AUTHORS_BIO[author.name.lower()].website}}"><i class="ic ic-link"></i> Website</a></span>
                     {% endif %}
-                    {% if AUTHORS_BIO[author.name.lower()].twitter %}
-                        <span class="post-author-twitter"><a target="_blank" href="https://twitter.com/{{AUTHORS_BIO[author.name.lower()].twitter}}"><i class="ic ic-twitter"></i> Twitter</a></span>
-                    {% endif %}
+                    <!-- Social linkes in alphabet order. -->
                     {% if AUTHORS_BIO[author.name.lower()].facebook %}
                         <span class="post-author-facebook"><a target="_blank" href="https://facebook.com/{{AUTHORS_BIO[author.name.lower()].facebook}}"><i class="ic ic-facebook"></i> Facebook</a></span>
+                    {% endif %}
+                    {% if AUTHORS_BIO[author.name.lower()].github %}
+                        <span class="post-author-github"><a target="_blank" href="https://github.com/{{AUTHORS_BIO[author.name.lower()].github}}"><i class="ic ic-github"></i> GitHub</a></span>
+                    {% endif %}
+                    {% if AUTHORS_BIO[author.name.lower()].linkedin %}
+                        <span class="post-author-linkedin"><a target="_blank" href="https://www.linkedin.com/in/{{AUTHORS_BIO[author.name.lower()].linkedin}}"><i class="ic ic-linkedin"></i> LinkedIn</a></span>
+                    {% endif %}
+                    {% if AUTHORS_BIO[author.name.lower()].twitter %}
+                        <span class="post-author-twitter"><a target="_blank" href="https://twitter.com/{{AUTHORS_BIO[author.name.lower()].twitter}}"><i class="ic ic-twitter"></i> Twitter</a></span>
                     {% endif %}
                         <span class="post-author-stats"><i class="ic ic-posts"></i> {{ articles|count }} {% if articles|count > 1 %} posts {% else %} post {% endif %}</span>
                 </div>
