@@ -1,4 +1,6 @@
-{% extends "index.html" %}
+{% extends "base.html" %}
+
+{% block title %}{{ SITENAME }} - Articles by {{ author_name }}{% endblock %}
 
 <!-- To support both image in relative path and url  -->
 {% set author_name = author.name | title  %}
@@ -31,8 +33,6 @@
 {% elif HEADER_COLOR %}
   {% set selected_color = HEADER_COLOR %}
 {% endif %}
-
-{% block title %}{{ SITENAME }} - Articles by {{ author_name }}{% endblock %}
 
 {% block opengraph %}
     {{ super() }}
@@ -114,3 +114,12 @@
     {% endif %}
 
 {% endblock header %}
+
+{% block content %}
+
+<div id="index" class="container">
+  <main class="content" role="main">
+    {% include "partials/loop.html" %}
+  </main>
+</div>
+{% endblock content %}
