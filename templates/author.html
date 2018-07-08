@@ -1,4 +1,6 @@
-{% extends "index.html" %}
+{% extends "base.html" %}
+
+{% block title %}{{ SITENAME }} - Articles by {{ author_name }}{% endblock %}
 
 <!-- To support both image in relative path and url  -->
 {% set author_name = author.name | title  %}
@@ -15,24 +17,22 @@
   {% set author_cover = AUTHORS_BIO[author.name.lower()].cover %}
   {% if author_cover %}
     {% if author_cover|lower|truncate(4, True, '') == "http" %}
-      {% set selected_author_cover = author_cover %}
+      {% set selected_cover = author_cover %}
     {% else %}
-      {% set selected_author_cover = SITEURL+"/"+author_cover %}
+      {% set selected_cover = SITEURL+"/"+author_cover %}
     {% endif %}
   {% endif %}
 
   {% set author_name = AUTHORS_BIO[author.name.lower()].name or author.name %}
 {% elif HEADER_COVER %}
   {% if HEADER_COVER|lower|truncate(4, True, '') == "http" %}
-    {% set selected_author_cover = HEADER_COVER %}
+    {% set selected_cover = HEADER_COVER %}
   {% else %}
-    {% set selected_author_cover = SITEURL+"/"+HEADER_COVER %}
+    {% set selected_cover = SITEURL+"/"+HEADER_COVER %}
   {% endif %}
 {% elif HEADER_COLOR %}
-  {% set selected_author_color = HEADER_COLOR %}
+  {% set selected_color = HEADER_COLOR %}
 {% endif %}
-
-{% block title %}{{ SITENAME }} - Articles by {{ author_name }}{% endblock %}
 
 {% block opengraph %}
     {{ super() }}
@@ -51,7 +51,7 @@
         <nav id="navigation">
           {% if SITE_LOGO %}
             <span class="blog-logo">
-                <a href="{{ SITEURL }}/"><img src="{{SITEURL}}/{{SITE_LOGO}}" alt="Blog Logo" /></a>
+                <a href="{{ SITEURL }}/"><img src="{{SITE_LOGO}}" alt="Blog Logo" /></a>
             </span>
           {% else %}
             <span id="home-button" class="nav-button">
@@ -62,10 +62,10 @@
             <a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
           </span>
         </nav>
-        {% if selected_author_cover %}
-            <div class="blog-cover cover" style="background-image: url('{{ selected_author_cover }}')">
-        {% elif selected_author_color %}
-            <div class="blog-cover cover" style="background-color: {{ selected_author_color }}">
+        {% if selected_cover %}
+            <div class="blog-cover cover" style="background-image: url('{{ selected_cover }}')">
+        {% elif selected_color %}
+            <div class="blog-cover cover" style="background-color: {{ selected_color }}">
         {% else %}
             <div class="blog-cover cover" style="background-image: url('{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg')">
         {% endif %}
@@ -114,3 +114,12 @@
     {% endif %}
 
 {% endblock header %}
+
+{% block content %}
+
+<div id="index" class="container">
+  <main class="content" role="main">
+    {% include "partials/loop.html" %}
+  </main>
+</div>
+{% endblock content %}
