@@ -452,7 +452,7 @@ th {
         flex-direction: column;
         min-height: 100vh
     }
-    #wrapper {
+    #wrapper, #blog-header, #post-header {
         -ms-flex: 1;
         flex: 1
     }
@@ -844,6 +844,18 @@ img {
     padding: 6em 0
 }
 
+#post-header {
+    position: relative;
+    padding-top: 6em
+}
+
+#post-header.has-cover {
+    padding: 16em 0 2em;
+    background: #000;
+    overflow: hidden;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1)
+}
+
 .blog-cover {
     position: absolute;
     width: 100%;
@@ -925,7 +937,7 @@ img {
     color: #fff
 }
 
-#wrapper {
+#wrapper, #blog-header, #post-header {
     position: relative;
     padding-right: 0;
     transition: all ease-out 0.25s
@@ -941,12 +953,18 @@ img {
     z-index: 350
 }
 
-.menu-active #wrapper {
+.menu-active #wrapper,
+.menu-active #blog-header,
+.menu-active #post-header {
     padding-right: 16em
 }
 
 .menu-active #wrapper .hidden-close {
     display: block
+}
+
+.menu-active #menu-button {
+    display: none;
 }
 
 .inner {
@@ -1329,18 +1347,6 @@ img {
     margin-left: -16em;
     content: '';
     background: #e5e4e1
-}
-
-#post-header {
-    position: relative;
-    padding-top: 6em
-}
-
-#post-header.has-cover {
-    padding: 16em 0 2em;
-    background: #000;
-    overflow: hidden;
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1)
 }
 
 .post-cover {
@@ -1836,10 +1842,12 @@ img {
 .tag-weight-10 { font-size: 280%; }
 
 @media only screen and (max-width: 960px) {
-    #wrapper {
+    #wrapper, #blog-header, #post-header {
         transform: translate3d(0, 0, 0)
     }
-    .menu-active #wrapper {
+    .menu-active #wrapper,
+    .menu-active #blog-header,
+    .menu-active #post-header {
         padding-right: 0;
         transform: translate3d(-16em, 0, 0)
     }
