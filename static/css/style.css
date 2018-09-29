@@ -1813,6 +1813,28 @@ img {
     display: block
 }
 
+.tag-cloud {
+    text-align: center;
+    margin-bottom: 3em;
+}
+
+.tag {
+    display: inline-block;
+    padding: 0.2em 0.15em;
+    vertical-align: middle;
+}
+
+.tag-weight-1  { font-size: 100%; }
+.tag-weight-2  { font-size: 120%; }
+.tag-weight-3  { font-size: 140%; }
+.tag-weight-4  { font-size: 160%; }
+.tag-weight-5  { font-size: 180%; }
+.tag-weight-6  { font-size: 200%; }
+.tag-weight-7  { font-size: 220%; }
+.tag-weight-8  { font-size: 240%; }
+.tag-weight-9  { font-size: 260%; }
+.tag-weight-10 { font-size: 280%; }
+
 @media only screen and (max-width: 960px) {
     #wrapper {
         transform: translate3d(0, 0, 0)

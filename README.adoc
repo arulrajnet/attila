@@ -293,6 +293,18 @@ All image paths are relative from the site root directory. You can also
 use absolute URLs for `og_image` and `twitter_image`.
 
 
+[[tag-cloud]]
+=== Tag Cloud
+
+Attila renders tags page as a tag cloud.
+
+Use `TAG_CLOUD_STEPS` configuration variable to specify number of font size
+steps for the tag cloud. Default value is 5, stylesheet is written to support
+up to 10 steps. If you want more steps, you'll need to configure your CSS
+manually (see `CSS_OVERRIDE`)
+
+
+
 [[other-configuration]]
 === Other configuration
 
