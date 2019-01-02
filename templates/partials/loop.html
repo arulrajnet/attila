@@ -26,16 +26,14 @@
                 </section>
             {% else %}
                 <section class="post-excerpt">
-                    <p>
                     {% if article.has_summary %}
                         {{ article.summary }}
                     {% elif article.summary %}
                         {{ article.summary|striptags|truncate(250) }}
                     {% endif %}
-                    </p>
+                    {% include 'partials/comments_count.html' %}
                 </section>
             {% endif %}
-            {% include 'partials/comments_count.html' %}
             </div>
         </article>
     {% endfor %}
