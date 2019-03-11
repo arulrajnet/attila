@@ -2,10 +2,20 @@
 
 {% block title %}{{ SITENAME }} - Archives for {{ period | reverse | join (' ') }}{% endblock %}
 
+{% if HEADER_COVER %}
+  {% if HEADER_COVER|lower|truncate(4, True, '') == "http" %}
+    {% set selected_cover = HEADER_COVER %}
+  {% else %}
+    {% set selected_cover = SITEURL+"/"+HEADER_COVER %}
+  {% endif %}
+{% elif HEADER_COLOR %}
+  {% set selected_color = HEADER_COLOR %}
+{% endif %}
+
 {% block header %}
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header id="blog-header" class="has-cover">
+    <header id="blog-header" {% if selected_cover or selected_color %}class="has-cover"{% endif %}>
       <div class="inner">
         <nav id="navigation">
           {% if SITE_LOGO %}
@@ -22,15 +32,13 @@
           </span>
         </nav>
         <h1 class="post-title">Archives for {{ period | reverse | join (' ') }}</h1>
-        {% if HEADER_COVER %}
-            <div class="blog-cover cover" style="background-image: url('{{ HEADER_COVER }}')">            
-        {% elif HEADER_COLOR %}
-            <div class="post-cover cover" style="background-color: {{ HEADER_COLOR }}">
-        {% else %}
-            <div class="post-cover cover" style="background-image: url('{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg')">
-        {% endif %}        
+        {% if selected_cover %}
+          <div class="blog-cover cover" style="background-image: url('{{ selected_cover }}')">
+        {% elif selected_color %}
+          <div class="blog-cover cover" style="background-color: {{ selected_color }}">
+        {% endif %}
       </div>
-    </header>    
+    </header>
 {% endblock header %}
 
 {% block content %}

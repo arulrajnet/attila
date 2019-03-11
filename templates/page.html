@@ -30,7 +30,7 @@
 {% block header %}
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header id="post-header" class="has-cover">
+    <header id="post-header" {% if selected_cover or selected_color %}class="has-cover"{% endif %}>
       <div class="inner">
         <nav id="navigation">
           {% if SITE_LOGO %}
@@ -51,8 +51,6 @@
             <div class="post-cover cover" style="background-image: url('{{ selected_cover }}')">
         {% elif selected_color %}
             <div class="post-cover cover" style="background-color: {{ selected_color }}">
-        {% else %}
-            <div class="post-cover cover" style="background-image: url('{{ SITEURL }}/{{ THEME_STATIC_DIR }}/images/post-bg.jpg')">
         {% endif %}
       </div>
     </header>
