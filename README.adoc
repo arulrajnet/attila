@@ -81,13 +81,19 @@ You can set cover images for your blog, article, page, tag, category and author.
 
 The is the cover image for your site main index.html.
 
-To set blog cover, set the property `HEADER_COVER` in
+To set blog cover, set the property `HOME_COVER` in
 `pelicanconf.py`:
 
 [source,python]
 ----
-HEADER_COVER = '/assets/images/blog_cover.png'
+HOME_COVER = '/assets/images/blog_cover.png'
 ----
+
+[NOTE]
+====
+HEADER_COVER property is deprecated. Work around will be use HOME_COVER and use cover in individual articles.
+This property will be used if there is no cover image set to an article, page, tag, category, author.
+====
 
 [[article-cover]]
 ==== Article Cover
@@ -167,17 +173,22 @@ For more refer link:#author-bio[author] .
 === Header Color
 
 To define a simple header background color, set the property
-`HEADER_COLOR` in `pelicanconf.py`:
+`HOME_COLOR` in `pelicanconf.py`:
 
 [source,python]
 ----
-HEADER_COLOR = 'black'
+HOME_COLOR = 'black'
 ----
 
 you can use any valid css color. This will be used if there is no cover
 image set in link:#articles[article] level and site level.
 
-This property will be used if there is no cover image set to an article, page, tag, category, author.
+
+[NOTE]
+====
+HEADER_COLOR property is deprecated. Work around will be use HOME_COLOR and use color in individual articles.
+This property will be used if there is no HEADER_COVER and cover image set to an article, page, tag, category, author.
+====
 
 [[social-urls]]
 === Social URLs

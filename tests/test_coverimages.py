@@ -59,9 +59,9 @@ class ArticleCoverImageTest(unittest.TestCase, BaseTest):
   def test_article_theme_cover(self):
     rstPath="content/article_without_cover.rst"
     result, soup = self.gen_article_and_html_from_rst(rstPath)
-    selected = soup.find(name="div", attrs={"class": "post-cover cover"})
+    selected = soup.find(id="blog-header")
     # Assertion
-    self.assertTrue("/theme/images/post-bg.jpg" in selected["style"])
+    self.assertTrue("class" not in selected)
 
   def test_article_header_color(self):
     self.settings['HEADER_COLOR']='blue'
@@ -120,9 +120,9 @@ class PageCoverImageTest(unittest.TestCase, BaseTest):
   def test_page_theme_cover(self):
     rstPath="content/pages/page_without_cover_image.rst"
     result, soup = self.gen_page_and_html_from_rst(rstPath)
-    selected = soup.find(name="div", attrs={"class": "post-cover cover"})
+    selected = soup.find(id="post-header")
     # Assertion
-    self.assertTrue("/theme/images/post-bg.jpg" in selected["style"])
+    self.assertTrue("class" not in selected)
 
   def test_page_header_color(self):
     self.settings['HEADER_COLOR']='blue'
@@ -156,9 +156,9 @@ class TagCoverImageTest(unittest.TestCase, BaseTest):
 
   def test_footag_theme_cover(self):
     result, soup = self.gen_tag_and_html_from_name("footag")
-    selected = soup.find(name="div", attrs={"class": "blog-cover cover"})
+    selected = soup.find(id="blog-header")
     # Assertion
-    self.assertTrue("/theme/images/post-bg.jpg" in selected["style"])
+    self.assertTrue("class" not in selected)
 
   def test_footag_cover(self):
     tagName = "footag"
@@ -204,9 +204,9 @@ class TagCoverImageTest(unittest.TestCase, BaseTest):
 
   def test_bartag_theme_cover(self):
     result, soup = self.gen_tag_and_html_from_name("bartag")
-    selected = soup.find(name="div", attrs={"class": "blog-cover cover"})
+    selected = soup.find(id="blog-header")
     # Assertion
-    self.assertTrue("/theme/images/post-bg.jpg" in selected["style"])
+    self.assertTrue("class" not in selected)
 
   def test_bartag_cover(self):
     tagName = "bartag"
@@ -261,9 +261,9 @@ class CategoryCoverImageTest(unittest.TestCase, BaseTest):
 
   def test_foo_theme_cover(self):
     result, soup = self.gen_category_and_html_from_name("foo")
-    selected = soup.find(name="div", attrs={"class": "blog-cover cover"})
+    selected = soup.find(id="blog-header")
     # Assertion
-    self.assertTrue("/theme/images/post-bg.jpg" in selected["style"])
+    self.assertTrue("class" not in selected)
 
   def test_foo_cover(self):
     categoryName = "foo"
@@ -309,9 +309,9 @@ class CategoryCoverImageTest(unittest.TestCase, BaseTest):
 
   def test_bar_theme_cover(self):
     result, soup = self.gen_category_and_html_from_name("bar")
-    selected = soup.find(name="div", attrs={"class": "blog-cover cover"})
+    selected = soup.find(id="blog-header")
     # Assertion
-    self.assertTrue("/theme/images/post-bg.jpg" in selected["style"])
+    self.assertTrue("class" not in selected)
 
   def test_bar_cover(self):
     categoryName = "bar"
@@ -365,9 +365,9 @@ class AuthorCoverImageTest(unittest.TestCase, BaseTest):
 
   def test_arul_theme_cover(self):
     result, soup = self.gen_author_and_html_from_name("arul")
-    selected = soup.find(name="div", attrs={"class": "blog-cover cover"})
+    selected = soup.find(id="blog-header")
     # Assertion
-    self.assertTrue("/theme/images/post-bg.jpg" in selected["style"])
+    self.assertTrue("class" not in selected)
 
   def test_arul_cover(self):
     authorName = "arul"
@@ -417,9 +417,9 @@ class AuthorCoverImageTest(unittest.TestCase, BaseTest):
 
   def test_raj_theme_cover(self):
     result, soup = self.gen_author_and_html_from_name("raj")
-    selected = soup.find(name="div", attrs={"class": "blog-cover cover"})
+    selected = soup.find(id="blog-header")
     # Assertion
-    self.assertTrue("/theme/images/post-bg.jpg" in selected["style"])
+    self.assertTrue("class" not in selected)
 
   def test_raj_cover(self):
     authorName = "raj"
