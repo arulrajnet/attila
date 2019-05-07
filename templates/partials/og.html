@@ -8,6 +8,8 @@
 {# <!-- Choosing cover image --> #}
 {% if HEADER_COVER %}
   {% set default_cover = SITEURL+"/"+HEADER_COVER %}
+{% elif HOME_COVER %}
+  {% set default_cover = SITEURL+"/"+HOME_COVER %}
 {% else %}
   {% set default_cover = SITEURL+"/"+THEME_STATIC_DIR+"/images/home-bg.jpg" %}
 {% endif %}
