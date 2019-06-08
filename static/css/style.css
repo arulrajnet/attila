@@ -241,50 +241,6 @@ th {
     margin-left: .2em
 }
 
-.ic-star:before {
-    content: '\e800'
-}
-
-.ic-rss:before {
-    content: '\e801'
-}
-
-.ic-posts:before {
-    content: '\e802'
-}
-
-.ic-location:before {
-    content: '\e803'
-}
-
-.ic-link:before {
-    content: '\e804'
-}
-
-.ic-googleplus:before {
-    content: '\e805'
-}
-
-.ic-facebook:before {
-    content: '\e806'
-}
-
-.ic-arrow-right:before {
-    content: '\e807'
-}
-
-.ic-arrow-left:before {
-    content: '\e808'
-}
-
-.ic-twitter:before {
-    content: '\e809'
-}
-
-.ic-menu:before {
-    content: '\e80a'
-}
-
 @font-face {
     font-family: 'Cardo';
     font-style: normal;
