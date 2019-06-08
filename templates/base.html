@@ -113,7 +113,7 @@
             {% if SHOW_CREDITS and SHOW_CREDITS.left %}
               {% set left=SHOW_CREDITS.left %}
             {% else %}
-              {% set left='Theme <a href="https://github.com/arulrajnet/attila" rel="nofollow">Attila</a>' %}
+              {% set left='Theme <a href="https://github.com/arulrajnet/attila" rel="nofollow">Attila</a> remixed By <a href="https://github.com/aly-ve/" rel="nofollow">Alyve</a> with <span class="credits-heart">♥️</span>' %}
             {% endif %}
 
             {% if SHOW_CREDITS and SHOW_CREDITS.right %}
@@ -131,6 +131,7 @@
   </section>
 
   <script type="text/javascript" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/script.js"></script>
+  <script src="https://kit.fontawesome.com/0830df9f45.js"></script>
 
   {% if JS_OVERRIDE %}
     <!-- Script specified by the user -->
