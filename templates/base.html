@@ -96,6 +96,10 @@
 
   {% block header %}{% endblock header %}
 
+  {% if MASTODON %}
+    <a rel="me" href="{{ MASTODON }}" style="display: none;"></a>
+  {% endif %}
+
   <section id="wrapper">
     <a class="hidden-close"></a>
       {% block content %}{% endblock content %}
