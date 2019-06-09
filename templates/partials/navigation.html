@@ -11,12 +11,12 @@
           {% for p in pages %}
               <li{% if p == page %} class="nav-{{p.slug}} active"{% endif %} role="presentation"><a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a></li>
           {% endfor %}
-      {% else %}
-          {% if DISPLAY_CATEGORIES_ON_MENU %}
-              {% for cat, null in categories %}
-                  <li{% if cat == category %} class="nav-{{cat.slug}} active"{% endif %} role="presentation"><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
-              {% endfor %}
-          {% endif %}
+      {% endif %}
+
+      {% if DISPLAY_CATEGORIES_ON_MENU %}
+          {% for cat, null in categories %}
+              <li{% if cat == category %} class="nav-{{cat.slug}} active"{% endif %} role="presentation"><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
+          {% endfor %}
       {% endif %}
 
       {% for name,link in SOCIAL if name in ['rss', 'rss-square', 'feed'] %}
