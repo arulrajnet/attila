@@ -30,7 +30,7 @@
 {% block head %}
   {{ super() }}
 
-  <link href="{{ SITEURL }}/{{ article.url }}" rel="canonical" />
+  {% block canonical_url %}<link href="{{ SITEURL }}/{{ article.url }}" rel="canonical" />{% endblock canonical_url %}
   {% for keyword in article.keywords %}
     <meta name="keywords" content="{{keyword}}" >
   {% endfor %}
