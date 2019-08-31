@@ -27,10 +27,10 @@
   {% set selected_color = HEADER_COLOR %}
 {% endif %}
 
+{% block canonical_url %}<link href="{{ SITEURL }}/{{ article.url }}" rel="canonical" />{% endblock canonical_url %}
 {% block head %}
   {{ super() }}
 
-  <link href="{{ SITEURL }}/{{ article.url }}" rel="canonical" />
   {% for keyword in article.keywords %}
     <meta name="keywords" content="{{keyword}}" >
   {% endfor %}

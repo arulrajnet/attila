@@ -2,6 +2,10 @@
 
 {% block title %}{{ page.title }}{% endblock title %}
 
+{% block canonical_url %}
+<link href="{{ SITEURL }}/{{ page.url }}" rel="canonical" />
+{% endblock canonical_url %}
+
 {# <!-- Choosing cover image --> #}
 {% if page.cover %}
   {% if page.cover|lower|truncate(4, True, '') == "http" %}
