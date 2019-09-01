@@ -10,7 +10,7 @@ def tearDownModule():
   print("teardown module")
   try:
     rmtree(OUTPUT_DIR)
-  except OSError, e:
+  except OSError as e:
     print ("Error: %s - %s." % (e.filename,e.strerror))
 
 class AuthorSocialLinksTest(unittest.TestCase, BaseTest):
