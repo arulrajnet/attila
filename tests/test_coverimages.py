@@ -59,7 +59,7 @@ class ArticleCoverImageTest(unittest.TestCase, BaseTest):
   def test_article_theme_cover(self):
     rstPath="content/article_without_cover.rst"
     result, soup = self.gen_article_and_html_from_rst(rstPath)
-    selected = soup.find(id="blog-header")
+    selected = soup.find(id="post-header")
     # Assertion
     self.assertTrue("class" not in selected)
 

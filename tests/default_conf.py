@@ -115,6 +115,18 @@ COLOR_SCHEME_CSS = 'github.css'
 
 CSS_OVERRIDE = ['assets/css/myblog.css']
 
+# Jinja config - Pelican 4
+JINJA_ENVIRONMENT = {
+  'extensions' :[
+    'jinja2.ext.loopcontrols',
+    'jinja2.ext.i18n',
+    'jinja2.ext.with_',
+    'jinja2.ext.do'
+  ]
+}
+
+JINJA_FILTERS = {'max': max}
+
 # AUTHORS_BIO = {
 #   "arul": {
 #     "name": "Arul",
