@@ -254,7 +254,7 @@ class BaseTest(object):
     generator = ArticlesGenerator( context=context, settings=self.settings, path=CONTENT_DIR, theme=self.settings['THEME'], output_path=OUTPUT_DIR)
     generator.generate_context()
     f = lambda a: True if (a.slug == article.slug) else False
-    result = filter(f, generator.context["articles"])[0]
+    result = list(filter(f, generator.context["articles"]))[0]
     self.writer.write_file(
                 result.save_as, generator.get_template('article'),
                 generator.context, article=result)
@@ -272,7 +272,7 @@ class BaseTest(object):
     generator = PagesGenerator( context=context, settings=self.settings, path=CONTENT_DIR, theme=self.settings['THEME'], output_path=OUTPUT_DIR)
     generator.generate_context()
     f = lambda a: True if (a.slug == page.slug) else False
-    result = filter(f, generator.context["pages"])[0]
+    result = list(filter(f, generator.context["pages"]))[0]
     self.writer.write_file(
                 result.save_as, generator.get_template('page'),
                 generator.context, page=result)
