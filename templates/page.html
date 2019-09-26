@@ -6,32 +6,31 @@
 <link href="{{ SITEURL }}/{{ page.url }}" rel="canonical" />
 {% endblock canonical_url %}
 
-{# <!-- Choosing cover image --> #}
-{% if page.cover %}
-  {% if page.cover|lower|truncate(4, True, '') == "http" %}
-    {% set selected_cover = page.cover %}
-  {% else %}
-    {% set selected_cover = SITEURL+"/"+page.cover %}
-  {% endif %}
-{% elif page.og_image %}
-  {% if page.og_image|lower|truncate(4, True, '') == "http" %}
-    {% set selected_cover = page.og_image %}
-  {% else %}
-    {% set selected_cover = SITEURL+"/"+page.og_image %}
-  {% endif %}
-{% elif HEADER_COVER %}
-  {% if HEADER_COVER|lower|truncate(4, True, '') == "http" %}
-    {% set selected_cover = HEADER_COVER %}
-  {% else %}
-    {% set selected_cover = SITEURL+"/"+HEADER_COVER %}
-  {% endif %}
-{% elif page.color %}
-  {% set selected_color = page.color %}
-{% elif HEADER_COLOR %}
-  {% set selected_color = HEADER_COLOR %}
-{% endif %}
-
 {% block header %}
+    {# <!-- Choosing cover image --> #}
+    {% if page.cover %}
+      {% if page.cover|lower|truncate(4, True, '') == "http" %}
+        {% set selected_cover = page.cover %}
+      {% else %}
+        {% set selected_cover = SITEURL+"/"+page.cover %}
+      {% endif %}
+    {% elif page.og_image %}
+      {% if page.og_image|lower|truncate(4, True, '') == "http" %}
+        {% set selected_cover = page.og_image %}
+      {% else %}
+        {% set selected_cover = SITEURL+"/"+page.og_image %}
+      {% endif %}
+    {% elif HEADER_COVER %}
+      {% if HEADER_COVER|lower|truncate(4, True, '') == "http" %}
+        {% set selected_cover = HEADER_COVER %}
+      {% else %}
+        {% set selected_cover = SITEURL+"/"+HEADER_COVER %}
+      {% endif %}
+    {% elif page.color %}
+      {% set selected_color = page.color %}
+    {% elif HEADER_COLOR %}
+      {% set selected_color = HEADER_COLOR %}
+    {% endif %}
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
     <header id="post-header" {% if selected_cover or selected_color %}class="has-cover"{% endif %}>

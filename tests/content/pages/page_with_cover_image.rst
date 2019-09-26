@@ -4,4 +4,4 @@
 :category: foo
 :tags: footag
 :slug: page-with-cover-images
-:cover: assets/images/page_cover.jpg
+:cover: assets/images/page_cover_override.jpg
