@@ -109,6 +109,14 @@ class PageCoverImageTest(unittest.TestCase, BaseTest):
     # Assertion
     self.assertTrue(self.settings['SITEURL']+'/'+self.settings['HEADER_COVER'] in selected["style"])
 
+  def test_page_cover_overide_header_cover(self):
+    self.settings['HEADER_COVER']='/assets/images/page_cover.jpg'
+    rstPath="content/pages/page_with_cover_image.rst"
+    result, soup = self.gen_page_and_html_from_rst(rstPath)
+    selected = soup.find(name="div", attrs={"class": "post-cover cover"})
+    # Assertion
+    self.assertTrue(self.settings['SITEURL']+'/'+result.cover in selected["style"])
+
   def test_page_header_http_cover(self):
     self.settings['HEADER_COVER']='http://example.com/cover.jpg'
     rstPath="content/pages/page_without_cover_image.rst"
