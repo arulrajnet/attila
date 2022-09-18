@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ DEFAULT_LANG }}">
+<html lang="{{ DEFAULT_LANG|default('en') }}">
 
 <head>
   {% block head %}
@@ -76,7 +76,7 @@
     {% endfor %}
   {% endif %}
 
-  {% if ALLOW_GOOGLE_FONTS %}
+  {% if ALLOW_GOOGLE_FONTS|default(True) %}
     <!-- Custom fonts -->
     <link href='https://fonts.googleapis.com/css?family=Montserrat:400,300' rel='stylesheet' type='text/css' />
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css" />
