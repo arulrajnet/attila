@@ -7,9 +7,19 @@
 
 {# <!-- Choosing cover image --> #}
 {% if HEADER_COVER %}
-  {% set default_cover = SITEURL+"/"+HEADER_COVER %}
+  {% if HEADER_COVER|lower|truncate(4, True, '') == "http" %}
+    {% set selected_cover = HEADER_COVER %}
+  {% else %}
+    {% set selected_cover = SITEURL+"/"+HEADER_COVER %}
+  {% endif %}
+{% elif HOME_COVER %}
+  {% if HOME_COVER|lower|truncate(4, True, '') == "http" %}
+    {% set selected_cover = HOME_COVER %}
+  {% else %}
+    {% set selected_cover = SITEURL+"/"+HOME_COVER %}
+  {% endif %}
 {% else %}
-  {% set default_cover = SITEURL+"/"+THEME_STATIC_DIR+"/images/home-bg.jpg" %}
+  {% set selected_cover = SITEURL+"/"+THEME_STATIC_DIR+"/images/home-bg.jpg" %}
 {% endif %}
 
 {# <!-- Choosing description --> #}
@@ -29,7 +39,7 @@
 <meta prefix="og: http://ogp.me/ns#" property="og:description" content="{{ description }}"/>
 <meta prefix="og: http://ogp.me/ns#" property="og:locale" content="{{ default_locale }}"/>
 <meta prefix="og: http://ogp.me/ns#" property="og:url" content="{{ SITEURL }}/"/>
-<meta prefix="og: http://ogp.me/ns#" property="og:image" content="{{ default_cover }}">
+<meta prefix="og: http://ogp.me/ns#" property="og:image" content="{{ selected_cover }}">
 
 <!-- Twitter Card -->
 {% for name,link in SOCIAL if name.lower() in ['twitter'] %}
@@ -38,5 +48,5 @@
   <meta name="twitter:title" content="{{ SITENAME }}">
   <meta name="twitter:description" content="{{ description}}">
   <meta name="twitter:url" content="{{ SITEURL }}/">
-  <meta name="twitter:image:src" content="{{ default_cover }}">
+  <meta name="twitter:image:src" content="{{ selected_cover }}">
 {% endfor %}

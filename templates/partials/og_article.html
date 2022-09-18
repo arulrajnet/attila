@@ -8,20 +8,30 @@
 {# <!-- Choosing cover image --> #}
 {% if article.og_image %}
     {% if article.og_image|lower|truncate(4, True, '') == "http" %}
-        {% set default_cover = article.og_image %}
+        {% set selected_cover = article.og_image %}
     {% else %}
-        {% set default_cover = SITEURL+"/"+article.og_image %}
+        {% set selected_cover = SITEURL+"/"+article.og_image %}
     {% endif %}
 {% elif article.cover %}
     {% if article.cover|lower|truncate(4, True, '') == "http" %}
-        {% set default_cover = article.cover %}
+        {% set selected_cover = article.cover %}
     {% else %}
-        {% set default_cover = SITEURL+"/"+article.cover %}
+        {% set selected_cover = SITEURL+"/"+article.cover %}
     {% endif %}
 {% elif HEADER_COVER %}
-  {% set default_cover = SITEURL+"/"+HEADER_COVER %}
+  {% if HEADER_COVER|lower|truncate(4, True, '') == "http" %}
+    {% set selected_cover = HEADER_COVER %}
+  {% else %}
+    {% set selected_cover = SITEURL+"/"+HEADER_COVER %}
+  {% endif %}
+{% elif HOME_COVER %}
+  {% if HOME_COVER|lower|truncate(4, True, '') == "http" %}
+    {% set selected_cover = HOME_COVER %}
+  {% else %}
+    {% set selected_cover = SITEURL+"/"+HOME_COVER %}
+  {% endif %}
 {% else %}
-  {% set default_cover = SITEURL+"/"+THEME_STATIC_DIR+"/images/post-bg.jpg" %}
+  {% set selected_cover = SITEURL+"/"+THEME_STATIC_DIR+"/images/home-bg.jpg" %}
 {% endif %}
 
 {# <!-- Choosing description --> #}
@@ -51,7 +61,7 @@
 {% for tag in article.tags %}
 <meta prefix="og: http://ogp.me/ns#" property="article:tag" content="{{ tag.name }}"/>
 {% endfor %}
-<meta prefix="og: http://ogp.me/ns#" property="og:image" content="{{ default_cover }}">
+<meta prefix="og: http://ogp.me/ns#" property="og:image" content="{{ selected_cover }}">
 
 <!-- Twitter Card -->
 {% for name,link in SOCIAL if name.lower() in ['twitter'] %}
@@ -67,7 +77,7 @@
             <meta name="twitter:image:src" content="{{ SITEURL }}/{{ article.twitter_image }}">
         {% endif %}
     {% else %}
-        <meta name="twitter:image:src" content="{{ default_cover }}">
+        <meta name="twitter:image:src" content="{{ selected_cover }}">
     {% endif %}
 
       <meta name="twitter:description" content="{{ description }}">
