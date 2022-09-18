@@ -33,13 +33,13 @@
 {% for admin in FACEBOOK_ADMINS %}
   <meta property="fb:admins" content="{{ admin }}" />
 {% endfor %}
-<meta property="og:site_name" content="{{ SITENAME }}"/>
-<meta property="og:type" content="blog"/>
-<meta property="og:title" content="{{ SITENAME }}"/>
-<meta property="og:description" content="{{ description }}"/>
-<meta property="og:locale" content="{{ default_locale }}"/>
-<meta property="og:url" content="{{ SITEURL }}/"/>
-<meta property="og:image" content="{{ selected_cover }}">
+<meta prefix="og: http://ogp.me/ns#" property="og:site_name" content="{{ SITENAME }}"/>
+<meta prefix="og: http://ogp.me/ns#" property="og:type" content="blog"/>
+<meta prefix="og: http://ogp.me/ns#" property="og:title" content="{{ SITENAME }}"/>
+<meta prefix="og: http://ogp.me/ns#" property="og:description" content="{{ description }}"/>
+<meta prefix="og: http://ogp.me/ns#" property="og:locale" content="{{ default_locale }}"/>
+<meta prefix="og: http://ogp.me/ns#" property="og:url" content="{{ SITEURL }}/"/>
+<meta prefix="og: http://ogp.me/ns#" property="og:image" content="{{ selected_cover }}">
 
 <!-- Twitter Card -->
 {% for name,link in SOCIAL if name.lower() in ['twitter'] %}

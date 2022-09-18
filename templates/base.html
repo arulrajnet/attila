@@ -21,7 +21,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="referrer" content="origin" />
   <meta name="generator" content="Pelican" />
-  <link href="{{ SITEURL }}/" rel="canonical" />
+  {% block canonical_url %}<link href="{{ SITEURL }}/" rel="canonical" />{% endblock canonical_url %}
 
   <!-- Feed -->
   {% for name,link in SOCIAL if name.lower() in ['rss', 'rss-square', 'feed'] %}
@@ -126,6 +126,7 @@
     </footer>
   </section>
 
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script type="text/javascript" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/script.js"></script>
 
   {% if JS_OVERRIDE %}

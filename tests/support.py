@@ -246,10 +246,15 @@ class BaseTest(object):
   def gen_article_and_html_from_rst(self, rstPath):
     content, metadata = self.reader.read(rstPath)
     article = Article(content=content, metadata=metadata)
-    generator = ArticlesGenerator( context=self.settings.copy(), settings=self.settings, path=CONTENT_DIR, theme=self.settings['THEME'], output_path=OUTPUT_DIR)
+    context = self.settings.copy()
+    context['generated_content'] = {}
+    context['static_links'] = set()
+    context['static_content'] = {}
+    context['localsiteurl'] = self.settings['SITEURL']
+    generator = ArticlesGenerator( context=context, settings=self.settings, path=CONTENT_DIR, theme=self.settings['THEME'], output_path=OUTPUT_DIR)
     generator.generate_context()
     f = lambda a: True if (a.slug == article.slug) else False
-    result = filter(f, generator.context["articles"])[0]
+    result = list(filter(f, generator.context["articles"]))[0]
     self.writer.write_file(
                 result.save_as, generator.get_template('article'),
                 generator.context, article=result)
@@ -259,10 +264,15 @@ class BaseTest(object):
   def gen_page_and_html_from_rst(self, rstPath):
     content, metadata = self.reader.read(rstPath)
     page = Page(content=content, metadata=metadata)
-    generator = PagesGenerator( context=self.settings.copy(), settings=self.settings, path=CONTENT_DIR, theme=self.settings['THEME'], output_path=OUTPUT_DIR)
+    context = self.settings.copy()
+    context['generated_content'] = {}
+    context['static_links'] = set()
+    context['static_content'] = {}
+    context['localsiteurl'] = self.settings['SITEURL']
+    generator = PagesGenerator( context=context, settings=self.settings, path=CONTENT_DIR, theme=self.settings['THEME'], output_path=OUTPUT_DIR)
     generator.generate_context()
     f = lambda a: True if (a.slug == page.slug) else False
-    result = filter(f, generator.context["pages"])[0]
+    result = list(filter(f, generator.context["pages"]))[0]
     self.writer.write_file(
                 result.save_as, generator.get_template('page'),
                 generator.context, page=result)
@@ -270,7 +280,12 @@ class BaseTest(object):
     return (result, soup)
 
   def gen_tag_and_html_from_name(self, name):
-    generator = ArticlesGenerator( context=self.settings.copy(), settings=self.settings, path=CONTENT_DIR, theme=self.settings['THEME'], output_path=OUTPUT_DIR)
+    context = self.settings.copy()
+    context['generated_content'] = {}
+    context['static_links'] = set()
+    context['static_content'] = {}
+    context['localsiteurl'] = self.settings['SITEURL']
+    generator = ArticlesGenerator( context=context, settings=self.settings, path=CONTENT_DIR, theme=self.settings['THEME'], output_path=OUTPUT_DIR)
     generator.generate_context()
     generator.generate_tags(self.writer.write_file)
     selectedTag = None
@@ -283,7 +298,12 @@ class BaseTest(object):
     return (selectedTag, soup)
 
   def gen_category_and_html_from_name(self, name):
-    generator = ArticlesGenerator( context=self.settings.copy(), settings=self.settings, path=CONTENT_DIR, theme=self.settings['THEME'], output_path=OUTPUT_DIR)
+    context = self.settings.copy()
+    context['generated_content'] = {}
+    context['static_links'] = set()
+    context['static_content'] = {}
+    context['localsiteurl'] = self.settings['SITEURL']
+    generator = ArticlesGenerator( context=context, settings=self.settings, path=CONTENT_DIR, theme=self.settings['THEME'], output_path=OUTPUT_DIR)
     generator.generate_context()
     generator.generate_categories(self.writer.write_file)
     selectedCategory = None
@@ -296,7 +316,12 @@ class BaseTest(object):
     return (selectedCategory, soup)
 
   def gen_author_and_html_from_name(self, name):
-    generator = ArticlesGenerator( context=self.settings.copy(), settings=self.settings, path=CONTENT_DIR, theme=self.settings['THEME'], output_path=OUTPUT_DIR)
+    context = self.settings.copy()
+    context['generated_content'] = {}
+    context['static_links'] = set()
+    context['static_content'] = {}
+    context['localsiteurl'] = self.settings['SITEURL']
+    generator = ArticlesGenerator( context=context, settings=self.settings, path=CONTENT_DIR, theme=self.settings['THEME'], output_path=OUTPUT_DIR)
     generator.generate_context()
     generator.generate_authors(self.writer.write_file)
     selectedAuthor = None
