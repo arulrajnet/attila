@@ -93,11 +93,10 @@
                 <a href="{{ SITEURL }}/{{ author.url }}">{{ author_name }}</a>
             {% endfor %}
             | <time datetime="{{ article.locale_date }}">{{ article.locale_date }}</time>
+            {% if article.modified and SHOW_MODIFIED_TIME|default(False) %}
+            | <time datetime="{{ article.locale_modified }}"> | Updated on {{ article.locale_modified }}</time>
+            {% endif %}
         </span>
-        <!-- TODO : Modified check -->
-        {% if article.modified %}
-            <span class="post-meta"> | Updated on {{ article.locale_modified }}</span>
-        {% endif %}
         {% if selected_cover %}
             <div class="post-cover cover" style="background-image: url('{{ selected_cover }}')">
         {% elif selected_color %}
