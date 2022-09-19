@@ -1447,8 +1447,7 @@ img {
 .post-content img,
 .post-content .fluid-width-video-wrapper {
     max-width: none;
-    width: 110%;
-    margin-left: -5%
+    width: 100%;
 }
 
 .post-info {
