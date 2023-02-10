@@ -18,9 +18,14 @@ TIMEZONE = 'Asia/Calcutta'
 DEFAULT_LANG = u'en'
 
 # Feed generation is usually not desired when developing
+FEED_ATOM = None
+FEED_RSS = None
 FEED_ALL_ATOM = None
+FEED_ALL_RSS = None
 CATEGORY_FEED_ATOM = None
-TRANSLATION_FEED_ATOM = None
+CATEGORY_FEED_RSS = None
+TAG_FEED_ATOM = None
+TAG_FEED_RSS = None
 AUTHOR_FEED_ATOM = None
 AUTHOR_FEED_RSS = None
 
@@ -64,7 +69,7 @@ MONTH_ARCHIVE_SAVE_AS = '{date:%Y}/{date:%m}/index.html'
 # Tags and Category path
 CATEGORY_URL = 'category/{slug}'
 CATEGORY_SAVE_AS = 'category/{slug}/index.html'
-CATEGORIES_SAVE_AS = 'catgegories.html'
+CATEGORIES_SAVE_AS = 'categories.html'
 TAG_URL = 'tag/{slug}'
 TAG_SAVE_AS = 'tag/{slug}/index.html'
 TAGS_SAVE_AS = 'tags.html'
