@@ -18,6 +18,9 @@
   {% set selected_color = HEADER_COLOR %}
 {% endif %}
 
+<!-- Year, Month, Date -->
+{% block canonical_url %}<link href="{{ SITEURL }}/{{ period_num[0] }}/{{ period_num[1] }}" rel="canonical" />{% endblock canonical_url %}
+
 {% block header %}
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->

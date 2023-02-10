@@ -40,6 +40,8 @@
   {% set selected_color = HEADER_COLOR %}
 {% endif %}
 
+{% block canonical_url %}<link href="{{ SITEURL }}/{{author.url}}" rel="canonical" />{% endblock canonical_url %}
+
 {% block opengraph %}
     {{ super() }}
     <meta property="og:title" content="{{ SITENAME }} - Articles by {{ author }}">
