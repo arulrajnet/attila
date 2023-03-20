@@ -55,13 +55,6 @@
 
   <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/style.css" type="text/css" rel="stylesheet" />
 
-  <!-- Code highlight color scheme -->
-  {% if COLOR_SCHEME_CSS %}
-      <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/code_blocks/{{ COLOR_SCHEME_CSS }}" rel="stylesheet">
-  {% else %}
-      <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/code_blocks/github.css" rel="stylesheet">
-  {% endif %}
-
   {% if CSS_OVERRIDE %}
     <!-- CSS specified by the user -->
     {% for css in CSS_OVERRIDE %}
@@ -140,7 +133,7 @@
       {% else %}
           {% set js = SITEURL+"/"+js %}
       {% endif %}
-    <script type="text/javascript"  src="{{ js }}"></script>
+    <script type="text/javascript" src="{{ js }}"></script>
     {% endfor %}
   {% endif %}
   {% include 'partials/analytics.js' %}

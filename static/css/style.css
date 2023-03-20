@@ -730,6 +730,19 @@ pre tt {
     vertical-align: inherit
 }
 
+pre code.language-text {
+    margin-left: -1.33334em;
+}
+
+pre .nolines {
+    margin-left: -1.33334em;
+}
+
+/* this sets the scrolling in x */
+.highlight pre {
+    overflow-x: auto;
+}
+
 kbd {
     display: inline-block;
     margin-bottom: 0.5em;

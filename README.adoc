@@ -55,7 +55,6 @@ https://github.com/getpelican/pelican-plugins/tree/master/neighbors[plugin])
 * Sharing buttons
 * Open Graph
 * Rich Snippets (JSON-LD)
-* link:#code-highlights[Multiple Code Highlight Styles]
 
 [[configuration]]
 == Configurations
@@ -211,25 +210,6 @@ You can specify an external feed URL (e.g. FeedBurner) in `SOCIAL` using
 the `rss` or `rss-square` or `feed` icons. A `<link>` tag for the
 external feed will be placed in `<head>` instead of the default Pelican
 feeds.
-
-[[code-highlights]]
-=== Code highlights
-
-This theme contains this color schemes:
-
-* Tomorrow - `tomorrow.css`;
-* Tomorrow Night - `tomorrow_night.css`;
-* Monokai - `monokai.css`;
-* Github (Default) - `github.css`;
-* Darkly - `darkly.css`;
-
-To customize, define `COLOR_SCHEME_CSS` in `pelicanconf.py` with css
-filename. Example:
-
-[source,python]
-----
-COLOR_SCHEME_CSS = 'monokai.css'
-----
 
 [[user-defined-css]]
 === User defined CSS
