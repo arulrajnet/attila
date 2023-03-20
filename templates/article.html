@@ -118,14 +118,17 @@
 
             <section class="post-info">
                 <div class="post-share">
-                    <a class="twitter" href="https://twitter.com/share?text={{ article.title }}&amp;url={{ SITEURL }}/{{ article.url }}" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-                    <i class="ic ic-twitter"></i><span class="hidden">Twitter</span>
+                    <a title="Twitter" aria-label="Twitter" class="twitter" href="https://twitter.com/share?text={{ article.title }}&amp;url={{ SITEURL }}/{{ article.url }}" onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                      <i class="ic ic-twitter" aria-hidden="true"></i><span class="hidden">Twitter</span>
                     </a>
-                    <a class="facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ SITEURL }}/{{ article.url }}" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-                    <i class="ic ic-facebook"></i><span class="hidden">Facebook</span>
+                    <a title="Facebook" aria-label="Facebook" class="facebook" href="https://www.facebook.com/sharer/sharer.php?u={{ SITEURL }}/{{ article.url }}" onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                      <i class="ic ic-facebook" aria-hidden="true"></i><span class="hidden">Facebook</span>
                     </a>
-                    <a class="googleplus" href="https://plus.google.com/share?url={{ SITEURL }}/{{ article.url }}" onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-                    <i class="ic ic-googleplus"></i><span class="hidden">Google+</span>
+                    <a title="LinkedIn" aria-label="LinkedIn" class="linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ SITEURL }}/{{ article.url }}&amp;title={{ article.title }}" onclick="window.open(this.href, 'linkedin-share', 'width=930,height=720');return false;">
+                      <i class="ic ic-linkedin" aria-hidden="true"></i><span class="hidden">LinkedIn</span>
+                    </a>
+                    <a title="Email" aria-label="Email" class="email" href="mailto:?subject={{ article.title }}&amp;body={{ SITEURL }}/{{ article.url }}">
+                      <i class="ic ic-mail" aria-hidden="true"></i><span class="hidden">Email</span>
                     </a>
                     <div class="clear"></div>
                 </div>
@@ -162,17 +165,17 @@
                             <span class="post-author-location"><i class="ic ic-location"></i> {{AUTHORS_BIO[author.name.lower()].location}}</span>
                         {% endif %}
                         {% if AUTHORS_BIO[author.name.lower()].website %}
-                            <span class="post-author-website"><a href="{{AUTHORS_BIO[author.name.lower()].website}}"><i class="ic ic-link"></i> Website</a></span>
+                            <span class="post-author-website"><a href="{{AUTHORS_BIO[author.name.lower()].website}}"><i class="ic ic-globe"></i> Website</a></span>
                         {% endif %}
                         <!-- Social linkes in alphabet order. -->
                         {% if AUTHORS_BIO[author.name.lower()].facebook %}
                             <span class="post-author-facebook"><a target="_blank" href="https://facebook.com/{{AUTHORS_BIO[author.name.lower()].facebook}}"><i class="ic ic-facebook"></i> Facebook</a></span>
                         {% endif %}
                         {% if AUTHORS_BIO[author.name.lower()].github %}
-                            <span class="post-author-github"><a target="_blank" href="https://github.com/{{AUTHORS_BIO[author.name.lower()].github}}"><i class="ic ic-link"></i> GitHub</a></span>
+                            <span class="post-author-github"><a target="_blank" href="https://github.com/{{AUTHORS_BIO[author.name.lower()].github}}"><i class="ic ic-github"></i> GitHub</a></span>
                         {% endif %}
                         {% if AUTHORS_BIO[author.name.lower()].linkedin %}
-                            <span class="post-author-linkedin"><a target="_blank" href="https://www.linkedin.com/in/{{AUTHORS_BIO[author.name.lower()].linkedin}}"><i class="ic ic-link"></i> LinkedIn</a></span>
+                            <span class="post-author-linkedin"><a target="_blank" href="https://www.linkedin.com/in/{{AUTHORS_BIO[author.name.lower()].linkedin}}"><i class="ic ic-linkedin"></i> LinkedIn</a></span>
                         {% endif %}
                         {% if AUTHORS_BIO[author.name.lower()].twitter %}
                             <span class="post-author-twitter"><a target="_blank" href="https://twitter.com/{{AUTHORS_BIO[author.name.lower()].twitter}}"><i class="ic ic-twitter"></i> Twitter</a></span>
