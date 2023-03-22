@@ -108,6 +108,7 @@ figure {
 }
 
 hr {
+    -moz-box-sizing: content-box;
     box-sizing: content-box;
     height: 0
 }
@@ -179,6 +180,8 @@ input[type=number]::-webkit-outer-spin-button {
 
 input[type=search] {
     -webkit-appearance: textfield;
+    -moz-box-sizing: content-box;
+    -webkit-box-sizing: content-box;
     box-sizing: content-box
 }
 
@@ -216,6 +219,40 @@ th {
     padding: 0
 }
 
+:root {
+    --color-primary: #D95736;
+    --color-primary-active: #BF4526;
+    --color-background-main: #FFF;
+    --color-background-secondary: #F7F8FA;
+    --color-background-contrast: #E1E3E6;
+    --color-background-overlay: rgba(37,40,43,0.9);
+    --color-content-lead: #000;
+    --color-content-main: #222426;
+    --color-content-secondary: #73777D
+}
+
+.theme-dark:root {
+    --color-background-main: #222426;
+    --color-background-secondary: #1D1F20;
+    --color-background-contrast: #3B3D40;
+    --color-background-overlay: rgba(9,10,13,0.9);
+    --color-content-lead: #FFF;
+    --color-content-main: #E1E3E6;
+    --color-content-secondary: #909499
+}
+
+@media (prefers-color-scheme: dark) {
+    html:not(.theme-light):root {
+        --color-background-main: #222426;
+        --color-background-secondary: #1D1F20;
+        --color-background-contrast: #3B3D40;
+        --color-background-overlay: rgba(9,10,13,0.9);
+        --color-content-lead: #FFF;
+        --color-content-main: #E1E3E6;
+        --color-content-secondary: #909499
+    }
+}
+
 @font-face {
   font-family: 'icons';
   src: url('../font/icons.eot?55768398');
@@ -232,8 +269,8 @@ th {
 /*
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
-    font-family: 'fontello';
-    src: url('../font/fontello.svg?55768398#fontello') format('svg');
+    font-family: 'icons';
+    src: url('../font/icons.svg?55768398#icons') format('svg');
   }
 }
 */
@@ -291,6 +328,60 @@ th {
 .ic-mail:before { content: '\e816'; } /* '' */
 
 @font-face {
+    font-family: 'Libre Baskerville';
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: local("Libre Baskerville Italic"),local("LibreBaskerville-Italic"),url(https://fonts.gstatic.com/s/librebaskerville/v7/kmKhZrc3Hgbbcjq75U4uslyuy4kn0qNcWx8QDO-WyrubOA.woff2) format("woff2");
+    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF
+}
+
+@font-face {
+    font-family: 'Libre Baskerville';
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: local("Libre Baskerville Italic"),local("LibreBaskerville-Italic"),url(https://fonts.gstatic.com/s/librebaskerville/v7/kmKhZrc3Hgbbcjq75U4uslyuy4kn0qNcWxEQDO-Wyrs.woff2) format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD
+}
+
+@font-face {
+    font-family: 'Libre Baskerville';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local("Libre Baskerville"),local("LibreBaskerville-Regular"),url(https://fonts.gstatic.com/s/librebaskerville/v7/kmKnZrc3Hgbbcjq75U4uslyuy4kn0qNXaxMaC82U-ro.woff2) format("woff2");
+    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF
+}
+
+@font-face {
+    font-family: 'Libre Baskerville';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local("Libre Baskerville"),local("LibreBaskerville-Regular"),url(https://fonts.gstatic.com/s/librebaskerville/v7/kmKnZrc3Hgbbcjq75U4uslyuy4kn0qNZaxMaC82U.woff2) format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD
+}
+
+@font-face {
+    font-family: 'Libre Baskerville';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: local("Libre Baskerville Bold"),local("LibreBaskerville-Bold"),url(https://fonts.gstatic.com/s/librebaskerville/v7/kmKiZrc3Hgbbcjq75U4uslyuy4kn0qviTgY5KcC-wLOjAUw.woff2) format("woff2");
+    unicode-range: U+0100-024F, U+0259, U+1E00-1EFF, U+2020, U+20A0-20AB, U+20AD-20CF, U+2113, U+2C60-2C7F, U+A720-A7FF
+}
+
+@font-face {
+    font-family: 'Libre Baskerville';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: local("Libre Baskerville Bold"),local("LibreBaskerville-Bold"),url(https://fonts.gstatic.com/s/librebaskerville/v7/kmKiZrc3Hgbbcjq75U4uslyuy4kn0qviTgY3KcC-wLOj.woff2) format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD
+}
+
+@font-face {
     font-family: 'Cardo';
     font-style: normal;
     font-weight: 400;
@@ -338,6 +429,12 @@ th {
     -webkit-text-size-adjust: none
 }
 
+@media (prefers-color-scheme: dark) {
+    .hljs {
+        color:#C7C6BC
+    }
+}
+
 .hljs-comment,
 .diff .hljs-header,
 .hljs-javadoc {
@@ -367,7 +464,17 @@ th {
 .hljs-phpdoc,
 .hljs-dartdoc,
 .tex .hljs-formula {
-    color: #d14
+    color: #D14
+}
+
+@media (prefers-color-scheme: dark) {
+    .hljs-string,
+    .hljs-tag .hljs-value,
+    .hljs-phpdoc,
+    .hljs-dartdoc,
+    .tex .hljs-formula {
+        color:#EC2F5E
+    }
 }
 
 .hljs-title,
@@ -375,6 +482,14 @@ th {
 .scss .hljs-preprocessor {
     color: #900;
     font-weight: bold
+}
+
+@media (prefers-color-scheme: dark) {
+    .hljs-title,
+    .hljs-id,
+    .scss .hljs-preprocessor {
+        color:#E42A2A
+    }
 }
 
 .hljs-list .hljs-keyword,
@@ -390,12 +505,29 @@ th {
     font-weight: bold
 }
 
+@media (prefers-color-scheme: dark) {
+    .hljs-class .hljs-title,
+    .hljs-type,.vhdl .hljs-literal,
+    .tex .hljs-command {
+        color:#647ECC
+    }
+}
+
 .hljs-tag,
 .hljs-tag .hljs-title,
 .hljs-rule .hljs-property,
 .django .hljs-tag .hljs-keyword {
     color: #000080;
     font-weight: normal
+}
+
+@media (prefers-color-scheme: dark) {
+    .hljs-tag,
+    .hljs-tag .hljs-title,
+    .hljs-rule .hljs-property,
+    .django .hljs-tag .hljs-keyword {
+        color:#536CF3
+    }
 }
 
 .hljs-attribute,
@@ -405,8 +537,23 @@ th {
     color: #008080
 }
 
+@media (prefers-color-scheme: dark) {
+    .hljs-attribute,
+    .hljs-variable,
+    .lisp .hljs-body,
+    .hljs-name {
+        color:#25B7B7
+    }
+}
+
 .hljs-regexp {
     color: #009926
+}
+
+@media (prefers-color-scheme: dark) {
+    .hljs-regexp {
+        color:#61D27C
+    }
 }
 
 .hljs-symbol,
@@ -423,6 +570,12 @@ th {
     color: #0086b3
 }
 
+@media (prefers-color-scheme: dark) {
+    .hljs-built_in {
+        color:#3CB1D8
+    }
+}
+
 .hljs-preprocessor,
 .hljs-pragma,
 .hljs-pi,
@@ -431,6 +584,17 @@ th {
 .hljs-cdata {
     color: #999;
     font-weight: bold
+}
+
+@media (prefers-color-scheme: dark) {
+    .hljs-preprocessor,
+    .hljs-pragma,
+    .hljs-pi,
+    .hljs-doctype,
+    .hljs-shebang,
+    .hljs-cdata {
+        color:#666
+    }
 }
 
 .hljs-deletion {
@@ -447,6 +611,11 @@ th {
 
 .hljs-chunk {
     color: #aaa
+}
+
+:root {
+    --font-primary: 'Fira Sans', sans-serif;
+    --font-secondary: 'Libre Baskerville', serif
 }
 
 @supports ((-ms-flex-wrap: wrap) or (flex-wrap: wrap)) {
@@ -473,14 +642,28 @@ html.menu-active,
     overflow-y: hidden
 }
 
-body {
+/* body {
     font: 400 2em / 1.5em 'Cardo', serif;
     color: #45484d;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     overflow-x: hidden
+} */
+
+body {
+    font-family: var(--font-primary);
+    font-size: 2em;
+    line-height: 1.75em;
+    font-weight: 400;
+    color: var(--color-content-main);
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    background: var(--color-background-main)
 }
+
 
 a {
     color: #212226;
@@ -986,9 +1169,9 @@ img {
 }
 
 .inner {
-    max-width: 32em;
+    max-width: calc(64rem + 8vw);
     margin: 0 auto;
-    padding: 0 2em
+    padding: 0 8rem
 }
 
 .nav-button {
