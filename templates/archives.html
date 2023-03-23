@@ -32,11 +32,17 @@
             </span>
           {% else %}
             <span id="home-button" class="nav-button">
-                <a class="home-button" href="{{ SITEURL }}/" title="Home"><i class="ic ic-arrow-left"></i> Home</a>
+                <a class="home-button" href="{{ SITEURL }}/" aria-label="Home" title="Home">
+                  <i class="ic ic-arrow-left" aria-hidden="true"></i>
+                  <span>Home</span>
+                </a>
             </span>
           {% endif %}
           <span id="menu-button" class="nav-button">
-            <a class="menu-button"><i class="ic ic-menu"></i> Menu</a>
+            <a class="menu-button" aria-label="Menu">
+              <i class="ic ic-menu" aria-hidden="true"></i>
+              <span>Menu</span>
+            </a>
           </span>
         </nav>
         <h1 class="post-title">{{ SITENAME }} - Archives</h1>
