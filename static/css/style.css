@@ -232,8 +232,8 @@ th {
 /*
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
-    font-family: 'fontello';
-    src: url('../font/fontello.svg?55768398#fontello') format('svg');
+    font-family: 'icons';
+    src: url('../font/icons.svg?55768398#icons') format('svg');
   }
 }
 */
@@ -1049,9 +1049,8 @@ img {
 .nav-button a i:before {
     position: relative;
     width: auto;
-    top: -2px;
     margin: auto;
-    font-size: 0.625em;
+    font-size: 0.925em;
     line-height: 1.6em
 }
 
