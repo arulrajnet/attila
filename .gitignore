@@ -2,3 +2,5 @@
 *.log
 output
 tests/.cache/
+.venv
+.direnv
