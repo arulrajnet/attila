@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 import os
-import shlex
 import shutil
 import sys
 import datetime
@@ -11,7 +10,18 @@ from invoke.main import program
 from invoke.util import cd
 from pelican.server import ComplexHTTPRequestHandler, RootedHTTPServer
 
-OPEN_BROWSER_ON_SERVE = True
+'''
+To use this
+
+virtualenv .venv
+source .venv/bin/activate
+pip3 install invoke pelican ghp-import
+invoke build
+invoke serve
+invoke gh-pages
+'''
+
+OPEN_BROWSER_ON_SERVE = False
 
 CONFIG = {
   # Output path. Can be absolute or relative to tasks.py. Default: 'output'
