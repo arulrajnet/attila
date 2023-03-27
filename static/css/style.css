@@ -1452,6 +1452,66 @@ img {
     margin: 0
 }
 
+.post-excerpt-footer {
+        margin-top: 1.0em
+}
+
+.continue-reading {
+    max-width: 75%;
+    font-family: 'Fira Sans', sans-serif
+}
+
+.continue-reading a {
+    display: inline-block;
+    margin: 0 0.333em 0.666em 0;
+    padding: 0.575em 1em;
+    background: #fff;
+    border: 1px solid #f26a3d;
+    font-size: 0.75em;
+    font-weight: 500;
+    line-height: 1.333em;
+    text-align: center;
+    text-decoration: none;
+    color: #f26a3d;
+    border-radius: 2em;
+    transition: all ease 0.3s;
+    box-sizing: border-box
+}
+
+.continue-reading a:hover,
+.continue-reading a:focus {
+    background: #f26a3d;
+    color: #fff
+}
+
+.comments {
+    max-width: 75%;
+    font-family: 'Fira Sans', sans-serif
+}
+
+.comments a {
+    display: inline-block;
+    margin: 0 0.333em 0.666em 0;
+    padding: 0.575em 1em;
+    background: #fff;
+    border: 1px solid #f26a3d;
+    font-size: 0.75em;
+    font-weight: 500;
+    line-height: 1.333em;
+    text-align: center;
+    text-decoration: none;
+    color: #f26a3d;
+    border-radius: 2em;
+    transition: all ease 0.3s;
+    box-sizing: border-box
+}
+
+.comments a:hover,
+.comments a:focus {
+    background: #f26a3d;
+    color: #fff
+}
+
 .post-content a {
     border-bottom: 1px solid #f26a3d
 }
