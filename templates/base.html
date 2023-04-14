@@ -11,7 +11,8 @@
   <meta name="google-site-verification" content="{{ GOOGLE_SITE_VERIFICATION }}">
   {% endif %}
 
-  <title>{% block title %}{{ SITENAME }}{% if SITESUBTITLE and SHOW_SITESUBTITLE_IN_HTML %} - {{ SITESUBTITLE }}{% endif %}{% endblock title %}</title>
+  <title>{% block title %}{{ SITENAME }}{% if SITESUBTITLE and SHOW_SITESUBTITLE_IN_HTML %} - {{ SITESUBTITLE }}{% endif
+    %}{% endblock title %}</title>
 
   {% if SITE_DESCRIPTION %}
   <meta name="description" content="{{SITE_DESCRIPTION}}" />
@@ -21,64 +22,76 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="referrer" content="origin" />
   <meta name="generator" content="Pelican" />
-  {% block canonical_url %}<link href="{{ SITEURL }}/" rel="canonical" />{% endblock canonical_url %}
+  {% block canonical_url %}
+  <link href="{{ SITEURL }}/" rel="canonical" />
+  {% endblock canonical_url %}
 
   <!-- Feed -->
   {% for name,link in SOCIAL if name.lower() in ['rss', 'rss-square', 'feed'] %}
-      <link href="{{ link }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Full Atom Feed" />
+  <link href="{{ link }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Full Atom Feed" />
   {% else %}
-      {% if FEED_ALL_ATOM %}
-        <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Full Atom Feed" />
-      {% endif %}
-      {% if FEED_ALL_RSS %}
-          <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Full RSS Feed" />
-      {% endif %}
-      {% if FEED_ATOM %}
-          <link href="{{ FEED_DOMAIN }}/{{ FEED_ATOM }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Atom Feed" />
-      {% endif %}
-      {% if FEED_RSS %}
-          <link href="{{ FEED_DOMAIN }}/{{ FEED_RSS }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} RSS Feed" />
-      {% endif %}
-      {% if CATEGORY_FEED_ATOM and category %}
-          <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_ATOM.format(slug=category.slug) }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Categories Atom Feed" />
-      {% endif %}
-      {% if CATEGORY_FEED_RSS and category %}
-          <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_RSS.format(slug=category.slug) }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Categories RSS Feed" />
-      {% endif %}
-      {% if TAG_FEED_ATOM and tag %}
-          <link href="{{ FEED_DOMAIN }}/{{ TAG_FEED_ATOM.format(slug=tag.slug) }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Tags Atom Feed" />
-      {% endif %}
-      {% if TAG_FEED_RSS and tag %}
-          <link href="{{ FEED_DOMAIN }}/{{ TAG_FEED_RSS.format(slug=tag.slug) }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Tags RSS Feed" />
-      {% endif %}
-      {% if AUTHOR_FEED_ATOM and author %}
-          <link href="{{ FEED_DOMAIN }}/{{ AUTHOR_FEED_ATOM.format(slug=author.slug) }}" type="application/atom+xml" rel="alternate" title="{{ SITENAME }} Author Atom Feed" />
-      {% endif %}
-      {% if AUTHOR_FEED_RSS  and author %}
-          <link href="{{ FEED_DOMAIN }}/{{ AUTHOR_FEED_RSS .format(slug=author.slug) }}" type="application/rss+xml" rel="alternate" title="{{ SITENAME }} Author RSS Feed" />
-      {% endif %}
+  {% if FEED_ALL_ATOM %}
+  <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_ATOM }}" type="application/atom+xml" rel="alternate"
+    title="{{ SITENAME }} Full Atom Feed" />
+  {% endif %}
+  {% if FEED_ALL_RSS %}
+  <link href="{{ FEED_DOMAIN }}/{{ FEED_ALL_RSS }}" type="application/rss+xml" rel="alternate"
+    title="{{ SITENAME }} Full RSS Feed" />
+  {% endif %}
+  {% if FEED_ATOM %}
+  <link href="{{ FEED_DOMAIN }}/{{ FEED_ATOM }}" type="application/atom+xml" rel="alternate"
+    title="{{ SITENAME }} Atom Feed" />
+  {% endif %}
+  {% if FEED_RSS %}
+  <link href="{{ FEED_DOMAIN }}/{{ FEED_RSS }}" type="application/rss+xml" rel="alternate"
+    title="{{ SITENAME }} RSS Feed" />
+  {% endif %}
+  {% if CATEGORY_FEED_ATOM and category %}
+  <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_ATOM.format(slug=category.slug) }}" type="application/atom+xml"
+    rel="alternate" title="{{ SITENAME }} Categories Atom Feed" />
+  {% endif %}
+  {% if CATEGORY_FEED_RSS and category %}
+  <link href="{{ FEED_DOMAIN }}/{{ CATEGORY_FEED_RSS.format(slug=category.slug) }}" type="application/rss+xml"
+    rel="alternate" title="{{ SITENAME }} Categories RSS Feed" />
+  {% endif %}
+  {% if TAG_FEED_ATOM and tag %}
+  <link href="{{ FEED_DOMAIN }}/{{ TAG_FEED_ATOM.format(slug=tag.slug) }}" type="application/atom+xml" rel="alternate"
+    title="{{ SITENAME }} Tags Atom Feed" />
+  {% endif %}
+  {% if TAG_FEED_RSS and tag %}
+  <link href="{{ FEED_DOMAIN }}/{{ TAG_FEED_RSS.format(slug=tag.slug) }}" type="application/rss+xml" rel="alternate"
+    title="{{ SITENAME }} Tags RSS Feed" />
+  {% endif %}
+  {% if AUTHOR_FEED_ATOM and author %}
+  <link href="{{ FEED_DOMAIN }}/{{ AUTHOR_FEED_ATOM.format(slug=author.slug) }}" type="application/atom+xml"
+    rel="alternate" title="{{ SITENAME }} Author Atom Feed" />
+  {% endif %}
+  {% if AUTHOR_FEED_RSS and author %}
+  <link href="{{ FEED_DOMAIN }}/{{ AUTHOR_FEED_RSS .format(slug=author.slug) }}" type="application/rss+xml"
+    rel="alternate" title="{{ SITENAME }} Author RSS Feed" />
+  {% endif %}
   {% endfor %}
 
-  <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/style.css" type="text/css" rel="stylesheet" />
+  <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/style-base.css" type="text/css" rel="stylesheet" />
 
   {% if CSS_OVERRIDE %}
-    <!-- CSS specified by the user -->
-    {% for css in CSS_OVERRIDE %}
+  <!-- CSS specified by the user -->
+  {% for css in CSS_OVERRIDE %}
 
-      {% if css|lower|truncate(4, True, '') == "http" %}
-          {% set css = css %}
-      {% else %}
-          {% set css = SITEURL+"/"+css %}
-      {% endif %}
+  {% if css|lower|truncate(4, True, '') == "http" %}
+  {% set css = css %}
+  {% else %}
+  {% set css = SITEURL+"/"+css %}
+  {% endif %}
 
-    <link href="{{ css }}" type="text/css" rel="stylesheet" />
-    {% endfor %}
+  <link href="{{ css }}" type="text/css" rel="stylesheet" />
+  {% endfor %}
   {% endif %}
 
   {% if ALLOW_GOOGLE_FONTS|default(True) %}
-    <!-- Custom fonts -->
-    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,300' rel='stylesheet' type='text/css' />
-    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css" />
+  <!-- Custom fonts -->
+  <link href='https://fonts.googleapis.com/css?family=Montserrat:400,300' rel='stylesheet' type='text/css' />
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css" />
   {% endif %}
 
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -87,62 +100,146 @@
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
   <![endif]-->
+
+  <script>
+    var siteUrl = '{{ SITEURL }}';
+  </script>
+
+  <script>
+    var localTheme = localStorage.getItem('attila_theme');
+    switch (localTheme) {
+      case 'dark':
+        document.documentElement.classList.add('theme-dark');
+        break;
+      case 'light':
+        document.documentElement.classList.add('theme-light');
+        break;
+      default:
+        break;
+    }
+  </script>
+
+  {% if COLOR_SCHEME and COLOR_SCHEME == "Dark" %}
+  <script>localStorage.setItem('attila_theme', 'dark');</script>
+  <style>.js-theme {display:none!important;}</style>
+  {% endif %}
+
+  {% if COLOR_SCHEME and COLOR_SCHEME == "Light" %}
+  <script>localStorage.setItem('attila_theme', 'light');</script>
+  <style>.js-theme {display:none!important;}</style>
+  {% endif %}
+
+  {% if COLOR_SCHEME and COLOR_SCHEME != "Light" %}
+    {% if COLOR_SCHEME_DARKMODE_ACCENT_COLOR %}
+    <style>
+      .theme-dark:root {
+        --ghost-accent-color: {{COLOR_SCHEME_DARKMODE_ACCENT_COLOR}};
+      }
+      @media (prefers-color-scheme: dark) {
+        html:not(.theme-light):root {
+          --ghost-accent-color: {{COLOR_SCHEME_DARKMODE_ACCENT_COLOR}};
+        }
+      }
+    </style>
+    {% endif %}
+  {% endif %}
+
   {% endblock head %}
 
 </head>
-<!-- TODO : Body class -->
-<body class="home-template">
+{% set body_class='home-template' %}
+{% set current_url='/' %}
+
+{% if article %}
+{% set body_class='post-template' %}
+{% set current_url=article.url %}
+{% endif %}
+
+{% if tag %}
+{% set body_class='tag-template' %}
+{% set current_url=tag.url %}
+{% endif %}
+
+{% if category %}
+{% set body_class='category-template' %}
+{% set current_url=category.url %}
+{% endif %}
+
+{% if page %}
+{% set body_class='page-template' %}
+{% set current_url=page.url %}
+{% endif %}
+
+{% if author %}
+{% set body_class='author-template' %}
+{% set current_url=author.url %}
+{% endif %}
+
+<body class="{{body_class}}">
 
   {% include 'partials/navigation.html' %}
 
   {% block header %}{% endblock header %}
 
-  <section id="wrapper">
+  <section id="wrapper" class="page-wrapper">
     <a class="hidden-close"></a>
-      {% block content %}{% endblock content %}
-      <!-- TODO : Body class -->
+    {% block content %}{% endblock content %}
+    <!-- TODO : Body class -->
     <div id="body-class" style="display: none;" class="{{body_class}}"></div>
 
-    <footer id="footer">
-      <div class="inner">
-        <section class="credits">
+    <div class="nav-footer">
+      <nav class="nav-wrapper" aria-label="Footer">
+        <span class="nav-copy">{{ SITENAME }} &copy; {{ COPYRIGHT_YEAR|default(2023) }}
+        {% for name,link in SOCIAL if name.lower() in ['rss', 'rss-square', 'feed'] %}
+          <a class="nav-rss" title="RSS" href="{{ link }}" target="_blank"><i class="ic ic-rss"></i></a>
+        {% endfor %}
+        </span>
+        <span class="nav-credits">
+
           {% if SHOW_CREDITS|default(True) %}
-            {% if SHOW_CREDITS and SHOW_CREDITS.left %}
-              {% set left=SHOW_CREDITS.left %}
-            {% else %}
-              {% set left='Theme <a href="https://github.com/arulrajnet/attila" rel="nofollow">Attila</a>' %}
-            {% endif %}
-
-            {% if SHOW_CREDITS and SHOW_CREDITS.right %}
-              {% set right=SHOW_CREDITS.right %}
-            {% else %}
-              {% set right='Published with <a href="https://github.com/getpelican/pelican" rel="nofollow">Pelican</a>' %}
-            {% endif %}
-
-          <span class="credits-theme">{{left}}</span>
-          <span class="credits-software">{{right}}</span>
+          {% if SHOW_CREDITS and SHOW_CREDITS.left %}
+          {% set left=SHOW_CREDITS.left %}
+          {% else %}
+          {% set left='Theme <a href="https://github.com/arulrajnet/attila" rel="nofollow">Attila</a> &bull;' %}
           {% endif %}
-        </section>
-      </div>
-    </footer>
+
+          {% if SHOW_CREDITS and SHOW_CREDITS.right %}
+          {% set right=SHOW_CREDITS.right %}
+          {% else %}
+          {% set right='Published with <a href="https://github.com/getpelican/pelican" rel="nofollow">Pelican</a> &bull;' %}
+          {% endif %}
+
+          {{right}}{{" "}}{{left}}
+          {% endif %}
+          <a class="menu-item js-theme" href="#" data-system="System theme" data-dark="Dark theme" data-light="Light theme">
+            <span class="theme-icon"></span><span class="theme-text">System theme</span>
+          </a>
+        </span>
+      </nav>
+    </div>
+
   </section>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
   <script type="text/javascript" src="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/js/script.js"></script>
 
+  <!-- 	The #block helper will pull in data from the #contentFor other template files. In this case, there's some JavaScript which we only want to use in article.html, but it needs to be included down here, after jQuery has already loaded. -->
+  {% block scripts %}{% endblock scripts %}
+
   {% if JS_OVERRIDE %}
-    <!-- Script specified by the user -->
-    {% for js in JS_OVERRIDE %}
-      {% if js|lower|truncate(4, True, '') == "http" %}
-          {% set js = js %}
-      {% else %}
-          {% set js = SITEURL+"/"+js %}
-      {% endif %}
-    <script type="text/javascript" src="{{ js }}"></script>
-    {% endfor %}
+  <!-- Script specified by the user -->
+  {% for js in JS_OVERRIDE %}
+  {% if js|lower|truncate(4, True, '') == "http" %}
+  {% set js = js %}
+  {% else %}
+  {% set js = SITEURL+"/"+js %}
+  {% endif %}
+  <script type="text/javascript" src="{{ js }}"></script>
+  {% endfor %}
   {% endif %}
   {% include 'partials/analytics.js' %}
   {% include 'partials/disqus.js' %}
 </body>
+
 </html>
