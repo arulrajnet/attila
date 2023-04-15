@@ -3105,3 +3105,75 @@ button,input,select,textarea {
 .paged .extra-pagination .pagination-box {
     border-bottom: 1px solid var(--color-background-contrast)
 }
+
+/* Custom CSS for pelican attila */
+
+
+/* css for post author */
+.post-author {
+    position: relative;
+    margin: 2em 0 0;
+    padding: 2em 0;
+    z-index: 10;
+    border-top: 1px solid #e5e4e1;
+    /* border-bottom: 1px solid #e5e4e1; */
+    clear: both
+}
+
+.post-author-avatar {
+    position: relative;
+    float: left;
+    width: 15%;
+    margin: -0.5em 0 0 5%;
+    overflow: hidden;
+    background: #fff;
+    border-radius: 10em;
+    box-sizing: border-box
+}
+
+.post-author-avatar img {
+    width: 100%;
+    margin: auto;
+    border-radius: 10em;
+    box-sizing: border-box
+}
+
+.post-author-bio {
+    padding-left: 25%;
+    font-family: 'Fira Sans', sans-serif;
+    font-size: 2em;
+    line-height: 1.333em
+}
+
+.post-author-name {
+    margin: 0;
+    padding: 0;
+    font-size: 2em;
+    line-height: 1em;
+    text-indent: inherit
+}
+
+.post-author-about {
+    margin: 0.666em 0
+}
+
+.post-author-bio span {
+    position: relative;
+    font-size: 0.8em;
+    display: inline-block;
+    margin-top: 1.25em;
+    margin-right: 1.25em;
+    font-weight: 400;
+    opacity: 0.5
+}
+
+.post-author-bio i {
+    color: inherit
+}
+
+.post-author-bio a {
+    color: inherit;
+    text-decoration: none;
+    font-weight: inherit;
+    border-bottom: 1px solid transparent
+}
