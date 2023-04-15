@@ -11,7 +11,7 @@
             {% set primary_tag=article.tags[0] %}
         {% endif %}
 
-        <article class="post">
+    <article class="post">
         <div class="inner">
             <div class="box post-box">
                 <h2 class="post-title"><a href="{{ SITEURL }}/{{ article.url }}" rel="bookmark" title="Permalink to {{ article.title|striptags }}">{{ article.title }}</a>
@@ -42,15 +42,25 @@
                     {% elif article.summary %}
                         {{ article.summary|striptags|truncate(250) }}
                     {% endif %}
-                    &hellip;
                 </p>
             {% endif %}
-            {% if SHOW_COMMENTS_COUNT_IN_ARTICLE_SUMMARY|default(True) %}
-            {% include 'partials/comments_count.html' %}
-            {% endif %}
+
+                <div class="post-excerpt">
+                    {% if SHOW_COMMENTS_COUNT_IN_ARTICLE_SUMMARY|default(True) %}
+                    {% include 'partials/comments_count.html' %}
+                    {% endif %}
+
+                    {% if SHOW_TAGS_IN_ARTICLE_SUMMARY|default(False) %}
+                    {% if article.tags %}
+                    <aside class="post-tags">
+                    {% for tag in article.tags[0:3] %}<a href="{{ SITEURL }}/{{ tag.url }}">{{ tag | escape }}</a>{% if not loop.last %}{% endif %}{% endfor %}
+                    </aside>
+                    {% endif %}
+                    {% endif %}
+                </div>
             </div>
         </div>
-        </article>
+    </article>
     {% endfor %}
 
     {% include "partials/pagination.html" %}
