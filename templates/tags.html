@@ -20,36 +20,25 @@
 
 {% block canonical_url %}<link href="{{ SITEURL }}/{{ TAGS_SAVE_AS }}" rel="canonical" />{% endblock canonical_url %}
 
+{% if tags %}
+{% set body_class='tags-template' %}
+{% set current_url=TAGS_URL %}
+{% set current_title=SITENAME+' - Tags' %}
+{% set current_display_title='Tags' %}
+{% endif %}
+
 {% block header %}
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header id="blog-header" {% if selected_cover or selected_color %}class="has-cover"{% endif %}>
+    <header class="blog-header" {% if selected_cover or selected_color %}class="has-cover"{% endif %}>
       <div class="inner">
-        <nav id="navigation">
-          {% if SITE_LOGO %}
-            <span class="blog-logo">
-                <a href="{{ SITEURL }}/"><img src="{{SITE_LOGO}}" alt="Blog Logo" /></a>
-            </span>
-          {% else %}
-            <span id="home-button" class="nav-button">
-                <a class="home-button" href="{{ SITEURL }}/" aria-label="Home" title="Home">
-                  <i class="ic ic-arrow-left" aria-hidden="true"></i>
-                  <span>Home</span>
-                </a>
-            </span>
-          {% endif %}
-          <span id="menu-button" class="nav-button">
-            <a class="menu-button" aria-label="Menu">
-              <i class="ic ic-menu" aria-hidden="true"></i>
-              <span>Menu</span>
-            </a>
-          </span>
-        </nav>
-        <h1 class="post-title">{{ SITENAME }} - Tags</h1>
+        <h1 class="post-title">{{ current_display_title }}</h1>
         {% if selected_cover %}
-          <div class="blog-cover cover" style="background-image: url('{{ selected_cover }}')">
+          <div class="post-cover cover">
+            <img src="{{ selected_cover }}" alt="{{ current_title }}" />
+          </div>
         {% elif selected_color %}
-          <div class="blog-cover cover" style="background-color: {{ selected_color }}">
+          <div class="post-cover cover" style="background-color: {{ selected_color }}">
         {% endif %}
       </div>
     </header>

@@ -63,48 +63,53 @@
 
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header id="post-header" {% if selected_cover or selected_color %}class="has-cover"{% endif %}>
+    <header class="post-header" {% if selected_cover or selected_color %}class="has-cover"{% endif %}>
       <div class="inner">
-        <nav id="navigation">
-          {% if SITE_LOGO %}
-            <span class="blog-logo">
-              <a href="{{ SITEURL }}/"><img src="{{SITE_LOGO}}" alt="Blog Logo" /></a>
-            </span>
-          {% else %}
-            <span id="home-button" class="nav-button">
-              <a class="home-button" href="{{ SITEURL }}/" aria-label="Home" title="Home">
-                <i class="ic ic-arrow-left" aria-hidden="true"></i>
-                <span>Home</span>
-              </a>
-            </span>
-          {% endif %}
-          <span id="menu-button" class="nav-button">
-            <a class="menu-button" aria-label="Menu">
-              <i class="ic ic-menu" aria-hidden="true"></i>
-              <span>Menu</span>
-            </a>
-          </span>
-        </nav>
+        <span class="post-info">
+          <span class="post-type">{{ "Article" }}</span>
+        </span>
         <h1 class="post-title">{{ article.title }}</h1>
-        <!-- TODO : Proper class for headline -->
-        {% if article.headline %}
-          <span class="blog-description">{{ article.headline }}</span>
-        {% endif %}
-        <span class="post-meta">
+        <div class="post-meta">
+          <div class="post-meta-avatars">
+          {% for author in article.authors %}
+            {% set author_name = author.name | title %}
+            {% if AUTHORS_BIO and author.name.lower() in AUTHORS_BIO %}
+              {% set author_name = AUTHORS_BIO[author.name.lower()].name or author.name %}
+              {% set author_avatar = AUTHORS_BIO[author.name.lower()].image %}
+            {% endif %}
+
+            {% if author_avatar %}
+              {% if author_avatar|lower|truncate(4, True, '') != "http" %}
+                {% set author_avatar = SITEURL+"/"+author_avatar %}
+              {% endif %}
+            {% endif %}
+
+            <figure class="post-meta-avatar avatar">
+              <a class="author-avatar" href="{{ SITEURL }}/{{ author.url }}">
+                <img class="author-profile-image" src="{{author_avatar}}" alt="{{ author_name }}" />
+              </a>
+            </figure>
+          {% endfor %}
+          </div>
+
+          <h4 class="post-meta-author">
           {% for author in article.authors %}
             {% set author_name = author.name | title %}
             {% if AUTHORS_BIO and author.name.lower() in AUTHORS_BIO %}
               {% set author_name = AUTHORS_BIO[author.name.lower()].name or author.name %}
             {% endif %}
-            <a href="{{ SITEURL }}/{{ author.url }}">{{ author_name }}</a>
+            {{ author_name }}
           {% endfor %}
-          | <time datetime="{{ article.locale_date }}">{{ article.locale_date }}</time>
+          </h4>
+          <time datetime="{{ article.locale_date }}">{{ article.locale_date }}</time>
           {% if article.modified and SHOW_MODIFIED_TIME|default(False) %}
-          | <time datetime="{{ article.locale_modified }}"> | Updated on {{ article.locale_modified }}</time>
+          &bull; <time datetime="{{ article.locale_modified }}"> Updated on {{ article.locale_modified }}</time>
           {% endif %}
-        </span>
+        </div>
         {% if selected_cover %}
-          <div class="post-cover cover" style="background-image: url('{{ selected_cover }}')">
+          <div class="post-cover cover">
+            <img src="{{ selected_cover }}" alt="{{ current_title }}" />
+          </div>
         {% elif selected_color %}
           <div class="post-cover cover" style="background-color: {{ selected_color }}">
         {% endif %}
@@ -159,7 +164,7 @@
             <aside class="post-author">
               {% set author_name = AUTHORS_BIO[author.name.lower()].name or author.name %}
               {% set author_avatar = AUTHORS_BIO[author.name.lower()].image %}
-              {% if  author_avatar %}
+              {% if author_avatar %}
 
                 {% if author_avatar|lower|truncate(4, True, '') != "http" %}
                   {% set author_avatar = SITEURL+"/"+author_avatar %}

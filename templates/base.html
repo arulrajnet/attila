@@ -149,44 +149,45 @@
 </head>
 {% set body_class='home-template' %}
 {% set current_url='/' %}
+{% set current_title=SITENAME %}
 
 {% if article %}
 {% set body_class='post-template' %}
 {% set current_url=article.url %}
+{% set current_title=article.title %}
 {% endif %}
 
 {% if tag %}
 {% set body_class='tag-template' %}
 {% set current_url=tag.url %}
+{% set current_title='Tag '+tag.name %}
 {% endif %}
 
 {% if category %}
 {% set body_class='category-template' %}
 {% set current_url=category.url %}
+{% set current_title='Category '+category.name %}
 {% endif %}
 
 {% if page %}
 {% set body_class='page-template' %}
 {% set current_url=page.url %}
+{% set current_title=page.title %}
 {% endif %}
 
 {% if author %}
 {% set body_class='author-template' %}
 {% set current_url=author.url %}
+{% set current_title='Author '+author.name %}
 {% endif %}
 
 <body class="{{body_class}}">
 
   {% include 'partials/navigation.html' %}
 
-  {% block header %}{% endblock header %}
-
   <section id="wrapper" class="page-wrapper">
-    <a class="hidden-close"></a>
+    {% block header %}{% endblock header %}
     {% block content %}{% endblock content %}
-    <!-- TODO : Body class -->
-    <div id="body-class" style="display: none;" class="{{body_class}}"></div>
-
     <div class="nav-footer">
       <nav class="nav-wrapper" aria-label="Footer">
         <span class="nav-copy">{{ SITENAME }} &copy; {{ COPYRIGHT_YEAR|default(2023) }}
