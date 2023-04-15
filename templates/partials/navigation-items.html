@@ -4,12 +4,12 @@
     <li class="nav-{{title}} {%if current_url == link %}active{% endif %}" role="presentation"><a href="{{ link }}"><span>{{ title }}</span></a></li>
   {% endfor %}
 
-  {% if DISPLAY_PAGES_ON_MENU | default(True) %}
+  {% if SHOW_PAGES_ON_MENU | default(True) %}
     {% for p in pages %}
       <li{% if p == page %} class="nav-{{p.slug}} active"{% endif %} role="presentation"><a href="{{ SITEURL }}/{{ p.url }}"><span>{{ p.title }}</span></a></li>
     {% endfor %}
   {% endif %}
-  {% if DISPLAY_CATEGORIES_ON_MENU | default(False) %}
+  {% if SHOW_CATEGORIES_ON_MENU | default(False) %}
     {% for cat, null in categories %}
       <li{% if cat == category %} class="nav-{{cat.slug}} active"{% endif %} role="presentation"><a href="{{ SITEURL }}/{{ cat.url }}"><span>{{ cat }}</span></a></li>
     {% endfor %}

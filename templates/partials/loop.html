@@ -45,6 +45,7 @@
                 </p>
             {% endif %}
 
+                {% if SHOW_COMMENTS_COUNT_IN_ARTICLE_SUMMARY|default(True) or SHOW_TAGS_IN_ARTICLE_SUMMARY|default(False) %}
                 <div class="post-excerpt">
                     {% if SHOW_COMMENTS_COUNT_IN_ARTICLE_SUMMARY|default(True) %}
                     {% include 'partials/comments_count.html' %}
@@ -58,6 +59,7 @@
                     {% endif %}
                     {% endif %}
                 </div>
+                {% endif %}
             </div>
         </div>
     </article>
