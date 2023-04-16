@@ -3110,6 +3110,11 @@ button,input,select,textarea {
 
 
 /* css for post author */
+/* TODO: Media css 480px
+.post-author-avatar {
+    margin: -0.25em 0 0 0.5em
+}
+*/
 .post-author {
     position: relative;
     margin: 2em 0 0;
@@ -3240,3 +3245,9 @@ button,input,select,textarea {
 .tag-weight-8  { font-size: 2.4em; }
 .tag-weight-9  { font-size: 2.6em; }
 .tag-weight-10 { font-size: 2.8em; }
+
+
+/* this sets the scrolling in x */
+.highlight pre {
+    overflow-x: auto;
+}
