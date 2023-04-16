@@ -56,57 +56,51 @@
     <!-- Set your background image for this header on the line below. -->
     <header class="blog-header" {% if selected_cover or selected_color %}class="has-cover"{% endif %}>
       <div class="inner">
+        <div class="archive archive-author box archive-box">
+          <span class="archive-info">
+            <span class="archive-type">{{"Author"}}</span>
+            <span class="archive-count">{{ articles|count }} {% if articles|count > 1 %} posts {% else %} post {% endif %}</span>
+          </span>
+          <figure class="archive-avatar avatar">
+            {% if selected_avatar %}
+              <img src="{{selected_avatar}}" alt="{{author_name}}" />
+            {% endif %}
+          </figure>
+          <h2 class="archive-title">{{author_name}}</h2>
+          {% if AUTHORS_BIO[author.name.lower()].bio %}
+          <span class="archive-description">{{AUTHORS_BIO[author.name.lower()].bio}}</span>
+          {% endif %}
+          <span class="archive-links">
+          {% if AUTHORS_BIO[author.name.lower()].location %}
+              <a href="#{{AUTHORS_BIO[author.name.lower()].location}}" title="{{AUTHORS_BIO[author.name.lower()].location}}"><i class="ic ic-location"></i><span>{{AUTHORS_BIO[author.name.lower()].location}}</span></a>
+          {% endif %}
+          {% if AUTHORS_BIO[author.name.lower()].website %}
+              <a target="_blank" href="{{AUTHORS_BIO[author.name.lower()].website}}"><i class="ic ic-globe"></i><span>Website</span></a>
+          {% endif %}
+          <!-- Social linkes in alphabet order. -->
+          {% if AUTHORS_BIO[author.name.lower()].facebook %}
+              <a target="_blank" href="https://facebook.com/{{AUTHORS_BIO[author.name.lower()].facebook}}"><i class="ic ic-facebook"></i><span>Facebook</span></a>
+          {% endif %}
+          {% if AUTHORS_BIO[author.name.lower()].github %}
+              <a target="_blank" href="https://github.com/{{AUTHORS_BIO[author.name.lower()].github}}"><i class="ic ic-github"></i><span>GitHub</span></a>
+          {% endif %}
+          {% if AUTHORS_BIO[author.name.lower()].linkedin %}
+              <a target="_blank" href="https://www.linkedin.com/in/{{AUTHORS_BIO[author.name.lower()].linkedin}}"><i class="ic ic-linkedin"></i><span>LinkedIn</span></a>
+          {% endif %}
+          {% if AUTHORS_BIO[author.name.lower()].twitter %}
+              <a target="_blank" href="https://twitter.com/{{AUTHORS_BIO[author.name.lower()].twitter}}"><i class="ic ic-twitter"></i><span>Twitter</span></a>
+          {% endif %}
+          </span>
+        </div>
         {% if selected_cover %}
-          <div class="post-cover cover">
+          <div class="blog-cover cover">
             <img src="{{ selected_cover }}" alt="{{ current_title }}" />
           </div>
         {% elif selected_color %}
-          <div class="post-cover cover" style="background-color: {{ selected_color }}">
+          <div class="blog-cover cover" style="background-color: {{ selected_color }}"></div>
         {% endif %}
       </div>
     </header>
-
-    {% if AUTHORS_BIO and author.name.lower() in AUTHORS_BIO %}
-    <section id="blog-author" {% if selected_cover or selected_color %}class="has-cover"{% endif %} >
-        <div class="inner">
-            <aside class="post-author">
-                {% if selected_avatar %}
-                <figure class="post-author-avatar">
-                    <img src="{{selected_avatar}}" alt="{{author_name}}" />
-                </figure>
-                {% endif %}
-                <div class="post-author-bio">
-                    <h4 class="post-author-name"><a href="{{ SITEURL }}/{{author.url}}">{{author_name}}</a></h4>
-                    {% if AUTHORS_BIO[author.name.lower()].bio %}
-                        <p class="post-author-about">{{AUTHORS_BIO[author.name.lower()].bio}}</p>
-                    {% endif %}
-                    {% if AUTHORS_BIO[author.name.lower()].location %}
-                        <span class="post-author-location"><i class="ic ic-location"></i> {{AUTHORS_BIO[author.name.lower()].location}}</span>
-                    {% endif %}
-                    {% if AUTHORS_BIO[author.name.lower()].website %}
-                        <span class="post-author-website"><a href="{{AUTHORS_BIO[author.name.lower()].website}}"><i class="ic ic-globe"></i> Website</a></span>
-                    {% endif %}
-                    <!-- Social linkes in alphabet order. -->
-                    {% if AUTHORS_BIO[author.name.lower()].facebook %}
-                        <span class="post-author-facebook"><a target="_blank" href="https://facebook.com/{{AUTHORS_BIO[author.name.lower()].facebook}}"><i class="ic ic-facebook"></i> Facebook</a></span>
-                    {% endif %}
-                    {% if AUTHORS_BIO[author.name.lower()].github %}
-                        <span class="post-author-github"><a target="_blank" href="https://github.com/{{AUTHORS_BIO[author.name.lower()].github}}"><i class="ic ic-github"></i> GitHub</a></span>
-                    {% endif %}
-                    {% if AUTHORS_BIO[author.name.lower()].linkedin %}
-                        <span class="post-author-linkedin"><a target="_blank" href="https://www.linkedin.com/in/{{AUTHORS_BIO[author.name.lower()].linkedin}}"><i class="ic ic-linkedin"></i> LinkedIn</a></span>
-                    {% endif %}
-                    {% if AUTHORS_BIO[author.name.lower()].twitter %}
-                        <span class="post-author-twitter"><a target="_blank" href="https://twitter.com/{{AUTHORS_BIO[author.name.lower()].twitter}}"><i class="ic ic-twitter"></i> Twitter</a></span>
-                    {% endif %}
-                        <span class="post-author-stats"><i class="ic ic-posts"></i> {{ articles|count }} {% if articles|count > 1 %} posts {% else %} post {% endif %}</span>
-                </div>
-                <div class="clear"></div>
-            </aside>
-        </div>
-    </section>
-    {% endif %}
-
 {% endblock header %}
 
 {% block content %}

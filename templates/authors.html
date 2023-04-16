@@ -53,13 +53,13 @@
 
       <article class="post">
         <div class="inner">
-          <section class="post-content">
-            <a href="{{ SITEURL }}/{{ author.url }}" rel="bookmark">
-              <h2 class="post-title">
-                {{ author_name }} ({{ articles|count }})
-              </h2>
-            </a>
-          </section>
+          <div class="archive">
+            <div class="archive-links">
+              <a href="{{ SITEURL }}/{{ author.url }}" rel="bookmark">
+                <h2>{{ author_name }} ({{ articles|count }})</h2>
+              </a>
+            </div>
+          </div>
         </div>
       </article>
       {% if not loop.last %}

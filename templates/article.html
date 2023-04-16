@@ -55,6 +55,13 @@
   {% include 'partials/jsonld_article.html' %}
 {% endblock %}
 
+{% set primary_tag=None %}
+{% if article.category %}
+    {% set primary_tag=article.category %}
+{% elif article.tags %}
+    {% set primary_tag=article.tags[0] %}
+{% endif %}
+
 {% block header %}
     <!-- Progressbar -->
     <div class="progress-container">
@@ -67,6 +74,9 @@
       <div class="inner">
         <span class="post-info">
           <span class="post-type">{{ "Article" }}</span>
+          {% if primary_tag %}
+          <span class="post-count">{{primary_tag.name | title}}</span>
+          {% endif %}
         </span>
         <h1 class="post-title">{{ article.title }}</h1>
         <div class="post-meta">
@@ -104,6 +114,9 @@
           <time datetime="{{ article.locale_date }}">{{ article.locale_date }}</time>
           {% if article.modified and SHOW_MODIFIED_TIME|default(False) %}
           &bull; <time datetime="{{ article.locale_modified }}"> Updated on {{ article.locale_modified }}</time>
+          {% endif %}
+          {% if article.stats and 'read_mins' in article.stats %}
+          &bull; {{ article.stats['read_mins'] }} min read
           {% endif %}
         </div>
         {% if selected_cover %}
