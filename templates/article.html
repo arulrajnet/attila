@@ -112,7 +112,7 @@
           {% endfor %}
           </h4>
           <time datetime="{{ article.locale_date }}">{{ article.locale_date }}</time>
-          {% if article.modified and SHOW_MODIFIED_TIME|default(False) %}
+          {% if article.modified and SHOW_ARTICLE_MODIFIED_TIME|default(False) %}
           &bull; <time datetime="{{ article.locale_modified }}"> Updated on {{ article.locale_modified }}</time>
           {% endif %}
           {% if article.stats and 'read_mins' in article.stats %}

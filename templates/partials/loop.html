@@ -31,7 +31,7 @@
                     {% endif %}
                      {{ " on " }}<time datetime="{{ article.locale_date }}">{{ article.locale_date }}</time>
                 </span>
-            {% if SHOW_FULL_ARTICLE|default(False) %}
+            {% if SHOW_FULL_ARTICLE_IN_SUMMARY|default(False) %}
                 <section class="post-content">
                 {{ article.content }}
                 </section>

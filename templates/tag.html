@@ -33,14 +33,29 @@
     <!-- Set your background image for this header on the line below. -->
     <header class="blog-header" {% if selected_cover or selected_color %}class="has-cover"{% endif %}>
       <div class="inner">
-        <h1 class="post-title">{{ current_title }}</h1>
-        <span class="blog-description">Posts: {{ articles|count }}</span>
+        <div class="archive archive-tag box archive-box">
+          <span class="archive-info">
+            <span class="archive-type">{{"Tag"}}</span>
+            <span class="archive-count">
+            {% if articles|count == 1 %}
+            {{ articles|count }} Post
+            {% else %}
+            {{ articles|count }} Posts
+            {% endif %}
+            </span>
+          </span>
+          <h2 class="archive-title">{{tag.name | title}}</h2>
+          {% if tag.description %}
+            <span class="archive-description">{{tag.description}}</span>
+          {% endif %}
+        </div>
+
         {% if selected_cover %}
-          <div class="post-cover cover">
+          <div class="blog-cover cover">
             <img src="{{ selected_cover }}" alt="{{ current_title }}" />
           </div>
         {% elif selected_color %}
-          <div class="post-cover cover" style="background-color: {{ selected_color }}">
+          <div class="blog-cover cover" style="background-color: {{ selected_color }}">
         {% endif %}
       </div>
     </header>
