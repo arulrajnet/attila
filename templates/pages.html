@@ -31,7 +31,7 @@
 {% block header %}
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header class="blog-header" {% if selected_cover or selected_color %}class="has-cover"{% endif %}>
+    <header class="blog-header {% if selected_cover or selected_color %} has-cover {% endif %}">
       <div class="inner">
         <h1 class="post-title">{{ current_display_title }}</h1>
         <span class="blog-description">Pages: {{ pages|count }}</span>

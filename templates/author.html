@@ -54,7 +54,7 @@
 {% block header %}
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header class="blog-header" {% if selected_cover or selected_color %}class="has-cover"{% endif %}>
+    <header class="blog-header {% if selected_cover or selected_color %} has-cover{% endif %}">
       <div class="inner">
         <div class="archive archive-author box archive-box">
           <span class="archive-info">
