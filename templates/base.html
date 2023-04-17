@@ -11,7 +11,7 @@
   <meta name="google-site-verification" content="{{ GOOGLE_SITE_VERIFICATION }}">
   {% endif %}
 
-  <title>{% block title %}{{ SITENAME }}{% if SITESUBTITLE and SHOW_SITESUBTITLE_IN_HTML %} - {{ SITESUBTITLE }}{% endif
+  <title>{% block title %}{{ SITENAME }}{% if SITESUBTITLE and SHOW_SITESUBTITLE_IN_HTML_TITLE|default(False) %} - {{ SITESUBTITLE }}{% endif
     %}{% endblock title %}</title>
 
   {% if SITE_DESCRIPTION %}

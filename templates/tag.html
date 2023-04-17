@@ -3,13 +3,24 @@
 {% block title %}{{ SITENAME }} - Tag {{ tag }}{% endblock %}
 
 {# <!-- Choosing cover image --> #}
-{% if tag in HEADER_COVERS_BY_TAG %}
-  {% set tag_cover = HEADER_COVERS_BY_TAG.get(tag) %}
+
+
+{% set tag_cover = None %}
+{% set tag_description = None %}
+{% if TAGS_META and TAGS_META[tag.name.lower()] %}
+  {% set tag_cover = TAGS_META[tag.name.lower()].cover %}
+  {% set tag_color = TAGS_META[tag.name.lower()].color %}
+  {% set tag_description = TAGS_META[tag.name.lower()].description %}
+{% endif %}
+
+{% if tag_cover %}
   {% if tag_cover|lower|truncate(4, True, '') == "http" %}
     {% set selected_cover = tag_cover %}
   {% else %}
     {% set selected_cover = SITEURL+"/"+tag_cover %}
   {% endif %}
+{% elif tag_color %}
+  {% set selected_color = tag_color %}
 {% elif HEADER_COVER %}
   {% if HEADER_COVER|lower|truncate(4, True, '') == "http" %}
     {% set selected_cover = HEADER_COVER %}
@@ -45,8 +56,8 @@
             </span>
           </span>
           <h2 class="archive-title">{{tag.name | title}}</h2>
-          {% if tag.description %}
-            <span class="archive-description">{{tag.description}}</span>
+          {% if tag_description %}
+            <span class="archive-description">{{tag_description}}</span>
           {% endif %}
         </div>
 

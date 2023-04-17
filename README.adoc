@@ -300,7 +300,7 @@ manually (see `CSS_OVERRIDE`)
 === Other configuration
 
 * `GOOGLE_SITE_VERIFICATION` - Google site verification token;
-* Set `SHOW_FULL_ARTICLE` to True to show full article content on
+* Set `SHOW_FULL_ARTICLE_IN_SUMMARY` to True to show full article content on
 index.html instead of summary;
 * Set `FACEBOOK_ADMINS` to a list of Facebook account IDs which are
 associated with this blog. For example `['12345']`. For more info see

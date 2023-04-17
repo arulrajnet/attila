@@ -3,13 +3,22 @@
 {% block title %}{{ SITENAME }} - Articles in the {{ category }} category{% endblock %}
 
 {# <!-- Choosing cover image --> #}
-{% if category in HEADER_COVERS_BY_CATEGORY %}
-  {% set category_cover = HEADER_COVERS_BY_CATEGORY.get(category) %}
+{% set category_cover = None %}
+{% set category_description = None %}
+{% if CATEGORY_META and CATEGORY_META[category.name.lower()] %}
+  {% set category_cover = CATEGORY_META[category.name.lower()].cover %}
+  {% set category_color = CATEGORY_META[category.name.lower()].color %}
+  {% set category_description = CATEGORY_META[category.name.lower()].description %}
+{% endif %}
+
+{% if category_cover %}
   {% if category_cover|lower|truncate(4, True, '') == "http" %}
     {% set selected_cover = category_cover %}
   {% else %}
     {% set selected_cover = SITEURL+"/"+category_cover %}
   {% endif %}
+{% elif category_color %}
+  {% set selected_color = category_color %}
 {% elif HEADER_COVER %}
   {% if HEADER_COVER|lower|truncate(4, True, '') == "http" %}
     {% set selected_cover = HEADER_COVER %}
@@ -45,8 +54,8 @@
             </span>
           </span>
           <h2 class="archive-title">{{category.name | title}}</h2>
-          {% if category.description %}
-            <span class="archive-description">{{category.description}}</span>
+          {% if category_description %}
+            <span class="archive-description">{{category_description}}</span>
           {% endif %}
         </div>
 
