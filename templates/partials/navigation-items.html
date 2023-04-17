@@ -17,13 +17,13 @@
 </ul>
 <ul class="nav-meta">
   {% for name,link in SOCIAL if name.lower() in ['facebook', 'twitter', 'linkedin', 'github'] %}
-    <li class="nav-{{name.lower()}}"><a aria-label="{{name|title}}" href="{{ link }}" target="_blank"><i class="ic ic-{{name.lower()}}" aria-hidden="true"></i>
+    <li class="nav-{{name.lower()}}"><a aria-label="{{name|title}}" href="{{ link }}" target="_blank"><i class="icon icon-{{name.lower()}}" aria-hidden="true"></i>
     <span>{{name}}</span>
     </a></li>
   {% endfor %}
   <li class="nav-search" style="display: none;">
     <a title="Search">
-      <i class="ic ic-search" aria-hidden="true"></i>
+      <i class="icon icon-search" aria-hidden="true"></i>
       <span>Search</span>
     </a>
   </li>
