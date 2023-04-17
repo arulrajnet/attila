@@ -7,10 +7,10 @@
 
 {% set tag_cover = None %}
 {% set tag_description = None %}
-{% if TAGS_META and TAGS_META[tag.name.lower()] %}
-  {% set tag_cover = TAGS_META[tag.name.lower()].cover %}
-  {% set tag_color = TAGS_META[tag.name.lower()].color %}
-  {% set tag_description = TAGS_META[tag.name.lower()].description %}
+{% if TAG_META and TAG_META[tag.name.lower()] %}
+  {% set tag_cover = TAG_META[tag.name.lower()].cover %}
+  {% set tag_color = TAG_META[tag.name.lower()].color %}
+  {% set tag_description = TAG_META[tag.name.lower()].description %}
 {% endif %}
 
 {% if tag_cover %}
