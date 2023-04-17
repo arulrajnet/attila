@@ -70,27 +70,27 @@
             {% endif %}
           </figure>
           <h2 class="archive-title">{{author_name}}</h2>
-          {% if AUTHOR_META[author.name.lower()].bio %}
+          {% if AUTHOR_META and AUTHOR_META[author.name.lower()] and AUTHOR_META[author.name.lower()].bio %}
           <span class="archive-description">{{AUTHOR_META[author.name.lower()].bio}}</span>
           {% endif %}
           <span class="archive-links">
-          {% if AUTHOR_META[author.name.lower()].location %}
+          {% if AUTHOR_META and AUTHOR_META[author.name.lower()] and AUTHOR_META[author.name.lower()].location %}
               <a href="#{{AUTHOR_META[author.name.lower()].location}}" title="{{AUTHOR_META[author.name.lower()].location}}"><i class="icon icon-location"></i><span>{{AUTHOR_META[author.name.lower()].location}}</span></a>
           {% endif %}
-          {% if AUTHOR_META[author.name.lower()].website %}
+          {% if AUTHOR_META and AUTHOR_META[author.name.lower()] and AUTHOR_META[author.name.lower()].website %}
               <a target="_blank" href="{{AUTHOR_META[author.name.lower()].website}}"><i class="icon icon-globe"></i><span>Website</span></a>
           {% endif %}
           <!-- Social linkes in alphabet order. -->
-          {% if AUTHOR_META[author.name.lower()].facebook %}
+          {% if AUTHOR_META and AUTHOR_META[author.name.lower()] and AUTHOR_META[author.name.lower()].facebook %}
               <a target="_blank" href="https://facebook.com/{{AUTHOR_META[author.name.lower()].facebook}}"><i class="icon icon-facebook"></i><span>Facebook</span></a>
           {% endif %}
-          {% if AUTHOR_META[author.name.lower()].github %}
+          {% if AUTHOR_META and AUTHOR_META[author.name.lower()] and AUTHOR_META[author.name.lower()].github %}
               <a target="_blank" href="https://github.com/{{AUTHOR_META[author.name.lower()].github}}"><i class="icon icon-github"></i><span>GitHub</span></a>
           {% endif %}
-          {% if AUTHOR_META[author.name.lower()].linkedin %}
+          {% if AUTHOR_META and AUTHOR_META[author.name.lower()] and AUTHOR_META[author.name.lower()].linkedin %}
               <a target="_blank" href="https://www.linkedin.com/in/{{AUTHOR_META[author.name.lower()].linkedin}}"><i class="icon icon-linkedin"></i><span>LinkedIn</span></a>
           {% endif %}
-          {% if AUTHOR_META[author.name.lower()].twitter %}
+          {% if AUTHOR_META and AUTHOR_META[author.name.lower()] and AUTHOR_META[author.name.lower()].twitter %}
               <a target="_blank" href="https://twitter.com/{{AUTHOR_META[author.name.lower()].twitter}}"><i class="icon icon-twitter"></i><span>Twitter</span></a>
           {% endif %}
           </span>
