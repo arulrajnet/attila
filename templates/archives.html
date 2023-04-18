@@ -18,7 +18,7 @@
   {% set selected_color = HEADER_COLOR %}
 {% endif %}
 
-{% block canonical_url %}<link href="{{ SITEURL }}/archives" rel="canonical" />{% endblock canonical_url %}
+{% block canonical_url %}<link href="{{ SITEURL }}/{{ARCHIVES_URL}}" rel="canonical" />{% endblock canonical_url %}
 
 {% if dates %}
 {% set body_class='archives-template' %}
