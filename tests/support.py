@@ -259,8 +259,6 @@ class BaseTest(object):
                 result.save_as, generator.get_template('article'),
                 generator.context, article=result)
     soup = BeautifulSoup(open("./"+self.writer.output_path+'/'+result.save_as), "html.parser")
-    print("result %s" % result)
-    print("soup %s" % soup)
     return (result, soup)
 
   def gen_page_and_html_from_rst(self, rstPath):
