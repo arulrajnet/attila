@@ -12,7 +12,8 @@ def setUpModule():
 def tearDownModule():
   print("teardown module")
   try:
-    rmtree(OUTPUT_DIR)
+    pass
+    # rmtree(OUTPUT_DIR)
   except OSError as e:
     print ("Error: %s - %s." % (e.filename,e.strerror))
 
@@ -37,24 +38,27 @@ class ArticleCoverImageTest(unittest.TestCase, BaseTest):
     rstPath="content/article_with_cover_image.rst"
     result, soup = self.gen_article_and_html_from_rst(rstPath)
     selected = soup.find(name="div", attrs={"class": "post-cover cover"})
+    selectedImg = selected.find(name="img")
     # Assertion
-    self.assertTrue(self.settings['SITEURL']+'/'+result.cover in selected["style"])
+    self.assertTrue(self.settings['SITEURL']+'/'+result.cover in selectedImg["src"])
 
   def test_article_header_cover(self):
     self.settings['HEADER_COVER']='/assets/images/header_cover.jpg'
     rstPath="content/article_without_cover.rst"
     result, soup = self.gen_article_and_html_from_rst(rstPath)
     selected = soup.find(name="div", attrs={"class": "post-cover cover"})
+    selectedImg = selected.find(name="img")
     # Assertion
-    self.assertTrue(self.settings['SITEURL']+'/'+self.settings['HEADER_COVER'] in selected["style"])
+    self.assertTrue(self.settings['SITEURL']+'/'+self.settings['HEADER_COVER'] in selectedImg["src"])
 
   def test_article_header_http_cover(self):
     self.settings['HEADER_COVER']='http://example.com/cover.jpg'
     rstPath="content/article_without_cover.rst"
     result, soup = self.gen_article_and_html_from_rst(rstPath)
     selected = soup.find(name="div", attrs={"class": "post-cover cover"})
+    selectedImg = selected.find(name="img")
     # Assertion
-    self.assertTrue(self.settings['HEADER_COVER'] in selected["style"])
+    self.assertTrue(self.settings['HEADER_COVER'] in selectedImg["src"])
 
   def test_article_theme_cover(self):
     rstPath="content/article_without_cover.rst"
@@ -75,15 +79,17 @@ class ArticleCoverImageTest(unittest.TestCase, BaseTest):
     rstPath="content/article_with_http_cover_image.rst"
     result, soup = self.gen_article_and_html_from_rst(rstPath)
     selected = soup.find(name="div", attrs={"class": "post-cover cover"})
+    selectedImg = selected.find(name="img")
     # Assertion
-    self.assertTrue(result.cover in selected["style"])
+    self.assertTrue(result.cover in selectedImg["src"])
 
   def test_article_og_cover(self):
     rstPath="content/article_with_og_image.rst"
     result, soup = self.gen_article_and_html_from_rst(rstPath)
     selected = soup.find(name="div", attrs={"class": "post-cover cover"})
+    selectedImg = selected.find(name="img")
     # Assertion
-    self.assertTrue(result.og_image in selected["style"])
+    self.assertTrue(result.og_image in selectedImg["src"])
 
 class PageCoverImageTest(unittest.TestCase, BaseTest):
 
@@ -98,31 +104,35 @@ class PageCoverImageTest(unittest.TestCase, BaseTest):
     rstPath="content/pages/page_with_cover_image.rst"
     result, soup = self.gen_page_and_html_from_rst(rstPath)
     selected = soup.find(name="div", attrs={"class": "post-cover cover"})
+    selectedImg = selected.find(name="img")
     # Assertion
-    self.assertTrue(self.settings['SITEURL']+'/'+result.cover in selected["style"])
+    self.assertTrue(self.settings['SITEURL']+'/'+result.cover in selectedImg["src"])
 
   def test_page_header_cover(self):
     self.settings['HEADER_COVER']='/assets/images/header_cover.jpg'
     rstPath="content/pages/page_without_cover_image.rst"
     result, soup = self.gen_page_and_html_from_rst(rstPath)
     selected = soup.find(name="div", attrs={"class": "post-cover cover"})
+    selectedImg = selected.find(name="img")
     # Assertion
-    self.assertTrue(self.settings['SITEURL']+'/'+self.settings['HEADER_COVER'] in selected["style"])
+    self.assertTrue(self.settings['SITEURL']+'/'+self.settings['HEADER_COVER'] in selectedImg["src"])
 
   def test_page_header_http_cover(self):
     self.settings['HEADER_COVER']='http://example.com/cover.jpg'
     rstPath="content/pages/page_without_cover_image.rst"
     result, soup = self.gen_page_and_html_from_rst(rstPath)
     selected = soup.find(name="div", attrs={"class": "post-cover cover"})
+    selectedImg = selected.find(name="img")
     # Assertion
-    self.assertTrue(self.settings['HEADER_COVER'] in selected["style"])
+    self.assertTrue(self.settings['HEADER_COVER'] in selectedImg["src"])
 
   def test_page_theme_cover(self):
     rstPath="content/pages/page_without_cover_image.rst"
     result, soup = self.gen_page_and_html_from_rst(rstPath)
     selected = soup.find(id="post-header")
+    selectedImg = selected.find(name="img")
     # Assertion
-    self.assertTrue("class" not in selected)
+    self.assertTrue("class" not in selectedImg["src"])
 
   def test_page_header_color(self):
     self.settings['HEADER_COLOR']='blue'
@@ -136,15 +146,17 @@ class PageCoverImageTest(unittest.TestCase, BaseTest):
     rstPath="content/pages/page_with_http_cover_image.rst"
     result, soup = self.gen_page_and_html_from_rst(rstPath)
     selected = soup.find(name="div", attrs={"class": "post-cover cover"})
+    selectedImg = selected.find(name="img")
     # Assertion
-    self.assertTrue(result.cover in selected["style"])
+    self.assertTrue(result.cover in selectedImg["src"])
 
   def test_page_og_cover(self):
     rstPath="content/pages/page_with_og_image.rst"
     result, soup = self.gen_page_and_html_from_rst(rstPath)
     selected = soup.find(name="div", attrs={"class": "post-cover cover"})
+    selectedImg = selected.find(name="img")
     # Assertion
-    self.assertTrue(result.og_image in selected["style"])
+    self.assertTrue(result.og_image in selectedImg["src"])
 
 class TagCoverImageTest(unittest.TestCase, BaseTest):
 
@@ -167,8 +179,9 @@ class TagCoverImageTest(unittest.TestCase, BaseTest):
     }
     result, soup = self.gen_tag_and_html_from_name(tagName)
     selected = soup.find(name="div", attrs={"class": "blog-cover cover"})
+    selectedImg = selected.find(name="img")
     # Assertion
-    self.assertTrue(self.settings['SITEURL']+'/'+self.settings['HEADER_COVERS_BY_TAG'][tagName] in selected["style"])
+    self.assertTrue(self.settings['SITEURL']+'/'+self.settings['HEADER_COVERS_BY_TAG'][tagName] in selectedImg["src"])
 
   def test_footag_http_cover(self):
     tagName = "footag"
@@ -177,23 +190,26 @@ class TagCoverImageTest(unittest.TestCase, BaseTest):
     }
     result, soup = self.gen_tag_and_html_from_name(tagName)
     selected = soup.find(name="div", attrs={"class": "blog-cover cover"})
+    selectedImg = selected.find(name="img")
     # Assertion
-    self.assertTrue(self.settings['HEADER_COVERS_BY_TAG'][tagName] in selected["style"])
+    self.assertTrue(self.settings['HEADER_COVERS_BY_TAG'][tagName] in selectedImg["src"])
 
   def test_footag_header_cover(self):
     self.settings['SITEURL'] = "http://example.com"
     self.settings["HEADER_COVER"] = "/assets/images/header_cover.jpg"
     result, soup = self.gen_tag_and_html_from_name("footag")
     selected = soup.find(name="div", attrs={"class": "blog-cover cover"})
+    selectedImg = selected.find(name="img")
     # Assertion
-    self.assertTrue(self.settings['SITEURL']+'/'+self.settings["HEADER_COVER"] in selected["style"])
+    self.assertTrue(self.settings['SITEURL']+'/'+self.settings["HEADER_COVER"] in selectedImg["src"])
 
   def test_footag_header_http_cover(self):
     self.settings["HEADER_COVER"] = "http://example.com/cover.jpg"
     result, soup = self.gen_tag_and_html_from_name("footag")
     selected = soup.find(name="div", attrs={"class": "blog-cover cover"})
+    selectedImg = selected.find(name="img")
     # Assertion
-    self.assertTrue(self.settings["HEADER_COVER"] in selected["style"])
+    self.assertTrue(self.settings["HEADER_COVER"] in selectedImg["src"])
 
   def test_footag_header_color(self):
     self.settings["HEADER_COLOR"] = "red"
@@ -215,8 +231,9 @@ class TagCoverImageTest(unittest.TestCase, BaseTest):
     }
     result, soup = self.gen_tag_and_html_from_name(tagName)
     selected = soup.find(name="div", attrs={"class": "blog-cover cover"})
+    selectedImg = selected.find(name="img")
     # Assertion
-    self.assertTrue(self.settings['SITEURL']+'/'+self.settings['HEADER_COVERS_BY_TAG'][tagName] in selected["style"])
+    self.assertTrue(self.settings['SITEURL']+'/'+self.settings['HEADER_COVERS_BY_TAG'][tagName] in selectedImg["src"])
 
   def test_bartag_http_cover(self):
     tagName = "bartag"
@@ -225,23 +242,26 @@ class TagCoverImageTest(unittest.TestCase, BaseTest):
     }
     result, soup = self.gen_tag_and_html_from_name(tagName)
     selected = soup.find(name="div", attrs={"class": "blog-cover cover"})
+    selectedImg = selected.find(name="img")
     # Assertion
-    self.assertTrue(self.settings['HEADER_COVERS_BY_TAG'][tagName] in selected["style"])
+    self.assertTrue(self.settings['HEADER_COVERS_BY_TAG'][tagName] in selectedImg["src"])
 
   def test_bartag_header_cover(self):
     self.settings['SITEURL'] = "http://example.com"
     self.settings["HEADER_COVER"] = "/assets/images/header_cover.jpg"
     result, soup = self.gen_tag_and_html_from_name("bartag")
     selected = soup.find(name="div", attrs={"class": "blog-cover cover"})
+    selectedImg = selected.find(name="img")
     # Assertion
-    self.assertTrue(self.settings['SITEURL']+'/'+self.settings["HEADER_COVER"] in selected["style"])
+    self.assertTrue(self.settings['SITEURL']+'/'+self.settings["HEADER_COVER"] in selectedImg["src"])
 
   def test_bartag_header_http_cover(self):
     self.settings["HEADER_COVER"] = "http://example.com/cover.jpg"
     result, soup = self.gen_tag_and_html_from_name("bartag")
     selected = soup.find(name="div", attrs={"class": "blog-cover cover"})
+    selectedImg = selected.find(name="img")
     # Assertion
-    self.assertTrue(self.settings["HEADER_COVER"] in selected["style"])
+    self.assertTrue(self.settings["HEADER_COVER"] in selectedImg["src"])
 
   def test_bartag_header_color(self):
     self.settings["HEADER_COLOR"] = "red"
@@ -272,8 +292,9 @@ class CategoryCoverImageTest(unittest.TestCase, BaseTest):
     }
     result, soup = self.gen_category_and_html_from_name(categoryName)
     selected = soup.find(name="div", attrs={"class": "blog-cover cover"})
+    selectedImg = selected.find(name="img")
     # Assertion
-    self.assertTrue(self.settings['SITEURL']+'/'+self.settings['HEADER_COVERS_BY_CATEGORY'][categoryName] in selected["style"])
+    self.assertTrue(self.settings['SITEURL']+'/'+self.settings['HEADER_COVERS_BY_CATEGORY'][categoryName] in selectedImg["src"])
 
   def test_foo_http_cover(self):
     categoryName = "foo"
@@ -282,23 +303,26 @@ class CategoryCoverImageTest(unittest.TestCase, BaseTest):
     }
     result, soup = self.gen_category_and_html_from_name(categoryName)
     selected = soup.find(name="div", attrs={"class": "blog-cover cover"})
+    selectedImg = selected.find(name="img")
     # Assertion
-    self.assertTrue(self.settings['HEADER_COVERS_BY_CATEGORY'][categoryName] in selected["style"])
+    self.assertTrue(self.settings['HEADER_COVERS_BY_CATEGORY'][categoryName] in selectedImg["src"])
 
   def test_foo_header_cover(self):
     self.settings['SITEURL'] = "http://example.com"
     self.settings["HEADER_COVER"] = "/assets/images/header_cover.jpg"
     result, soup = self.gen_category_and_html_from_name("foo")
     selected = soup.find(name="div", attrs={"class": "blog-cover cover"})
+    selectedImg = selected.find(name="img")
     # Assertion
-    self.assertTrue(self.settings['SITEURL']+'/'+self.settings["HEADER_COVER"] in selected["style"])
+    self.assertTrue(self.settings['SITEURL']+'/'+self.settings["HEADER_COVER"] in selectedImg["src"])
 
   def test_foo_header_http_cover(self):
     self.settings["HEADER_COVER"] = "http://example.com/cover.jpg"
     result, soup = self.gen_category_and_html_from_name("foo")
     selected = soup.find(name="div", attrs={"class": "blog-cover cover"})
+    selectedImg = selected.find(name="img")
     # Assertion
-    self.assertTrue(self.settings["HEADER_COVER"] in selected["style"])
+    self.assertTrue(self.settings["HEADER_COVER"] in selectedImg["src"])
 
   def test_foo_header_color(self):
     self.settings["HEADER_COLOR"] = "red"
@@ -320,8 +344,9 @@ class CategoryCoverImageTest(unittest.TestCase, BaseTest):
     }
     result, soup = self.gen_category_and_html_from_name(categoryName)
     selected = soup.find(name="div", attrs={"class": "blog-cover cover"})
+    selectedImg = selected.find(name="img")
     # Assertion
-    self.assertTrue(self.settings['SITEURL']+'/'+self.settings['HEADER_COVERS_BY_CATEGORY'][categoryName] in selected["style"])
+    self.assertTrue(self.settings['SITEURL']+'/'+self.settings['HEADER_COVERS_BY_CATEGORY'][categoryName] in selectedImg["src"])
 
   def test_bar_http_cover(self):
     categoryName = "bar"
@@ -330,23 +355,26 @@ class CategoryCoverImageTest(unittest.TestCase, BaseTest):
     }
     result, soup = self.gen_category_and_html_from_name(categoryName)
     selected = soup.find(name="div", attrs={"class": "blog-cover cover"})
+    selectedImg = selected.find(name="img")
     # Assertion
-    self.assertTrue(self.settings['HEADER_COVERS_BY_CATEGORY'][categoryName] in selected["style"])
+    self.assertTrue(self.settings['HEADER_COVERS_BY_CATEGORY'][categoryName] in selectedImg["src"])
 
   def test_bar_header_cover(self):
     self.settings['SITEURL'] = "http://example.com"
     self.settings["HEADER_COVER"] = "/assets/images/header_cover.jpg"
     result, soup = self.gen_category_and_html_from_name("bar")
     selected = soup.find(name="div", attrs={"class": "blog-cover cover"})
+    selectedImg = selected.find(name="img")
     # Assertion
-    self.assertTrue(self.settings['SITEURL']+'/'+self.settings["HEADER_COVER"] in selected["style"])
+    self.assertTrue(self.settings['SITEURL']+'/'+self.settings["HEADER_COVER"] in selectedImg["src"])
 
   def test_bar_header_http_cover(self):
     self.settings["HEADER_COVER"] = "http://example.com/cover.jpg"
     result, soup = self.gen_category_and_html_from_name("bar")
     selected = soup.find(name="div", attrs={"class": "blog-cover cover"})
+    selectedImg = selected.find(name="img")
     # Assertion
-    self.assertTrue(self.settings["HEADER_COVER"] in selected["style"])
+    self.assertTrue(self.settings["HEADER_COVER"] in selectedImg["src"])
 
   def test_bar_header_color(self):
     self.settings["HEADER_COLOR"] = "red"
@@ -378,8 +406,9 @@ class AuthorCoverImageTest(unittest.TestCase, BaseTest):
     }
     result, soup = self.gen_author_and_html_from_name(authorName)
     selected = soup.find(name="div", attrs={"class": "blog-cover cover"})
+    selectedImg = selected.find(name="img")
     # Assertion
-    self.assertTrue(self.settings['SITEURL']+'/'+self.settings['AUTHORS_BIO'][authorName]['cover'] in selected["style"])
+    self.assertTrue(self.settings['SITEURL']+'/'+self.settings['AUTHORS_BIO'][authorName]['cover'] in selectedImg["src"])
 
   def test_arul_http_cover(self):
     authorName = "arul"
@@ -390,23 +419,26 @@ class AuthorCoverImageTest(unittest.TestCase, BaseTest):
     }
     result, soup = self.gen_author_and_html_from_name(authorName)
     selected = soup.find(name="div", attrs={"class": "blog-cover cover"})
+    selectedImg = selected.find(name="img")
     # Assertion
-    self.assertTrue(self.settings['AUTHORS_BIO'][authorName]['cover'] in selected["style"])
+    self.assertTrue(self.settings['AUTHORS_BIO'][authorName]['cover'] in selectedImg["src"])
 
   def test_arul_header_cover(self):
     self.settings['SITEURL'] = "http://example.com"
     self.settings["HEADER_COVER"] = "/assets/images/header_cover.jpg"
     result, soup = self.gen_author_and_html_from_name("arul")
     selected = soup.find(name="div", attrs={"class": "blog-cover cover"})
+    selectedImg = selected.find(name="img")
     # Assertion
-    self.assertTrue(self.settings['SITEURL']+'/'+self.settings["HEADER_COVER"] in selected["style"])
+    self.assertTrue(self.settings['SITEURL']+'/'+self.settings["HEADER_COVER"] in selectedImg["src"])
 
   def test_arul_header_http_cover(self):
     self.settings["HEADER_COVER"] = "http://example.com/cover.jpg"
     result, soup = self.gen_author_and_html_from_name("arul")
     selected = soup.find(name="div", attrs={"class": "blog-cover cover"})
+    selectedImg = selected.find(name="img")
     # Assertion
-    self.assertTrue(self.settings["HEADER_COVER"] in selected["style"])
+    self.assertTrue(self.settings["HEADER_COVER"] in selectedImg["src"])
 
   def test_arul_header_color(self):
     self.settings["HEADER_COLOR"] = "red"
@@ -430,8 +462,9 @@ class AuthorCoverImageTest(unittest.TestCase, BaseTest):
     }
     result, soup = self.gen_author_and_html_from_name(authorName)
     selected = soup.find(name="div", attrs={"class": "blog-cover cover"})
+    selectedImg = selected.find(name="img")
     # Assertion
-    self.assertTrue(self.settings['SITEURL']+'/'+self.settings['AUTHORS_BIO'][authorName]['cover'] in selected["style"])
+    self.assertTrue(self.settings['SITEURL']+'/'+self.settings['AUTHORS_BIO'][authorName]['cover'] in selectedImg["src"])
 
   def test_raj_http_cover(self):
     authorName = "raj"
@@ -442,30 +475,34 @@ class AuthorCoverImageTest(unittest.TestCase, BaseTest):
     }
     result, soup = self.gen_author_and_html_from_name(authorName)
     selected = soup.find(name="div", attrs={"class": "blog-cover cover"})
+    selectedImg = selected.find(name="img")
     # Assertion
-    self.assertTrue(self.settings['AUTHORS_BIO'][authorName]['cover'] in selected["style"])
+    self.assertTrue(self.settings['AUTHORS_BIO'][authorName]['cover'] in selectedImg["src"])
 
   def test_raj_header_cover(self):
     self.settings['SITEURL'] = "http://example.com"
     self.settings["HEADER_COVER"] = "/assets/images/header_cover.jpg"
     result, soup = self.gen_author_and_html_from_name("raj")
     selected = soup.find(name="div", attrs={"class": "blog-cover cover"})
+    selectedImg = selected.find(name="img")
     # Assertion
-    self.assertTrue(self.settings['SITEURL']+'/'+self.settings["HEADER_COVER"] in selected["style"])
+    self.assertTrue(self.settings['SITEURL']+'/'+self.settings["HEADER_COVER"] in selectedImg["src"])
 
   def test_raj_header_http_cover(self):
     self.settings["HEADER_COVER"] = "http://example.com/cover.jpg"
     result, soup = self.gen_author_and_html_from_name("raj")
     selected = soup.find(name="div", attrs={"class": "blog-cover cover"})
+    selectedImg = selected.find(name="img")
     # Assertion
-    self.assertTrue(self.settings["HEADER_COVER"] in selected["style"])
+    self.assertTrue(self.settings["HEADER_COVER"] in selectedImg["src"])
 
   def test_raj_header_color(self):
     self.settings["HEADER_COLOR"] = "red"
     result, soup = self.gen_author_and_html_from_name("raj")
     selected = soup.find(name="div", attrs={"class": "blog-cover cover"})
+    selectedImg = selected.find(name="img")
     # Assertion
-    self.assertTrue(self.settings["HEADER_COLOR"] in selected["style"])
+    self.assertTrue(self.settings["HEADER_COLOR"] in selectedImg["src"])
 
 if __name__ == '__main__':
   unittest.main()
