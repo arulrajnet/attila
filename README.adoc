@@ -133,33 +133,47 @@ For more refer link:#articles[article] .
 [[tag-cover]]
 ==== Tag Cover
 
-To set cover image for a tag, set the property `HEADER_COVERS_BY_TAG` in
+To set cover image for a tag, set the property `TAG_META` in
 `pelicanconf.py`:
 
 [source,python]
 ----
-HEADER_COVERS_BY_TAG = {'food': '/images/food.png', 'drinks':'/images/orange-juice.png'}
+TAG_META = {
+  'food': {
+    'cover': '/images/food.png',
+    'description': 'Examples ipsum dolor sit amet. Topping'
+  },
+  'drinks': {
+    'cover': '/images/orange-juice.png',
+    'description': 'Examples ipsum dolor sit amet. Juice'
+  }
+}
 ----
 
 [[category-cover]]
 ==== Category Cover
 
-To set cover image for a category, set the property `HEADER_COVERS_BY_CATEGORY` in
+To set cover image for a category, set the property `CATEGORY_META` in
 `pelicanconf.py`:
 
 [source,python]
 ----
-HEADER_COVERS_BY_CATEGORY = {'food': '/images/junkie-stuff.png'}
+CATEGORY_META = {
+  'food': {
+    'cover': '/images/junkie-stuff.png',
+    'description': 'Examples ipsum dolor sit amet. Topping'
+  }
+}
 ----
 
 [[author-cover]]
 ==== Author Cover
 
-To set cover image for an author, set the property `AUTHORS_BIO` in `pelicanconf.py`:
+To set cover image for an author, set the property `AUTHOR_META` in `pelicanconf.py`:
 
 [source,python]
 ----
-AUTHORS_BIO = {
+AUTHOR_META = {
   "zutrinken": {
     "cover": "/assets/images/zutrinken-cover.png"
   }
@@ -236,7 +250,7 @@ JS_OVERRIDE = ['']
 === Author Bio
 
 ....
-AUTHORS_BIO = {
+AUTHOR_META = {
   "zutrinken": {
     "name": "Zutrinken",
     "cover": "https://arulrajnet.github.io/attila-demo/assets/images/avatar.png",
