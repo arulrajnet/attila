@@ -3,13 +3,22 @@
 {% block title %}{{ SITENAME }} - Articles in the {{ category }} category{% endblock %}
 
 {# <!-- Choosing cover image --> #}
-{% if category in HEADER_COVERS_BY_CATEGORY %}
-  {% set category_cover = HEADER_COVERS_BY_CATEGORY.get(category) %}
+{% set category_cover = None %}
+{% set category_description = None %}
+{% if CATEGORY_META and CATEGORY_META[category.name.lower()] %}
+  {% set category_cover = CATEGORY_META[category.name.lower()].cover %}
+  {% set category_color = CATEGORY_META[category.name.lower()].color %}
+  {% set category_description = CATEGORY_META[category.name.lower()].description %}
+{% endif %}
+
+{% if category_cover %}
   {% if category_cover|lower|truncate(4, True, '') == "http" %}
     {% set selected_cover = category_cover %}
   {% else %}
     {% set selected_cover = SITEURL+"/"+category_cover %}
   {% endif %}
+{% elif category_color %}
+  {% set selected_color = category_color %}
 {% elif HEADER_COVER %}
   {% if HEADER_COVER|lower|truncate(4, True, '') == "http" %}
     {% set selected_cover = HEADER_COVER %}
@@ -31,34 +40,31 @@
 {% block header %}
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header id="blog-header" {% if selected_cover or selected_color %}class="has-cover"{% endif %}>
+    <header class="blog-header {% if selected_cover or selected_color %} has-cover {% endif %}">
       <div class="inner">
-        <nav id="navigation">
-          {% if SITE_LOGO %}
-            <span class="blog-logo">
-                <a href="{{ SITEURL }}/"><img src="{{SITE_LOGO}}" alt="Blog Logo" /></a>
+        <div class="archive archive-tag box archive-box">
+          <span class="archive-info">
+            <span class="archive-type">{{"Category"}}</span>
+            <span class="archive-count">
+            {% if articles|count == 1 %}
+            {{ articles|count }} Post
+            {% else %}
+            {{ articles|count }} Posts
+            {% endif %}
             </span>
-          {% else %}
-            <span id="home-button" class="nav-button">
-                <a class="home-button" href="{{ SITEURL }}/" aria-label="Home" title="Home">
-                  <i class="ic ic-arrow-left" aria-hidden="true"></i>
-                  <span>Home</span>
-                </a>
-            </span>
-          {% endif %}
-          <span id="menu-button" class="nav-button">
-            <a class="menu-button" aria-label="Menu">
-              <i class="ic ic-menu" aria-hidden="true"></i>
-              <span>Menu</span>
-            </a>
           </span>
-        </nav>
-        <h1 class="post-title">Category {{ category }}</h1>
-        <span class="blog-description">Posts: {{ articles|count }}</span>
+          <h2 class="archive-title">{{category.name | title}}</h2>
+          {% if category_description %}
+            <span class="archive-description">{{category_description}}</span>
+          {% endif %}
+        </div>
+
         {% if selected_cover %}
-            <div class="blog-cover cover" style="background-image: url('{{ selected_cover }}')">
+          <div class="blog-cover cover">
+            <img src="{{ selected_cover }}" alt="{{ current_title }}" />
+          </div>
         {% elif selected_color %}
-            <div class="blog-cover cover" style="background-color: {{ selected_color }}">
+          <div class="blog-cover cover" style="background-color: {{ selected_color }}">
         {% endif %}
       </div>
     </header>

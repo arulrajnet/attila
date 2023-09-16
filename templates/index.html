@@ -27,28 +27,19 @@
 {% block header %}
     <!-- Page Header -->
     <!-- Set your background image for this header on the line below. -->
-    <header id="blog-header" {% if selected_cover or selected_color %}class="has-cover"{% endif %}>
+    <header class="blog-header {% if selected_cover or selected_color %} has-cover {% endif %}">
       <div class="inner">
-        <nav id="navigation">
-          {% if SITE_LOGO %}
-          <span class="blog-logo">
-            <a href="{{ SITEURL }}/"><img src="{{SITE_LOGO}}" alt="Blog Logo" /></a>
-          </span>
+        <div class="box blog-box">
+          <h1 class="blog-name">{{ SITENAME }}</h1>
+          {% if SITESUBTITLE %}
+          <span class="blog-description">{{ SITESUBTITLE }}</span>
           {% endif %}
-          <span id="menu-button" class="nav-button">
-            <a class="menu-button" aria-label="Menu">
-              <i class="ic ic-menu" aria-hidden="true"></i>
-              <span>Menu</span>
-            </a>
-          </span>
-        </nav>
-        <h1 class="blog-name"><a href="{{ SITEURL }}/">{{ SITENAME }}</a></h1>
-        {% if SITESUBTITLE %}
-        <span class="blog-description">{{ SITESUBTITLE }}</span>
-        {% endif %}
+        </div>
 
         {% if selected_cover %}
-          <div class="blog-cover cover" style="background-image: url('{{ selected_cover }}')">
+          <div class="blog-cover cover">
+            <img src="{{ selected_cover }}" alt="{{current_title}}" />
+          </div>
         {% elif selected_color %}
           <div class="blog-cover cover" style="background-color: {{ selected_color }}">
         {% endif %}

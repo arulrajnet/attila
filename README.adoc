@@ -15,13 +15,13 @@ https://github.com/zutrinken/attila[attila]
 [[demo]]
 == Demo
 
-* https://arulrajnet.github.io/attila-demo[Blog]
-* https://arulrajnet.github.io/attila-demo/2015/11/headlines-blockquotes-images.html[Post]
-* https://arulrajnet.github.io/attila-demo/tag/general/[Tag Archive]
-* https://arulrajnet.github.io/attila-demo/author/zutrinken/[Author
+* https://attila.demo.arulraj.net[Blog]
+* https://attila.demo.arulraj.net/2015/11/headlines-blockquotes-images.html[Post]
+* https://attila.demo.arulraj.net/tag/general/[Tag Archive]
+* https://attila.demo.arulraj.net/author/zutrinken/[Author
 Archive]
-* https://arulrajnet.github.io/attila-demo/archives.html[All archive]
-* https://arulrajnet.github.io/attila-demo/pages/about/[Page]
+* https://attila.demo.arulraj.net/archives.html[All archive]
+* https://attila.demo.arulraj.net/pages/about/[Page]
 
 Demo blog https://github.com/arulrajnet/attila-demo[source code]
 
@@ -133,33 +133,47 @@ For more refer link:#articles[article] .
 [[tag-cover]]
 ==== Tag Cover
 
-To set cover image for a tag, set the property `HEADER_COVERS_BY_TAG` in
+To set cover image for a tag, set the property `TAG_META` in
 `pelicanconf.py`:
 
 [source,python]
 ----
-HEADER_COVERS_BY_TAG = {'food': '/images/food.png', 'drinks':'/images/orange-juice.png'}
+TAG_META = {
+  'food': {
+    'cover': '/images/food.png',
+    'description': 'Examples ipsum dolor sit amet. Topping'
+  },
+  'drinks': {
+    'cover': '/images/orange-juice.png',
+    'description': 'Examples ipsum dolor sit amet. Juice'
+  }
+}
 ----
 
 [[category-cover]]
 ==== Category Cover
 
-To set cover image for a category, set the property `HEADER_COVERS_BY_CATEGORY` in
+To set cover image for a category, set the property `CATEGORY_META` in
 `pelicanconf.py`:
 
 [source,python]
 ----
-HEADER_COVERS_BY_CATEGORY = {'food': '/images/junkie-stuff.png'}
+CATEGORY_META = {
+  'food': {
+    'cover': '/images/junkie-stuff.png',
+    'description': 'Examples ipsum dolor sit amet. Topping'
+  }
+}
 ----
 
 [[author-cover]]
 ==== Author Cover
 
-To set cover image for an author, set the property `AUTHORS_BIO` in `pelicanconf.py`:
+To set cover image for an author, set the property `AUTHOR_META` in `pelicanconf.py`:
 
 [source,python]
 ----
-AUTHORS_BIO = {
+AUTHOR_META = {
   "zutrinken": {
     "cover": "/assets/images/zutrinken-cover.png"
   }
@@ -236,11 +250,11 @@ JS_OVERRIDE = ['']
 === Author Bio
 
 ....
-AUTHORS_BIO = {
+AUTHOR_META = {
   "zutrinken": {
     "name": "Zutrinken",
-    "cover": "https://arulrajnet.github.io/attila-demo/assets/images/avatar.png",
-    "image": "https://arulrajnet.github.io/attila-demo/assets/images/avatar.png",
+    "cover": "https://attila.demo.arulraj.net/assets/images/avatar.png",
+    "image": "https://attila.demo.arulraj.net/assets/images/avatar.png",
     "website": "http://blog.arulraj.net",
     "location": "Chennai",
     "bio": "This is the place for a small biography with max 200 characters. Well, now 100 are left. Cool, hugh?"
@@ -257,12 +271,22 @@ Accept many analytics:
 * Gauges: `GAUGES`
 * Piwik: `PIWIK_URL` and `PIWIK_SITE_ID`.
 
-[[sidebar-menu]]
-=== Sidebar Menu
+[[menu-items]]
+=== Menu Items
 
-The menu item coming from pelican pages.
-You have to create pages folder under link::https://github.com/arulrajnet/attila-demo/tree/master/content/pages[content directory].
-Whatever articles there in this folder will be pages.
+The menu item coming from pelican config `MENUITEMS`.
+
+For ex:
+
+[source,python]
+----
+MENUITEMS = (('Home', '/'),
+             ('Tag', '/tag/getting-started/'),
+             ('Author', '/author/pelican/'),
+             ('Category', '/category/examples/'),
+             ('Archives','/2015/11/'),
+             ('Plugins', 'https://github.com/pelican-plugins'))
+----
 
 
 [[articles]]
@@ -299,12 +323,20 @@ manually (see `CSS_OVERRIDE`)
 [[other-configuration]]
 === Other configuration
 
-* `GOOGLE_SITE_VERIFICATION` - Google site verification token;
-* Set `SHOW_FULL_ARTICLE` to True to show full article content on
-index.html instead of summary;
 * Set `FACEBOOK_ADMINS` to a list of Facebook account IDs which are
 associated with this blog. For example `['12345']`. For more info see
 https://developers.facebook.com/docs/platforminsights/domains
+* `GOOGLE_SITE_VERIFICATION` - Google site verification token.
+* Set `SHOW_ARTICLE_MODIFIED_TIME` to `True` to show the article modified time along with created time. Default is `False`.
+* Set `SHOW_AUTHOR_BIO_IN_ARTICLE` to `True` to show the bio of author in end of the each article. Default is `False`.
+* Set `SHOW_CATEGORIES_ON_MENU` to `True` to show the categories as menu item at the top. Default is `False`.
+* Set `SHOW_COMMENTS_COUNT_IN_ARTICLE_SUMMARY` to `True` to show the comments count in article summary. Default is `True`.
+* Set `SHOW_CREDITS` to `True` to show the credits of the theme at the bottom. Default is `True`.
+* Set `SHOW_FULL_ARTICLE_IN_SUMMARY` to True to show full article content on
+index.html instead of summary. Default is `False`.
+* Set `SHOW_PAGES_ON_MENU` to `True` to show the each page as separate menu item. Default is `True`.
+* Set `SHOW_SITESUBTITLE_IN_HTML_TITLE` to `True` to show the site description (Set using variable `SITESUBTITLE`) after site name. Default is `False`.
+* Set `SHOW_TAGS_IN_ARTICLE_SUMMARY` to `True` to show the tags in article summary. Default is `False`.
 
 [[development]]
 == Development

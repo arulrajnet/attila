@@ -33,7 +33,7 @@
   "dateModified": "{{ article.modified }}",
   "author": {
     "@type": "Person",
-    "name": "{{ article.author.name }}",
+    "name": "{{ article.author.name | title }}",
     "url": "{{ SITEURL }}/{{ article.author.url }}"
   },
   "image": "{{ default_cover }}",

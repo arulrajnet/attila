@@ -1,0 +1,30 @@
+<ul>
+
+  {% for title, link in MENUITEMS %}
+    <li class="nav-{{title}} {%if current_url == link %}active{% endif %}" role="presentation"><a href="{{ link }}"><span>{{ title }}</span></a></li>
+  {% endfor %}
+
+  {% if SHOW_PAGES_ON_MENU | default(True) %}
+    {% for p in pages %}
+      <li{% if p == page %} class="nav-{{p.slug}} active"{% endif %} role="presentation"><a href="{{ SITEURL }}/{{ p.url }}"><span>{{ p.title }}</span></a></li>
+    {% endfor %}
+  {% endif %}
+  {% if SHOW_CATEGORIES_ON_MENU | default(False) %}
+    {% for cat, null in categories %}
+      <li{% if cat == category %} class="nav-{{cat.slug}} active"{% endif %} role="presentation"><a href="{{ SITEURL }}/{{ cat.url }}"><span>{{ cat }}</span></a></li>
+    {% endfor %}
+  {% endif %}
+</ul>
+<ul class="nav-meta">
+  {% for name,link in SOCIAL if name.lower() in ['facebook', 'twitter', 'linkedin', 'github'] %}
+    <li class="nav-{{name.lower()}}"><a aria-label="{{name|title}}" href="{{ link }}" target="_blank"><i class="icon icon-{{name.lower()}}" aria-hidden="true"></i>
+    <span>{{name}}</span>
+    </a></li>
+  {% endfor %}
+  <li class="nav-search" style="display: none;">
+    <a title="Search">
+      <i class="icon icon-search" aria-hidden="true"></i>
+      <span>Search</span>
+    </a>
+  </li>
+</ul>

@@ -1,27 +1,18 @@
-<nav id="menu">
-  <a class="close-button">Close</a>
-  <div class="nav-wrapper">
-    <p class="nav-label">Menu</p>
-    <ul>
-      {% for title, link in MENUITEMS %}
-          <li><a href="{{ link }}" role="presentation">{{ title }}</a></li>
-      {% endfor %}
-
-      {% if DISPLAY_PAGES_ON_MENU %}
-          {% for p in pages %}
-              <li{% if p == page %} class="nav-{{p.slug}} active"{% endif %} role="presentation"><a href="{{ SITEURL }}/{{ p.url }}">{{ p.title }}</a></li>
-          {% endfor %}
-      {% else %}
-          {% if DISPLAY_CATEGORIES_ON_MENU %}
-              {% for cat, null in categories %}
-                  <li{% if cat == category %} class="nav-{{cat.slug}} active"{% endif %} role="presentation"><a href="{{ SITEURL }}/{{ cat.url }}">{{ cat }}</a></li>
-              {% endfor %}
-          {% endif %}
+<div class="nav-header">
+  <nav class="nav-wrapper" aria-label="Main">
+      {% if SITE_LOGO %}
+      <span class="logo">
+        <a href="{{ SITEURL }}" title="Home"><img src="{{SITE_LOGO}}" alt="Blog Logo" /></a>
+      </span>
       {% endif %}
+      {% include 'partials/navigation-items.html' %}
+  </nav>
 
-      {% for name,link in SOCIAL if name in ['rss', 'rss-square', 'feed'] %}
-        <li class="nav-rss"><a href="{{ link }}"><i class="ic ic-rss"></i> Subscribe</a></li>
-      {% endfor %}
-    </ul>
+  <div class="nav-wrapper-control">
+    <div class="inner">
+      <a class="nav-menu" role="button"><i class="icon icon-menu" aria-hidden="true"></i>Menu</a>
+      <a class="nav-search" title="Search" role="button" style="display: none;"><i class="icon icon-search" aria-hidden="true"></i></a>
+    </div>
   </div>
-</nav>
+</div>
+<div class="nav-close" role="button" aria-label="Close"></div>

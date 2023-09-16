@@ -131,7 +131,7 @@ JINJA_ENVIRONMENT = {
 
 JINJA_FILTERS = {'max': max}
 
-# AUTHORS_BIO = {
+# AUTHOR_META = {
 #   "arul": {
 #     "name": "Arul",
 #     "cover": "assets/images/avatar.png",

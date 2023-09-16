@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}{{ SITENAME }} - Pages{% endblock %}
+
+{# <!-- Choosing cover image --> #}
+{% if HEADER_COVER %}
+  {% if HEADER_COVER|lower|truncate(4, True, '') == "http" %}
+    {% set selected_cover = HEADER_COVER %}
+  {% else %}
+    {% set selected_cover = SITEURL+"/"+HEADER_COVER %}
+  {% endif %}
+{% elif HOME_COVER %}
+  {% if HOME_COVER|lower|truncate(4, True, '') == "http" %}
+    {% set selected_cover = HOME_COVER %}
+  {% else %}
+    {% set selected_cover = SITEURL+"/"+HOME_COVER %}
+  {% endif %}
+{% elif HEADER_COLOR %}
+  {% set selected_color = HEADER_COLOR %}
+{% endif %}
+
+{% block canonical_url %}<link href="{{ SITEURL }}/{{PAGES_URL}}" rel="canonical" />{% endblock canonical_url %}
+
+{% if pages %}
+{% set body_class='pages-template' %}
+{% set current_url=PAGES_URL %}
+{% set current_title=SITENAME+' - Pages' %}
+{% set current_display_title='Pages' %}
+{% endif %}
+
+{% block header %}
+    <!-- Page Header -->
+    <!-- Set your background image for this header on the line below. -->
+    <header class="blog-header {% if selected_cover or selected_color %} has-cover {% endif %}">
+      <div class="inner">
+        <h1 class="post-title">{{ current_display_title }}</h1>
+        <span class="blog-description">Pages: {{ pages|count }}</span>
+        {% if selected_cover %}
+          <div class="post-cover cover">
+            <img src="{{ selected_cover }}" alt="{{ current_title }}" />
+          </div>
+        {% elif selected_color %}
+          <div class="post-cover cover" style="background-color: {{ selected_color }}">
+        {% endif %}
+      </div>
+    </header>
+{% endblock header %}
+
+{% block content %}
+
+<div id="index" class="container">
+  <main class="content" role="main">
+    {% include "partials/loop.html" %}
+  </main>
+</div>
+{% endblock content %}
