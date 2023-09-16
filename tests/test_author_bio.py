@@ -9,7 +9,6 @@ from support import (get_my_settings, unittest, BaseTest, CUR_DIR, CONTENT_DIR, 
 def tearDownModule():
   print("teardown module")
   try:
-    pass
     rmtree(OUTPUT_DIR)
   except OSError as e:
     print ("Error: %s - %s." % (e.filename,e.strerror))
