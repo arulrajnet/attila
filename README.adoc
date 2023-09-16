@@ -1,6 +1,9 @@
 [[pelican-attila-theme]]
 = Attila
 A content focused responsive pelican theme
+
+image:attila.png[attila]
+
 :toc: left
 
 [[overview]]
