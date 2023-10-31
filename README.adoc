@@ -19,11 +19,11 @@ https://github.com/zutrinken/attila[attila]
 == Demo
 
 * https://attila.demo.arulraj.net[Blog]
-* https://attila.demo.arulraj.net/2015/11/headlines-blockquotes-images.html[Post]
+* https://attila.demo.arulraj.net/2015/11/headlines-blockquotes-images/[Post]
 * https://attila.demo.arulraj.net/tag/general/[Tag Archive]
-* https://attila.demo.arulraj.net/author/zutrinken/[Author
+* https://attila.demo.arulraj.net/author/pelican/[Author
 Archive]
-* https://attila.demo.arulraj.net/archives.html[All archive]
+* https://attila.demo.arulraj.net/archive/[All archive]
 * https://attila.demo.arulraj.net/pages/about/[Page]
 
 Demo blog https://github.com/arulrajnet/attila-demo[source code]
