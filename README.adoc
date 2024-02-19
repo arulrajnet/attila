@@ -265,6 +265,8 @@ AUTHOR_META = {
 }
 ....
 
+The supported social profile for author are `facebook`, `github`, `linkedin`, `twitter` and `instagram`.
+
 [[analytics]]
 === Analytics
 
