@@ -93,6 +93,9 @@
           {% if AUTHOR_META and AUTHOR_META[author.name.lower()] and AUTHOR_META[author.name.lower()].twitter %}
               <a target="_blank" href="https://twitter.com/{{AUTHOR_META[author.name.lower()].twitter}}"><i class="icon icon-twitter"></i><span>Twitter</span></a>
           {% endif %}
+          {% if AUTHOR_META and AUTHOR_META[author.name.lower()] and AUTHOR_META[author.name.lower()].instagram %}
+              <a target="_blank" href="https://instagram.com/{{AUTHOR_META[author.name.lower()].instagram}}"><i class="icon icon-instagram"></i><span>Instagram</span></a>
+          {% endif %}
           </span>
         </div>
         {% if selected_cover %}
