@@ -107,6 +107,12 @@
       "css": "menu",
       "code": 59402,
       "src": "fontawesome"
+    },
+    {
+      "uid": "4c1ef492f1d2c39a2250ae457cee2a6e",
+      "css": "instagram",
+      "code": 61805,
+      "src": "fontawesome"
     }
   ]
 }

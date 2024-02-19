@@ -1,5 +1,7 @@
 The icons are generated from https://fontello.com/
 
+Refer the [config.json](config.json) for the list of icons and their respective unicode.
+
 
 star        - Font Awesome, star-empty  - e800
 rss         - Font Awesome, rss         - e801
@@ -18,3 +20,4 @@ linkedin    - Entypo, linkedin          - e80d
 github      - Zocial, github-circled    - e80e
 reddit      - Font Awesome, reddit-alien- e80f
 mail        - Font Awesome, mail        - e816
+instagram   - Font Awesome, instagram   - f16D
