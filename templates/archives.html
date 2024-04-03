@@ -1,3 +1,10 @@
+{% if dates %}
+{% set body_class='archives-template' %}
+{% set current_url=ARCHIVES_URL %}
+{% set current_title=SITENAME+' - Archives' %}
+{% set current_display_title='Archives' %}
+{% endif %}
+
 {% extends "base.html" %}
 
 {% block title %}{{ SITENAME }} - Archives{% endblock %}
@@ -19,13 +26,6 @@
 {% endif %}
 
 {% block canonical_url %}<link href="{{ SITEURL }}/{{ARCHIVES_URL}}" rel="canonical" />{% endblock canonical_url %}
-
-{% if dates %}
-{% set body_class='archives-template' %}
-{% set current_url=ARCHIVES_URL %}
-{% set current_title=SITENAME+' - Archives' %}
-{% set current_display_title='Archives' %}
-{% endif %}
 
 {% block header %}
     <!-- Page Header -->

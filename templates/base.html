@@ -147,48 +147,55 @@
   {% endblock head %}
 
 </head>
-{% set body_class='home-template' %}
-{% set current_url='/' %}
-{% set current_title=SITENAME %}
 
-{% if article %}
-{% set body_class='post-template' %}
-{% set current_url='/'+article.url %}
-{% set current_title=article.title %}
-{% endif %}
+{% if body_class %}
+  {% set body_class=body_class %}
 
-{% if tag %}
-{% set body_class='tag-template' %}
-{% set current_url='/'+tag.url %}
-{% set current_title='Tag '+tag.name %}
-{% endif %}
+{% else %}
+  {% set body_class='home-template' %}
+  {% set current_url='/' %}
+  {% set current_title=SITENAME %}
 
-{% if category %}
-{% set body_class='category-template' %}
-{% set current_url='/'+category.url %}
-{% set current_title='Category '+category.name %}
-{% endif %}
+  {% if article %}
+  {% set body_class='post-template' %}
+  {% set current_url='/'+article.url %}
+  {% set current_title=article.title %}
+  {% endif %}
 
-{% if page %}
-{% set body_class='page-template' %}
-{% set current_url='/'+page.url %}
-{% set current_title=page.title %}
-{% endif %}
+  {% if tag %}
+  {% set body_class='tag-template' %}
+  {% set current_url='/'+tag.url %}
+  {% set current_title='Tag '+tag.name %}
+  {% endif %}
 
-{% if author %}
-{% set body_class='author-template' %}
-{% set current_url='/'+author.url %}
-{% set current_title='Author '+author.name %}
-{% endif %}
+  {% if category %}
+  {% set body_class='category-template' %}
+  {% set current_url='/'+category.url %}
+  {% set current_title='Category '+category.name %}
+  {% endif %}
 
-{% if period and period_num %}
-{% if period_num[2] %}
-  {% set current_url='/{0}/{1}/{2}/'.format(period_num[0],period_num[1],period_num[2]) %}
-{% elif period_num[1] %}
-  {% set current_url='/{0}/{1}/'.format(period_num[0],period_num[1]) %}
-{% elif period_num[0] %}
-  {% set current_url='/{0}/'.format(period_num[0]) %}
-{% endif %}
+  {% if page %}
+  {% set body_class='page-template' %}
+  {% set current_url='/'+page.url %}
+  {% set current_title=page.title %}
+  {% endif %}
+
+  {% if author %}
+  {% set body_class='author-template' %}
+  {% set current_url='/'+author.url %}
+  {% set current_title='Author '+author.name %}
+  {% endif %}
+
+  {% if period and period_num %}
+  {% if period_num[2] %}
+    {% set current_url='/{0}/{1}/{2}/'.format(period_num[0],period_num[1],period_num[2]) %}
+  {% elif period_num[1] %}
+    {% set current_url='/{0}/{1}/'.format(period_num[0],period_num[1]) %}
+  {% elif period_num[0] %}
+    {% set current_url='/{0}/'.format(period_num[0]) %}
+  {% endif %}
+  {% endif %}
+
 {% endif %}
 
 <body class="{{body_class}}">

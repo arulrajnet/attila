@@ -1,3 +1,10 @@
+{% if pages %}
+{% set body_class='pages-template' %}
+{% set current_url=PAGES_URL %}
+{% set current_title=SITENAME+' - Pages' %}
+{% set current_display_title='Pages' %}
+{% endif %}
+
 {% extends "base.html" %}
 
 {% block title %}{{ SITENAME }} - Pages{% endblock %}
@@ -20,13 +27,6 @@
 {% endif %}
 
 {% block canonical_url %}<link href="{{ SITEURL }}/{{PAGES_URL}}" rel="canonical" />{% endblock canonical_url %}
-
-{% if pages %}
-{% set body_class='pages-template' %}
-{% set current_url=PAGES_URL %}
-{% set current_title=SITENAME+' - Pages' %}
-{% set current_display_title='Pages' %}
-{% endif %}
 
 {% block header %}
     <!-- Page Header -->

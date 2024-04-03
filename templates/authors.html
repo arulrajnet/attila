@@ -1,3 +1,10 @@
+{% if authors %}
+{% set body_class='authors-template' %}
+{% set current_url=AUTHORS_URL %}
+{% set current_title=SITENAME+' - Authors' %}
+{% set current_display_title='Authors' %}
+{% endif %}
+
 {% extends "index.html" %}
 
 {% block title %}{{ SITENAME }} - Authors{% endblock title %}
@@ -19,13 +26,6 @@
 {% endif %}
 
 {% block canonical_url %}<link href="{{ SITEURL }}/{{ AUTHORS_URL }}" rel="canonical" />{% endblock canonical_url %}
-
-{% if authors %}
-{% set body_class='authors-template' %}
-{% set current_url=AUTHORS_URL %}
-{% set current_title=SITENAME+' - Authors' %}
-{% set current_display_title='Authors' %}
-{% endif %}
 
 {% block header %}
     <!-- Page Header -->

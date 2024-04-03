@@ -1,3 +1,10 @@
+{% if categories %}
+{% set body_class='categories-template' %}
+{% set current_url=CATEGORIES_URL %}
+{% set current_title=SITENAME+' - Categories' %}
+{% set current_display_title='Categories' %}
+{% endif %}
+
 {% extends "base.html" %}
 
 {% block title %}{{ SITENAME }} - Categories{% endblock %}
@@ -19,13 +26,6 @@
 {% endif %}
 
 {% block canonical_url %}<link href="{{ SITEURL }}/{{ CATEGORIES_URL }}" rel="canonical" />{% endblock canonical_url %}
-
-{% if categories %}
-{% set body_class='categories-template' %}
-{% set current_url=CATEGORIES_URL %}
-{% set current_title=SITENAME+' - Categories' %}
-{% set current_display_title='Categories' %}
-{% endif %}
 
 {% block header %}
     <!-- Page Header -->
