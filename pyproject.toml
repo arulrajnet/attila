@@ -1,0 +1,65 @@
+[project]
+requires-python = ">=3.7"
+name = "attila"
+version = "2.0"
+description = "Attila Pelican Theme"
+authors = [
+    { name = "Arulraj Venni", email = "me@arulraj.net"}
+]
+readme = "README.md"
+license = {file = "LICENSE"}
+
+keywords = [
+    'pelican',
+    'pelican-theme',
+    'markdown',
+    'theme',
+    'python',
+    'ghost',
+]
+
+classifiers = [
+    # See: https://pypi.org/pypi?%3Aaction=list_classifiers
+    'Development Status :: 5 - Production/Stable',
+    'Environment :: Plugins',
+    'Environment :: Web Environment',
+    'Framework :: Pelican :: Themes',
+    'Intended Audience :: Developers',
+    'Intended Audience :: Information Technology',
+    'License :: OSI Approved :: MIT License',
+    'Operating System :: OS Independent',
+    'Programming Language :: JavaScript',
+    'Programming Language :: Other',
+    "Programming Language :: Python :: 3",
+    'Topic :: Internet :: WWW/HTTP',
+    'Topic :: Text Processing :: Markup :: HTML',
+    'Topic :: Text Processing :: Markup :: Markdown',
+]
+
+dependencies = [
+    "cssmin == 0.2.0",
+    "jsmin == 3.0.1",
+    "pelican == 4.9.1",
+    "pelican-neighbors == 1.2.0",
+    "pelican-related-posts == 1.0.0",
+    "pelican-seo == 1.2.2",
+    "pelican-sitemap == 1.1.0",
+    "pelican-webassets == 2.0.0",
+]
+
+[project.urls]
+"Homepage" = 'https://github.com/arulrajnet/attila'
+"Documentation" = 'http://arulrajnet.github.io/attila'
+"Repository" = 'https://github.com/arulrajnet/attila'
+"Funding" = "https://github.com/sponsors/arulrajnet"
+"Issues" = "https://github.com/arulrajnet/attila/issues"
+"Releases" = "https://github.com/arulrajnet/attila/releases"
+
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["static", "templates"]
+
+[tool.setuptools.package-data]
+"*" = ["*"]

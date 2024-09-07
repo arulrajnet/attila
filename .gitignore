@@ -4,3 +4,5 @@ output
 tests/.cache/
 .venv
 .direnv
+dist
+*.egg-info
