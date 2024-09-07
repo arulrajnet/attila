@@ -59,7 +59,7 @@ dependencies = [
 include-package-data = true
 
 [tool.setuptools.packages.find]
-where = ["static", "templates"]
+include = ["static", "templates"]
 
 [tool.setuptools.package-data]
-"*" = ["*"]
+"*" = ["**"]
