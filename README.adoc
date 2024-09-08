@@ -34,18 +34,18 @@ Demo blog https://github.com/arulrajnet/attila-demo[source code]
 === Using Pip
 
 [source,bash]
----
+----
 pip install git+https://github.com/arulrajnet/attila.git@master
----
+----
 
 Then in your `pelicanconf.py` set the theme to `attila`.
 
 [source,python]
----
+----
 import attila
 
 THEME = attila.get_path()
----
+----
 
 === Using pelican-themes
 
