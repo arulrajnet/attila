@@ -58,8 +58,12 @@ dependencies = [
 [tool.setuptools]
 include-package-data = true
 
+[tool.setuptools.package-dir]
+"attila" = "."
+
 [tool.setuptools.packages.find]
 include = ["static", "templates"]
+exclude = ["tests", "dist", "output", "attila.egg-info"]
 
 [tool.setuptools.package-data]
 "*" = ["**"]
