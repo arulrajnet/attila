@@ -5,4 +5,5 @@ tests/.cache/
 .venv
 .direnv
 dist
+build
 *.egg-info
