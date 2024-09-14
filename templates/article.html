@@ -277,6 +277,34 @@
 
 {% block scripts %}
 {{ super() }}
+<!-- Add MathJax and FontAwesome for Asciidoc -->\
+{% if article.source_path and article.source_path.lower().endswith(('.adoc','.asciidoc')) %}
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    messageStyle: "none",
+    tex2jax: {
+      inlineMath: [["\\(", "\\)"]],
+      displayMath: [["\\[", "\\]"]],
+      ignoreClass: "nostem|nolatexmath"
+    },
+    asciimath2jax: {
+      delimiters: [["\\$", "\\$"]],
+      ignoreClass: "nostem|noasciimath"
+    },
+    TeX: { equationNumbers: { autoNumber: "none" } }
+  })
+  MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
+    MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
+      if ((node = data.script.parentNode) && (node = node.parentNode) && node.classList.contains("stemblock")) {
+        data.math.root.display = "block"
+      }
+      return data
+    })
+  })
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/MathJax.js?config=TeX-MML-AM_HTMLorMML"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
+{% endif %}
 <script>
   $(document).ready(function () {
     var viewport = $(window);
@@ -286,10 +314,14 @@
 
     var mdSelector=".highlight pre";
     var rstSelector=".highlight pre";
+    // For ":source-highlighter: highlight.js`" in asciidoc
+    var adocSelector="pre.highlight > code[data-lang]"
     {% if article.source_path and article.source_path.lower().endswith(('.md','.markdown')) %}
     var selector=mdSelector;
     {% elif article.source_path and article.source_path.lower().endswith(('.rst','.rest')) %}
     var selector=rstSelector;
+    {% elif article.source_path and article.source_path.lower().endswith(('.adoc','.asciidoc')) %}
+    var selector=adocSelector;
     {% else %}
     var selector=rstSelector;
     {% endif %}
