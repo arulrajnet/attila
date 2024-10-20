@@ -79,9 +79,11 @@
   {% for css in CSS_OVERRIDE %}
 
   {% if css|lower|truncate(4, True, '') == "http" %}
-  {% set css = css %}
+    {% set css = css %}
+  {% elif css.startswith('/') %}
+    {% set css = SITEURL+css %}
   {% else %}
-  {% set css = SITEURL+"/"+css %}
+    {% set css = SITEURL+"/"+css %}
   {% endif %}
 
   <link href="{{ css }}" type="text/css" rel="stylesheet" />
@@ -247,9 +249,11 @@
   <!-- Script specified by the user -->
   {% for js in JS_OVERRIDE %}
   {% if js|lower|truncate(4, True, '') == "http" %}
-  {% set js = js %}
+    {% set js = js %}
+  {% elif js.startswith('/') %}
+    {% set js = SITEURL+js %}
   {% else %}
-  {% set js = SITEURL+"/"+js %}
+    {% set js = SITEURL+"/"+js %}
   {% endif %}
   <script type="text/javascript" src="{{ js }}"></script>
   {% endfor %}

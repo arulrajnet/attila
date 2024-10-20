@@ -9,6 +9,8 @@
   {% if author_avatar %}
     {% if author_avatar|lower|truncate(4, True, '') == "http" %}
       {% set selected_avatar = author_avatar %}
+    {% elif author_avatar.startswith('/') %}
+      {% set selected_cover = SITEURL+author_avatar %}
     {% else %}
       {% set selected_avatar = SITEURL+"/"+author_avatar %}
     {% endif %}
@@ -19,6 +21,8 @@
   {% if author_cover %}
     {% if author_cover|lower|truncate(4, True, '') == "http" %}
       {% set selected_cover = author_cover %}
+    {% elif author_cover.startswith('/') %}
+      {% set selected_cover = SITEURL+author_cover %}
     {% else %}
       {% set selected_cover = SITEURL+"/"+author_cover %}
     {% endif %}
@@ -30,12 +34,16 @@
 {% elif HEADER_COVER %}
   {% if HEADER_COVER|lower|truncate(4, True, '') == "http" %}
     {% set selected_cover = HEADER_COVER %}
+  {% elif HEADER_COVER.startswith('/') %}
+    {% set selected_cover = SITEURL+HEADER_COVER %}
   {% else %}
     {% set selected_cover = SITEURL+"/"+HEADER_COVER %}
   {% endif %}
 {% elif HOME_COVER %}
   {% if HOME_COVER|lower|truncate(4, True, '') == "http" %}
     {% set selected_cover = HOME_COVER %}
+  {% elif HOME_COVER.startswith('/') %}
+    {% set selected_cover = SITEURL+HOME_COVER %}
   {% else %}
     {% set selected_cover = SITEURL+"/"+HOME_COVER %}
   {% endif %}

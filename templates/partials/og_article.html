@@ -9,24 +9,32 @@
 {% if article.og_image %}
     {% if article.og_image|lower|truncate(4, True, '') == "http" %}
         {% set selected_cover = article.og_image %}
+    {% elif article.og_image.startswith('/') %}
+        {% set selected_cover = SITEURL+article.og_image %}
     {% else %}
         {% set selected_cover = SITEURL+"/"+article.og_image %}
     {% endif %}
 {% elif article.cover %}
     {% if article.cover|lower|truncate(4, True, '') == "http" %}
         {% set selected_cover = article.cover %}
+    {% elif article.cover.startswith('/') %}
+        {% set selected_cover = SITEURL+article.cover %}
     {% else %}
         {% set selected_cover = SITEURL+"/"+article.cover %}
     {% endif %}
 {% elif HEADER_COVER %}
   {% if HEADER_COVER|lower|truncate(4, True, '') == "http" %}
     {% set selected_cover = HEADER_COVER %}
+  {% elif HEADER_COVER.startswith('/') %}
+    {% set selected_cover = SITEURL+HEADER_COVER %}
   {% else %}
     {% set selected_cover = SITEURL+"/"+HEADER_COVER %}
   {% endif %}
 {% elif HOME_COVER %}
   {% if HOME_COVER|lower|truncate(4, True, '') == "http" %}
     {% set selected_cover = HOME_COVER %}
+  {% elif HOME_COVER.startswith('/') %}
+    {% set selected_cover = SITEURL+HOME_COVER %}
   {% else %}
     {% set selected_cover = SITEURL+"/"+HOME_COVER %}
   {% endif %}
@@ -73,6 +81,8 @@
     {% if article.twitter_image %}
         {% if article.twitter_image|lower|truncate(4, True, '') == "http" %}
             <meta name="twitter:image:src" content="{{ article.twitter_image }}">
+        {% elif article.twitter_image.startswith('/') %}
+            <meta name="twitter:image:src" content="{{ SITEURL }}{{ article.twitter_image }}">
         {% else %}
             <meta name="twitter:image:src" content="{{ SITEURL }}/{{ article.twitter_image }}">
         {% endif %}

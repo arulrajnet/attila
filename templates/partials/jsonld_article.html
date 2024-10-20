@@ -2,12 +2,16 @@
 {% if article.og_image %}
     {% if article.og_image|lower|truncate(4, True, '') == "http" %}
         {% set default_cover = article.og_image %}
+    {% elif article.og_image.startswith('/') %}
+        {% set selected_cover = SITEURL+article.og_image %}
     {% else %}
         {% set default_cover = SITEURL+"/"+article.og_image %}
     {% endif %}
 {% elif article.cover %}
     {% if article.cover|lower|truncate(4, True, '') == "http" %}
         {% set default_cover = article.cover %}
+    {% elif article.cover.startswith('/') %}
+        {% set selected_cover = SITEURL+article.cover %}
     {% else %}
         {% set default_cover = SITEURL+"/"+article.cover %}
     {% endif %}

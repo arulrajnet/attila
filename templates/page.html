@@ -10,24 +10,32 @@
 {% if page.cover %}
   {% if page.cover|lower|truncate(4, True, '') == "http" %}
     {% set selected_cover = page.cover %}
+  {% elif page.cover.startswith('/') %}
+    {% set selected_cover = SITEURL+page.cover %}
   {% else %}
     {% set selected_cover = SITEURL+"/"+page.cover %}
   {% endif %}
 {% elif page.og_image %}
   {% if page.og_image|lower|truncate(4, True, '') == "http" %}
     {% set selected_cover = page.og_image %}
+  {% elif page.og_image.startswith('/') %}
+    {% set selected_cover = SITEURL+page.og_image %}
   {% else %}
     {% set selected_cover = SITEURL+"/"+page.og_image %}
   {% endif %}
 {% elif HEADER_COVER %}
   {% if HEADER_COVER|lower|truncate(4, True, '') == "http" %}
     {% set selected_cover = HEADER_COVER %}
+  {% elif HEADER_COVER.startswith('/') %}
+    {% set selected_cover = SITEURL+HEADER_COVER %}
   {% else %}
     {% set selected_cover = SITEURL+"/"+HEADER_COVER %}
   {% endif %}
 {% elif HOME_COVER %}
   {% if HOME_COVER|lower|truncate(4, True, '') == "http" %}
     {% set selected_cover = HOME_COVER %}
+  {% elif HOME_COVER.startswith('/') %}
+    {% set selected_cover = SITEURL+HOME_COVER %}
   {% else %}
     {% set selected_cover = SITEURL+"/"+HOME_COVER %}
   {% endif %}
