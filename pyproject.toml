@@ -38,6 +38,7 @@ classifiers = [
 
 dependencies = [
     "pelican == 4.10.2",
+    "pelican-image-process == 3.0.4",
     "pelican-minify == 2.0.0",
     "pelican-neighbors == 1.2.0",
     "pelican-related-posts == 1.0.0",

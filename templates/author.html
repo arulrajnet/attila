@@ -108,7 +108,11 @@
         </div>
         {% if selected_cover %}
           <div class="blog-cover cover">
-            <img src="{{ selected_cover }}" alt="{{ current_title }}" />
+            {% if "image_process" is plugin_enabled %}
+              <img class="image-process-large-photo" src="{{ selected_cover }}" alt="{{ current_title }}" />
+            {% else %}
+              <img src="{{ selected_cover }}" alt="{{ current_title }}" />
+            {% endif %}
           </div>
         {% elif selected_color %}
           <div class="blog-cover cover" style="background-color: {{ selected_color }}"></div>

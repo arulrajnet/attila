@@ -53,7 +53,11 @@
         <h1 class="post-title">{{ current_title }}</h1>
         {% if selected_cover %}
           <div class="post-cover cover">
-            <img src="{{ selected_cover }}" alt="{{ current_title }}" />
+            {% if "image_process" is plugin_enabled %}
+              <img class="image-process-large-photo" src="{{ selected_cover }}" alt="{{ current_title }}" />
+            {% else %}
+              <img src="{{ selected_cover }}" alt="{{ current_title }}" />
+            {% endif %}
           </div>
         {% elif selected_color %}
           <div class="post-cover cover" style="background-color: {{ selected_color }}">

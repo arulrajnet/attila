@@ -33,7 +33,11 @@
         <h1 class="post-title">Archives for {{ period | reverse | join (' ') }}</h1>
         {% if selected_cover %}
           <div class="post-cover cover">
-            <img src="{{ selected_cover }}" alt="Archives for {{ period | reverse | join (' ') }}" />
+            {% if "image_process" is plugin_enabled %}
+              <img class="image-process-large-photo" src="{{ selected_cover }}" alt="Archives for {{ period | reverse | join (' ') }}" />
+            {% else %}
+              <img src="{{ selected_cover }}" alt="Archives for {{ period | reverse | join (' ') }}" />
+            {% endif %}
           </div>
         {% elif selected_color %}
           <div class="post-cover cover" style="background-color: {{ selected_color }}">
