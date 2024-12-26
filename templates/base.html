@@ -72,15 +72,7 @@
   {% endif %}
   {% endfor %}
 
-  <link href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/style.css" type="text/css" rel="stylesheet" />
-
-  {% if "webassets" is plugin_enabled %}
-  {% assets filters="cssmin", output="{{ THEME_STATIC_DIR }}/css/style.min.css", "{{ THEME_STATIC_DIR }}/css/style.css" %}
-    <link rel="stylesheet" type="text/css" href="{{SITEURL}}/{{ASSET_URL}}">
-  {% endassets %}
-  {% else %}
-    <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/style.css">
-  {% endif %}
+  <link rel="stylesheet" type="text/css" href="{{ SITEURL }}/{{ THEME_STATIC_DIR }}/css/style.css">
 
   {% if CSS_OVERRIDE %}
   <!-- CSS specified by the user -->
