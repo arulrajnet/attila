@@ -37,14 +37,13 @@ classifiers = [
 ]
 
 dependencies = [
-    "cssmin == 0.2.0",
-    "jsmin == 3.0.1",
-    "pelican == 4.9.1",
+    "pelican == 4.10.2",
     "pelican-neighbors == 1.2.0",
     "pelican-related-posts == 1.0.0",
     "pelican-seo == 1.2.2",
     "pelican-sitemap == 1.1.0",
     "pelican-webassets == 2.0.0",
+    "pelican-minify == 2.0.0",
 ]
 
 [project.urls]

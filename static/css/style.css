@@ -758,8 +758,9 @@ button,input,select,textarea {
     display: block;
     position: static;
     top: auto;
-    margin: -1.33334em -1.33334em -1.33334em 1.33334em;
-    padding: 1.33334em;
+    /* This is for if the code has line numbers. */
+    /* margin: -1.33334em -1.33334em -1.33334em 1.33334em;
+    padding: 1.33334em; */
     overflow-x: auto;
     font-size: 0.75em;
     line-height: 2em;
